@@ -25,6 +25,7 @@ create table tbProgram
 	SessionId int foreign key references tbSession 
 )
 go
+
 insert into tbProgram(ProgramName, SessionId)values
 	('Software and Database Developer', '1'),('Accounting Specialist', '2'),('Administrative Professional', '3'),
 	('Business Administration', '4'),('Casino / Resort / Event Coordinator', '5'),('Legal Assistant', '6'),
@@ -93,3 +94,12 @@ create table tbQuestionResponse
 )
 go
 
+------------------------------------------------
+create table tbQuize
+(
+  QuizeId int primary key identity(1,1),
+  ProgramID int foreign key references tbProgram(ProgramId),
+  DifficultyID int foreign key references tbDifficulty(DifficultyId)	
+     
+)
+go
