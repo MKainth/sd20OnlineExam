@@ -38,7 +38,7 @@ go
 
 create table tbQuiz
 (
-  QuizeId int primary key identity(1,1),
+  QuizId int primary key identity(1,1),
   ProgramId int foreign key references tbProgram(ProgramId),
   DifficultyId int foreign key references tbDifficulty(DifficultyId)	     
 )
