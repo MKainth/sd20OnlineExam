@@ -22,7 +22,7 @@ create table tbProgram
 (
 	ProgramId int primary key identity(1,1),
 	ProgramName varchar(60),
-	SessionId int foreign key references tbSession 
+	SessionId int foreign key references tbSession(SessionId) 
 )
 go
 
@@ -56,8 +56,8 @@ create table tbStudent
 	LastName Varchar(max),
 	Email Varchar(60) unique,---User Name----
 	Password Varchar(60),	
-	ProgramId int foreign key references tbProgram,
-	SessionId int foreign key references tbSession	
+	ProgramId int foreign key references tbProgram(ProgramId),
+	SessionId int foreign key references tbSession(SessionId)	
 )
 go
 
@@ -80,7 +80,7 @@ create table tbQuestion
   Answer3 varchar(50),
   Answer4 varchar(50),
   CorrectAnswer varchar(4),
-  Mark int
+  Marks int
 )
 go
 
@@ -99,7 +99,6 @@ create table tbQuize
 (
   QuizeId int primary key identity(1,1),
   ProgramID int foreign key references tbProgram(ProgramId),
-  DifficultyID int foreign key references tbDifficulty(DifficultyId)	
-     
+  DifficultyID int foreign key references tbDifficulty(DifficultyId)	  
 )
 go
