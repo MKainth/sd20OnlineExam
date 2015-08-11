@@ -99,6 +99,7 @@ create table tbQuize
 (
   QuizeId int primary key identity(1,1),
   ProgramID int foreign key references tbProgram(ProgramId),
-  DifficultyID int foreign key references tbDifficulty(DifficultyId)	  
+  DifficultyID int foreign key references tbDifficulty(DifficultyId)	
+     
 )
 go
