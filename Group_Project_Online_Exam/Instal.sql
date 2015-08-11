@@ -98,21 +98,8 @@ create table tbQuestion
 )
 go
 
-
 -----------------------------------------------
 
-------------------------------------------------
-
-create table tbQuiz
-(
-  QuizId int primary key identity(1,1),
-  ProgramId int foreign key references tbProgram(ProgramId),
-  DifficultyId int foreign key references tbDifficulty(DifficultyId)	
-     
-)
-go
-
-------------------------------------------------
 
 create table tbQuizResponse
 (
