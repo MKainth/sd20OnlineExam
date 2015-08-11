@@ -95,11 +95,44 @@ create table tbQuestionResponse
 go
 
 ------------------------------------------------
-create table tbQuize
+
+create table tbQuiz
 (
   QuizeId int primary key identity(1,1),
-  ProgramID int foreign key references tbProgram(ProgramId),
-  DifficultyID int foreign key references tbDifficulty(DifficultyId)	
+  ProgramId int foreign key references tbProgram(ProgramId),
+  DifficultyId int foreign key references tbDifficulty(DifficultyId)	
      
 )
 go
+
+------------------------------------------------
+
+create table tbQuizResponse
+(
+  QuizResponseId int primary key identity(1,1),
+  ExamDate Date,
+  StudentId int foreign key references tbStudent(StudentId)	    
+)
+go
+
+------------------------------------------------
+
+create table tbTeacherProgram
+(
+  TeacherProgramId int primary key identity(1,1),
+  TeacherId int foreign key references tbTeacher(TeacherId),
+  ProgramId int foreign key references tbProgram(ProgramId)	    
+)
+go
+
+------------------------------------------------
+
+create table tbActiveExam
+(
+  ActiveExamId int primary key identity(1,1),
+  StartTime Time,
+  EndTime Time,
+  SessionId int foreign key references tbSession(SessionId) 	    
+)
+go
+
