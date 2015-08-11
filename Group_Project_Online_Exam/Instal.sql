@@ -31,7 +31,6 @@ create table tbTeacher
 	SubjectId int foreign key references tbSubject
 )
 go
-
 -----------------------------------------------
 create table tbStudent
 (
@@ -43,6 +42,20 @@ create table tbStudent
 	SubjectId int foreign key references tbSubject
 )
 go
-
 -----------------------------------------------
+create table tbTeacherStudent
+(
+TeacherStudentId int primary key identity(1,1),
+TeacherId int foreign key references tbTeacher(teacherId),
+SubjectId int foreign key references tbSubject(SubjectId)
+ )
 
+ ------------------------------------------------
+ go
+  create table QuizResponse
+ (
+ QuizResponseId int primary key identity(1,1),
+ ExamDate datetime,
+ StudentId int foreign key references tbStudent(StudentId)
+ )
+ --------------------------------------------------
