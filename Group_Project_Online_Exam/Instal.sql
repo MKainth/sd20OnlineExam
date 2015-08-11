@@ -6,43 +6,77 @@ create database dbSD20
 go
 use dbSD20
 go
+
 -----------------------------------------------
-create table tbSubject
+
+create table tbSession
 (
-	SubjectId int primary key identity(1,1),
-	SubjectName varchar(60)
-)
-go
-insert into tbSubject(SubjectName)values
- ('Software and Database Developer'),('Accounting Specialist'),('Administrative Professional'),
- ('Business Administration'),('Casino / Resort / Event Coordinator'),('Legal Assistant'),
- ('Travel Counsellor'),('Veterinary Office Assistant'),('Network Engineering'),
- ('Enhanced Health Care Aide'),('Health Care Aide '),('Massage Therapy '),
-('Medical Laboratory Assistant'),('Medical Office Assistant'),('Nursing Assistant'),
-('Pharmacy Technician')
-go
------------------------------------------------
-create table tbTeacher
-(
-	TeacherId int primary key identity(1,1),
-	TeacherName Varchar(max),
-	UserName Varchar(60),
-	Password Varchar(60),
-	SubjectId int foreign key references tbSubject
+	SessionId int primary key identity(1,1),
+	SessionCode Varchar(60)
 )
 go
 
 -----------------------------------------------
+
+create table tbProgram
+(
+	ProgramId int primary key identity(1,1),
+	ProgramName varchar(60),
+	SessionId int foreign key references tbSession 
+)
+go
+insert into tbProgram(ProgramName, SessionId)values
+	('Software and Database Developer', '1'),('Accounting Specialist', '2'),('Administrative Professional', '3'),
+	('Business Administration', '4'),('Casino / Resort / Event Coordinator', '5'),('Legal Assistant', '6'),
+	('Travel Counsellor', '7'),('Veterinary Office Assistant', '8'),('Network Engineering', '9'),
+	('Enhanced Health Care Aide', '10'),('Health Care Aide ', '11'),('Massage Therapy ', '12'),
+	('Medical Laboratory Assistant', '13'),('Medical Office Assistant', '14'),('Nursing Assistant', '15'),
+	('Pharmacy Technician', '16')
+go
+
+-----------------------------------------------
+
+create table tbTeacher
+(
+	TeacherId int primary key identity(1,1),
+	UserName Varchar(60),
+	Password Varchar(60),
+	Email Varchar(50),
+	Admin int 
+)
+go
+
+-----------------------------------------------
+
 create table tbStudent
 (
 	StudentId int primary key identity(1,1),
 	FirstName Varchar(max),
 	LastName Varchar(max),
 	Email Varchar(60) unique,---User Name----
-	Password Varchar(60),	
-	SubjectId int foreign key references tbSubject
+	Password Varchar(60),
+	ProgramId int foreign key references tbProgram,
+	SessionId int foreign key references tbSession	
 )
 go
 
 -----------------------------------------------
+
+create table tbDifficulty
+(
+	DifficultyId int primary key identity(1,1),
+	Name Varchar(60)
+)
+go
+
+-----------------------------------------------
+
+create table tbQuize
+(
+	QuizeId int primary key identity(1,1),
+	ProgramId int foreign key references tbProgram,
+	DifficultyId int foreign key references tbDifficulty
+)
+go
+
 
