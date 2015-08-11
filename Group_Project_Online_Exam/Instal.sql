@@ -75,15 +75,8 @@ create table tbQuestion
 )
 go
 
-------------------------------------------------
-create table tbQuestionResponse
-(
-  QuestionResponseId int primary key identity(1,1),
-  QuizResponseId int foreign key references tbQuizResponse(QuizResponseId),
-  QuestionId int foreign key references tbQuestion(QuestionId),
-  Response varchar(4)   
-)
-go
+
+-----------------------------------------------
 
 ------------------------------------------------
 
