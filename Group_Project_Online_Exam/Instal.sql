@@ -93,3 +93,23 @@ create table tbQuestionResponse
 )
 go
 
+-------------------------------------------------
+create table tbQuizResponse
+(
+  QuizResponseId int primary key identity(1,1),
+  Date datetime,
+  StudentId int foreign key references tbStudent(StudentId)
+)
+go
+
+----------------------------------------------------------------
+create table tbActiveExam
+(
+  ActiveExamId int primary key identity(1,1),
+  QuizId int foreign key references tbQuiz(QuizId),
+  Startime datetime,
+  Endtime datetime,
+  SessionId int foreign key references tbSession(SessionId)
+)
+go
+
