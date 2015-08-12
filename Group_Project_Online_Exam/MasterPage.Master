@@ -51,16 +51,15 @@
 		<div id="content">
     <form id="form1" runat="server">
     <div>
-        <asp:ContentPlaceHolder ID="ContentPlaceHolder1" runat="server">
-        
-        </asp:ContentPlaceHolder>
-		  </div>
-			<div class="post">
   <asp:HyperLink ID="h1Techer" runat="server" NavigateUrl="~/TeacherLogin.aspx">Teacher</asp:HyperLink>
                 <br />
 		
   <asp:HyperLink ID="h1Student" runat="server" NavigateUrl="~/StudentLogin.aspx">Student</asp:HyperLink>
                
+        <asp:ContentPlaceHolder ID="ContentPlaceHolder1" runat="server">
+        
+        </asp:ContentPlaceHolder>
+		  </div>
     </form>
 		
 			</div>
