@@ -31,31 +31,31 @@ namespace Group_Project_Online_Exam {
         protected global::System.Web.UI.WebControls.TextBox TxtQuizTitle;
         
         /// <summary>
-        /// DropDownList3 control.
+        /// ddProgram control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.DropDownList DropDownList3;
+        protected global::System.Web.UI.WebControls.DropDownList ddProgram;
         
         /// <summary>
-        /// DropDownList2 control.
+        /// ddSession control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.DropDownList DropDownList2;
+        protected global::System.Web.UI.WebControls.DropDownList ddSession;
         
         /// <summary>
-        /// DropDownList1 control.
+        /// ddDifficulty control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.DropDownList DropDownList1;
+        protected global::System.Web.UI.WebControls.DropDownList ddDifficulty;
         
         /// <summary>
         /// txtTimeinMinutes control.

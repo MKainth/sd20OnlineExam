@@ -6,20 +6,36 @@ create database dbSD20
 go
 use dbSD20
 go
+create table tbProgram
+(
+	ProgramId int primary key identity(1,1),
+	ProgramName varchar(max)
+	
+)
+go
+insert into tbProgram(ProgramName)values
+	('Software and Database Developer'),('Accounting Specialist')
+	--('Administrative Professional', '3'),
+	--('Business Administration', '4'),('Casino / Resort / Event Coordinator', '5'),('Legal Assistant', '6'),
+	--('Travel Counsellor', '7'),('Veterinary Office Assistant', '8'),('Network Engineering', '9'),
+	--('Enhanced Health Care Aide', '10'),('Health Care Aide ', '11'),('Massage Therapy ', '12'),
+	--('Medical Laboratory Assistant', '13'),('Medical Office Assistant', '14'),('Nursing Assistant', '15'),
+	--('Pharmacy Technician', '16')
+go
+
 
 create table tbSession
 (
 	SessionId int primary key identity(1,1),
-	SessionCode Varchar(60)
-	
+	SessionCode Varchar(60),
+	ProgramId int foreign key references tbProgram(ProgramId) 
 )
 go
 
-	insert into tbSession (SessionCode) values ('SD20'),('AS'),
-	('SD18'),('SD19'),('SD20'),
-('AS01'),('AS02'),('AS03')
-/*('AP12',2),('AP13',2),('AP14',2),
-('BA23',3),('BA24',3),('BA25',3),
+	insert into tbSession(SessionCode,ProgramId) values
+	('AP12',1),('AP13',2)
+	
+	/*
 ('CREC01',4),('CREC02',4),('CREC03',4),
 ('LA10',5),('LA11',5),('LA12',5),
 ('TC002',6),('TC003',6),('TC004',6),
@@ -35,23 +51,7 @@ go
 go
 -----------------------------------------------
 
-create table tbProgram
-(
-	ProgramId int primary key identity(1,1),
-	ProgramName varchar(max),
-	SessionId int foreign key references tbSession(SessionId) 
-)
-go
 
-insert into tbProgram(ProgramName, SessionId)values
-	('Software and Database Developer', 1),('Accounting Specialist', 2)
-	--('Administrative Professional', '3'),
-	--('Business Administration', '4'),('Casino / Resort / Event Coordinator', '5'),('Legal Assistant', '6'),
-	--('Travel Counsellor', '7'),('Veterinary Office Assistant', '8'),('Network Engineering', '9'),
-	--('Enhanced Health Care Aide', '10'),('Health Care Aide ', '11'),('Massage Therapy ', '12'),
-	--('Medical Laboratory Assistant', '13'),('Medical Office Assistant', '14'),('Nursing Assistant', '15'),
-	--('Pharmacy Technician', '16')
-go
 -----------------------------------------------
 
 create table tbTeacher
@@ -356,3 +356,19 @@ as begin
 	select * from tbTeacher where tbTeacher.Email = @Email and tbTeacher.Password = @Password 
 end
 go
+-----------------------------------
+create proc spSelectSession
+as begin
+select * from tbSession
+end
+go
+exec spSelectSession
+
+
+go
+create proc spSelectProgram
+as begin
+select * from tbProgram
+end
+go
+exec spSelectProgram
