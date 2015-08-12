@@ -132,6 +132,7 @@
     </Compile>
     <Compile Include="Quiz.cs" />
     <Compile Include="QuizResponse.cs" />
+    <Compile Include="Security.cs" />
     <Compile Include="session.cs" />
     <Compile Include="Student.cs" />
     <Compile Include="StudentLogin.aspx.cs">

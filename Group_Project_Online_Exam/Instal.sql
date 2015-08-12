@@ -6,7 +6,7 @@ create database dbSD20
 go
 use dbSD20
 go
-
+--------------------------------------------------------------
 create table tbSession
 (
 	SessionId int primary key identity(1,1),
@@ -15,7 +15,8 @@ create table tbSession
 )
 go
 
-	insert into tbSession (SessionCode) values ('SD20'),('AS'),
+
+insert into tbSession (SessionCode) values ('SD20'),('AS'),
 	('SD18'),('SD19'),('SD20'),
 ('AS01'),('AS02'),('AS03')
 /*('AP12',2),('AP13',2),('AP14',2),
@@ -54,29 +55,27 @@ insert into tbProgram(ProgramName, SessionId)values
 go
 -----------------------------------------------
 
-create table tbTeacher
+create table tbUser
 (
-	TeacherId int primary key identity(1,1),
-	TeacherName Varchar(60),
-	Password Varchar(60),
-	Email Varchar(50),---Email is use as UserName---
-	Admin int 
-)
-go
-insert into tbTeacher(TeacherName,Password,Email,Admin) values ('Rimon','1234','rimon.bishay@robertson.com',0)
------------------------------------------------
-
-create table tbStudent
-(
-	StudentId int primary key identity(1,1),
+	UserId int primary key identity(1,1),
 	FirstName Varchar(max),
 	LastName Varchar(max),
 	Email Varchar(60) unique,---User Name----
 	Password Varchar(60),	
-	ProgramId int foreign key references tbProgram(ProgramId),
-	SessionId int foreign key references tbSession(SessionId)	
+	SecurityLevel int 
+	
 )
 go
+
+-----------------------------------------------
+
+create table tbUserSession
+(
+UserSessionId int primary key identity(1,1),
+UserId int foreign key references tbUser(UserId),
+SessionId int foreign key references tbSession(SessionId)	
+)
+
 
 -----------------------------------------------
 
@@ -119,7 +118,7 @@ create table tbQuizResponse
 (
   QuizResponseId int primary key identity(1,1),
   ExamDate Date,
-  StudentId int foreign key references tbStudent(StudentId)	    
+  UserId int foreign key references tbUser(UserId)	    
 )
 go
 
@@ -135,13 +134,10 @@ go
 
 ------------------------------------------------
 
-
-------------------------------------------------
-
-create table tbTeacherProgram
+create table tbUserProgram
 (
-  TeacherProgramId int primary key identity(1,1),
-  TeacherId int foreign key references tbTeacher(TeacherId),
+  UserProgramId int primary key identity(1,1),
+  UserId int foreign key references tbUser(UserId),
   ProgramId int foreign key references tbProgram(ProgramId)	    
 )
 go
@@ -157,68 +153,70 @@ create table tbActiveExam
 )
 go
 
-------------------------spInsertTeacher--------------------------
+------------------------spInsertUser--------------------------
 
 go
-create proc spInsertTeacher
+create proc spInsertUser
 (
-	@TeacherName Varchar(60),
+	@FirstName Varchar(60),
+	@LastName varchar(60),
 	@Password Varchar(60),
-	@Email Varchar(60),---Email is use as UserName---
-	@Admin int 
+	@Email Varchar(60),
+	@SecurityLevel int 
 )
 	as begin
-	if exists (select Email from tbTeacher where Email=@Email)
+	if exists (select Email from tbUser where Email=@Email)
 	begin
 	select 'ERROR!' as Message
 		end
 		else begin
-			insert into tbTeacher(TeacherName,Password,Email,Admin)values
-			(@TeacherName,@Password,@Email,@Admin)
+			insert into tbUser(FirstName,LastName,Password,Email,SecurityLevel)values
+			(@FirstName,@LastName,@Password,@Email,@SecurityLevel)
 			select 'OK' as Message
-end
+  end
 end
 
----select * from tbTeacher---
 
---------------------spGetTeacher---------------------------------
+
+--------------------spGetUser---------------------------------
 go
-create proc spGetTeacher
+create proc spGetUser
 (
-	@TeacherId int=NULL
+	@UserId int=NULL
 )
 	as begin
-	Select TeacherId, TeacherName, Password, Email, Admin from tbTeacher
-	Where TeacherId=ISNULL (@TeacherId, TeacherId)
+	Select  * from tbUser
+	Where UserId=ISNULL (UserId,@UserId)
 end
 
---------------------spDeleteTeacher-----------------------------
+--------------------spDeleteUser-----------------------------
 
 go
-create proc spDeleteTeacher
+create proc spDeleteUser
 (
-	@TeacherId varchar (60)
+	@UserId varchar (60)
 )
 	as begin
-	delete from tbTeacher
-	where TeacherId = @TeacherId
+	delete from tbUser
+	where UserId = @UserId
 end
 
---exec spDeleteTeacher @TeacherId='Rahim'
+--exec spDeleteUser @UserId='Rahim'
 
---------------------spUpdateTeacher-----------------------------
+--------------------spUpdateUser-----------------------------
 
 go
-create proc spUpdateTeacher
+create proc spUpdateUser
 (
-	@TeacherId int,
-	@TeacherName Varchar(60),
+	@UserId int,
+	@FirstName Varchar(60),
+	@LastName Varchar(60),
 	@Password Varchar(60),
 	@Email Varchar(50),
-	@Admin int
+	@SecurityLevel int
 )
-	as begin update tbTeacher set TeacherName=@TeacherName,Password=@Password, Email=@Email,Admin=@Admin
-	where teacherId=@TeacherId
+	as begin update tbUser set FirstName=@FirstName, LastName=@LastName,Password=@Password, Email=@Email, SecurityLevel=@SecurityLevel
+	where UserId=@UserId
 	end
 
 go
@@ -282,77 +280,16 @@ as begin
 	select * from tbQuestion
 end 
 go
---------------------------------------------------------------
------------------*******STUDENT CRUD*******-------------------
-create procedure spGetStudentById
-(
-  @StudentId int = NULL
-)
-as begin
- select * from tbStudent where StudentId=ISNULL(@StudentId, StudentId)
-end
-go
-create procedure spInsertStudent
-(
-  @FirstName Varchar(max),
-  @LastName Varchar(max),
-  @Email Varchar(60),---User Name----
-  @Password Varchar(60),	
-  @ProgramId int,
-  @SessionId int
-)
-as begin
- insert into tbStudent(FirstName, LastName, Email, Password, ProgramId, SessionId)values
-                      (@FirstName, @LastName, @Email, @Password, @ProgramId, @SessionId)
-end
-go
-create procedure spUpdateStudent
-(
- @StudentId int,
- @FirstName Varchar(max),
- @LastName Varchar(max),
- @Email Varchar(60),---User Name----
- @Password Varchar(60),
- @ProgramId int,
- @SessionId int	
-)
-as begin
-  update tbStudent set
-   FirstName = @FirstName,
-   LastName = @LastName,
-   Email = @Email,
-   Password = @Password,
-   ProgramId = @ProgramId,
-   SessionId = @SessionId 
-  where StudentId = @StudentId
-end
-go
-create procedure spDeleteStudent
-(
-  @StudentId int = NULL
-)
-as begin
-  delete from tbStudent where StudentId = @StudentId
-end 
-go
----------------------Create Login Proc For Student--------------------------
 
-create procedure StudentspLogin(
+
+---------------------Create Login Proc For User--------------------------
+
+create procedure UserspLogin(
 @Email varchar(60),
 @Password varchar(60)
 )
 as begin
-	select * from tbStudent where tbStudent.Email = @Email and tbStudent.Password = @Password 
+	select * from tbUser where tbUser.Email = @Email and tbUser.Password = @Password 
 end
 go
 
----------------------Create Login Proc For Teacher--------------------------
-
-create procedure TeacherspLogin(
-@Email varchar(60),
-@Password varchar(60)
-)
-as begin
-	select * from tbTeacher where tbTeacher.Email = @Email and tbTeacher.Password = @Password 
-end
-go
