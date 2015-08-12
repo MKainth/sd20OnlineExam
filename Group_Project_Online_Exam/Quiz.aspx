@@ -40,9 +40,9 @@
                 <td>
                     <asp:DropDownList ID="DropDownList1" runat="server"></asp:DropDownList>
                 </td>
-               <td>Time in Mintues</td>
+               <td>Time in Minutes</td>
                <td>
-                   <asp:TextBox ID="txtTimeinMintues" runat="server"></asp:TextBox>
+                   <asp:TextBox ID="txtTimeinMinutes" runat="server"></asp:TextBox>
                </td>
            </tr>
             <tr>
