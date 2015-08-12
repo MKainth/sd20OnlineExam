@@ -39,13 +39,13 @@ go
 create table tbTeacher
 (
 	TeacherId int primary key identity(1,1),
-	UserName Varchar(60),
+	TeacherName Varchar(60),
 	Password Varchar(60),
 	Email Varchar(50),
 	Admin int 
 )
 go
-
+insert into tbTeacher(TeacherName,Password,Email,Admin) values ('Rimon','1234','rimon.bishay@robertson.com',0)
 -----------------------------------------------
 
 create table tbStudent
@@ -127,4 +127,25 @@ create table tbActiveExam
 )
 go
 
------------------------------------------------
+---------------------Create Login Proc For Student--------------------------
+
+create procedure StudentspLogin(
+@Email varchar(60),
+@Password varchar(60)
+)
+as begin
+	select * from tbStudent where tbStudent.Email = @Email and tbStudent.Password = @Password 
+end
+go
+
+---------------------Create Login Proc For Teacher--------------------------
+
+create procedure TeacherspLogin(
+@Email varchar(60),
+@Password varchar(60)
+)
+as begin
+	select * from tbTeacher where tbTeacher.Email = @Email and tbTeacher.Password = @Password 
+end
+go
+

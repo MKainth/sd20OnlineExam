@@ -44,13 +44,16 @@
 				<h2 class="title"><a href="#">Welcome to College </a></h2>
 				<p class="meta">Wednesday, May 4, 2011 7:27 AM </p>
 				<div class="entry">
-					<p><strong>College </strong>, is a free, tableless, W3C-compliant web design layout by New York Lasik . This template has been tested and proven compatible with all major browser environments and operating systems. You are free to modify the design to suit your tastes in any way you like.</p>
-					<p>We only ask you to not remove &quot;Lasik Eye Surgery&quot; and the link http://www.worldclasslasik.com/lasik/new-york-lasik from the footer of the template.<br />lorem ipsum,lorem ipsum,lorem ipsum,lorem ipsum,lorem ipsum lremipsum,lorem ipsum,lorem ipsum,lorem ipsum,lorem ipsum,lorem ipsum.</p>
-					<div><a href="#" class="links">View Full Story</a><a href="#" class="comments">View Comments</a></div>
+					
 			</div>
 		  </div>
 			<div class="post">
-		
+  <asp:HyperLink ID="h1Techer" runat="server" NavigateUrl="~/TeacherLogin.aspx">Teacher</asp:HyperLink>
+                <br />
+
+  <asp:HyperLink ID="h1Student" runat="server" NavigateUrl="~/StudentLogin.aspx">Student</asp:HyperLink>
+               
+                
 			</div>
 		</div>
 		<div id="sidebar">
@@ -63,13 +66,7 @@
 					<h2>Lorem Ipsum </h2>
 					<ul>
 						<li><a href="#">lorem ipsum </a></li>
-						<li><a href="#">lorem ipsum </a></li>
-						<li><a href="#">lorem ipsum </a></li>
-						<li><a href="#">lorem ipsum </a></li>
-						<li><a href="#">lorem ipsum </a></li>
-						<li><a href="#">lorem ipsum </a></li>
-						<li><a href="#">lorem ipsum </a></li>
-						<li><a href="#">lorem ipsum </a></li>
+                        <li><a href="#">h1</a></li>
 					</ul>
 				</li>
 				<li>
@@ -80,9 +77,9 @@
 						<li><a href="#">lorem ipsum </a></li>
 						<li><a href="#">lorem ipsum </a></li>
 						<li><a href="#">lorem ipsum </a></li>
+						<li><a href="#">lorem ipsum </</a></li>
 						<li><a href="#">lorem ipsum </a></li>
-						<li><a href="#">lorem ipsum </a></li>
-						<li><a href="#">lorem ipsum </a></li>
+						<li><a href="#">lorem ipsum a></li>
 						<li><a href="#">lorem ipsum </a></li>
 						<li><a href="#">lorem ipsum </a>
 						  
