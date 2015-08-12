@@ -97,7 +97,9 @@ create table tbDifficulty
 	Name Varchar(60)
 )
 go
+Insert into tbDifficulty(Name)values('Beginner'),('Intermediate'),('Advance')
 
+go
 ------------------------------------------------
 
 create table tbQuiz
@@ -306,3 +308,12 @@ select * from tbProgram
 end
 go
 exec spSelectProgram
+go
+
+create proc spSelectDifficulty
+as begin
+select * from tbDifficulty
+end
+go
+exec spSelectDifficulty
+
