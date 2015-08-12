@@ -17,6 +17,10 @@
             <tr>
                 <td class="auto-style3">Quiz Title</td>
                 <td><asp:TextBox ID="TxtQuizTitle" runat="server"></asp:TextBox></td>
+                </tr>
+                <tr>
+
+                
                 <td>
                     Program
                 </td>
@@ -40,6 +44,16 @@
                 <td>
                     <asp:DropDownList ID="ddDifficulty" runat="server"></asp:DropDownList>
                 </td>
+                
+                    <td>
+                        Type of Question
+                    </td>
+                    <td>
+                        <asp:DropDownList ID="ddTypeofQuestions" runat="server"></asp:DropDownList></td>
+                </tr>
+                <tr>
+
+                
                <td>Time in Minutes</td>
                <td>
                    <asp:TextBox ID="txtTimeinMinutes" runat="server"></asp:TextBox>

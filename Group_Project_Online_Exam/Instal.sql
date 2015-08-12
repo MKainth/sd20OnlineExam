@@ -50,7 +50,14 @@ go
 ('PT007',15),('PT008',15),('PT009',15)*/
 go
 -----------------------------------------------
-
+create table tbTypeOfQuestions
+(
+TypeOfQuestionsId int primary key identity(1,1),
+Name varchar(60)
+)
+go
+insert into tbTypeOfQuestions(Name)values('Multiple Questions'),('True/False'),('Fill tha blanks')
+go
 -----------------------------------------------
 
 create table tbUser
