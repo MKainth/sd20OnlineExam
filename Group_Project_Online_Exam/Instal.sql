@@ -151,7 +151,7 @@ create proc spInsertTeacher
 	@Admin int 
 )
 	as begin
-	if exists (select @TeacherName from tbTeacher where TeacherName=@TeacherName)
+	if exists (select Email from tbTeacher where Email=@Email)
 	begin
 	select 'ERROR!' as Message
 		end
@@ -189,8 +189,20 @@ end
 
 --exec spDeleteTeacher @TeacherId='Rahim'
 
------------------------------------------------
+--------------------spUpdateTeacher-----------------------------
 
+go
+create proc spUpdateTeacher
+(
+	@TeacherId int,
+	@TeacherName Varchar(60),
+	@Password Varchar(60),
+	@Email Varchar(50),
+	@Admin int
+)
+	as begin update tbTeacher set TeacherName=@TeacherName,Password=@Password, Email=@Email,Admin=@Admin
+	where teacherId=@TeacherId
+	end
 
 go
 create proc spQuestionsInsert
