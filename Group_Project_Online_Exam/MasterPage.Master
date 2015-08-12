@@ -11,6 +11,15 @@
 
     <asp:ContentPlaceHolder ID="head" runat="server">
     </asp:ContentPlaceHolder>
+    <style type="text/css">
+        .auto-style1 {
+            margin-bottom: 45px;
+            text-align: center;
+        }
+        .auto-style2 {
+            text-align: center;
+        }
+    </style>
 </head>
 <body>
     <div id="logo">
@@ -41,16 +50,14 @@
 	<div id="page">
 		<div id="content">
 		  <div class="post">
-				<h2 class="title"><a href="#">Welcome to College </a></h2>
-				<p class="meta">Wednesday, May 4, 2011 7:27 AM </p>
-				<div class="entry">
+
 					
 			</div>
 		  </div>
 			<div class="post">
   <asp:HyperLink ID="h1Techer" runat="server" NavigateUrl="~/TeacherLogin.aspx">Teacher</asp:HyperLink>
                 <br />
-
+		
   <asp:HyperLink ID="h1Student" runat="server" NavigateUrl="~/StudentLogin.aspx">Student</asp:HyperLink>
                
                 
@@ -65,8 +72,14 @@
 				<li>
 					<h2>Lorem Ipsum </h2>
 					<ul>
+						<li><a href="Quiz.aspx">Quiz Maker</a></li>
 						<li><a href="#">lorem ipsum </a></li>
-                        <li><a href="#">h1</a></li>
+						<li><a href="#">lorem ipsum </a></li>
+						<li><a href="#">lorem ipsum </a></li>
+						<li><a href="#">lorem ipsum </a></li>
+						<li><a href="#">lorem ipsum </a></li>
+						<li><a href="#">lorem ipsum </a></li>
+						<li><a href="#">lorem ipsum </a></li>
 					</ul>
 				</li>
 				<li>
@@ -77,9 +90,9 @@
 						<li><a href="#">lorem ipsum </a></li>
 						<li><a href="#">lorem ipsum </a></li>
 						<li><a href="#">lorem ipsum </a></li>
-						<li><a href="#">lorem ipsum </</a></li>
 						<li><a href="#">lorem ipsum </a></li>
-						<li><a href="#">lorem ipsum a></li>
+						<li><a href="#">lorem ipsum </a></li>
+						<li><a href="#">lorem ipsum </a></li>
 						<li><a href="#">lorem ipsum </a></li>
 						<li><a href="#">lorem ipsum </a>
 						  
