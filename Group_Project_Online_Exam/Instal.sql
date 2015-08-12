@@ -14,7 +14,7 @@ create table tbSession
 )
 go
 
-	--insert into tbSession (SessionCode) values ('SD20'),('AS')
+	insert into tbSession (SessionCode) values ('SD20'),('AS')
 -----------------------------------------------
 
 create table tbProgram
@@ -36,7 +36,7 @@ insert into tbProgram(ProgramName, SessionId)values
 go
 -----------------------------------------------
 
-create table tbTeacher 
+create table tbTeacher
 (
 	TeacherId int primary key identity(1,1),
 	TeacherName Varchar(60),
@@ -76,11 +76,20 @@ create table tbQuestion
 )
 go
 
+---------------------------------------------
+create table tbDifficulty
+(
+	DifficultyId int primary key identity(1,1),
+	Name Varchar(60)
+)
+go
+
 ------------------------------------------------
 
 create table tbQuiz
 (
   QuizId int primary key identity(1,1),
+  QuizTitle varchar(60),
   ProgramId int foreign key references tbProgram(ProgramId),
   DifficultyId int foreign key references tbDifficulty(DifficultyId)	
      
@@ -106,6 +115,9 @@ create table tbQuestionResponse
   Response varchar(4)   
 )
 go
+
+------------------------------------------------
+
 
 ------------------------------------------------
 
@@ -177,24 +189,120 @@ end
 
 --exec spDeleteTeacher @TeacherId='Rahim'
 
---------------------spUpdateTeacher-----------------------------
+-----------------------------------------------
 
-go
-create proc spUpdateTeacher
+
+
+create proc spQuestionsInsert
 (
-	@TeacherId int,
-	@TeacherName Varchar(60),
-	@Password Varchar(60),
-	@Email Varchar(50),
-	@Admin int
+
+  @Question varchar(500),
+  @Answer1 varchar(50),
+  @Answer2 varchar(50),
+  @Answer3 varchar(50),
+  @Answer4 varchar(50),
+  @CorrectAnswer varchar(4),
+  @Marks int
+  )
+
+  as begin
+  insert into tbQuestion(Question,Answer1,Answer2,Answer3,Answer4,CorrectAnswer,Marks)values
+						(@Question,@Answer1,@Answer2,@Answer3,@Answer4,@CorrectAnswer,@Marks)
+
+end
+go
+create proc spQuestionsUpdate
+(
+@QuestionId int,
+  @Question varchar(500),
+  @Answer1 varchar(50),
+  @Answer2 varchar(50),
+  @Answer3 varchar(50),
+  @Answer4 varchar(50),
+  @CorrectAnswer varchar(4),
+  @Marks int
+  )
+
+  as begin
+  update tbQuestion
+  set Question=@Question,
+	  Answer1=@Answer1,
+	  Answer2=@Answer2,
+	  Answer3=@Answer3,
+	  Answer4=@Answer4,
+	  CorrectAnswer=@CorrectAnswer,
+	  Marks=@Marks
+	  where QuestionId=@QuestionId
+
+end
+go
+create proc spQuestionDelete
+(
+@QuestionId int
 )
-	as begin update tbTeacher set TeacherName=@TeacherName,Passwrod=@Password, Email=@Email,Admin=@Admin
-	where teacherId=@TeacherId
-	end
-
-
-
-
-
-
-
+as begin
+	delete from tbQuestion
+	where QuestionId=@QuestionId
+end
+go
+create proc spQuestion
+(
+@QusetionId int
+)
+as begin
+	select * from tbQuestion
+end 
+go
+--------------------------------------------------------------
+-----------------*******STUDENT CRUD*******-------------------
+create procedure spGetStudentById
+(
+  @StudentId int = NULL
+)
+as begin
+ select * from tbStudent where StudentId=ISNULL(@StudentId, StudentId)
+end
+go
+create procedure spInsertStudent
+(
+  @FirstName Varchar(max),
+  @LastName Varchar(max),
+  @Email Varchar(60),---User Name----
+  @Password Varchar(60),	
+  @ProgramId int,
+  @SessionId int
+)
+as begin
+ insert into tbStudent(FirstName, LastName, Email, Password, ProgramId, SessionId)values
+                      (@FirstName, @LastName, @Email, @Password, @ProgramId, @SessionId)
+end
+go
+create procedure spUpdateStudent
+(
+ @StudentId int,
+ @FirstName Varchar(max),
+ @LastName Varchar(max),
+ @Email Varchar(60),---User Name----
+ @Password Varchar(60),
+ @ProgramId int,
+ @SessionId int	
+)
+as begin
+  update tbStudent set
+   FirstName = @FirstName,
+   LastName = @LastName,
+   Email = @Email,
+   Password = @Password,
+   ProgramId = @ProgramId,
+   SessionId = @SessionId 
+  where StudentId = @StudentId
+end
+go
+create procedure spDeleteStudent
+(
+  @StudentId int = NULL
+)
+as begin
+  delete from tbStudent where StudentId = @StudentId
+end 
+go

@@ -11,6 +11,15 @@
 
     <asp:ContentPlaceHolder ID="head" runat="server">
     </asp:ContentPlaceHolder>
+    <style type="text/css">
+        .auto-style1 {
+            margin-bottom: 45px;
+            text-align: center;
+        }
+        .auto-style2 {
+            text-align: center;
+        }
+    </style>
 </head>
 <body>
     <div id="logo">
@@ -40,8 +49,12 @@
 	
 	<div id="page">
 		<div id="content">
-		  <div class="post">
-				<h2 class="title"><a href="#">Welcome to College </a></h2>
+		  <div class="auto-style1">
+				<h2 class="title">&nbsp;</h2>
+                <h2 class="title">&nbsp;</h2>
+                <h2 class="title">&nbsp;</h2>
+                <h2 class="title">&nbsp;</h2>
+                <h2 class="title"><a href="#">Welcome to College </a></h2>
 				<p class="meta">Wednesday, May 4, 2011 7:27 AM </p>
 				<div class="entry">
 					<p><strong>College </strong>, is a free, tableless, W3C-compliant web design layout by New York Lasik . This template has been tested and proven compatible with all major browser environments and operating systems. You are free to modify the design to suit your tastes in any way you like.</p>
@@ -62,7 +75,7 @@
 				<li>
 					<h2>Lorem Ipsum </h2>
 					<ul>
-						<li><a href="#">lorem ipsum </a></li>
+						<li><a href="Quiz.aspx">Quiz Maker</a></li>
 						<li><a href="#">lorem ipsum </a></li>
 						<li><a href="#">lorem ipsum </a></li>
 						<li><a href="#">lorem ipsum </a></li>
