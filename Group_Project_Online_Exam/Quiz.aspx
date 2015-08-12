@@ -21,13 +21,13 @@
                     Program
                 </td>
                 <td>
-                    <asp:DropDownList ID="ddProgram" runat="server" OnSelectedIndexChanged="DropDownList3_SelectedIndexChanged"></asp:DropDownList>
+                    <asp:DropDownList ID="ddProgram" runat="server"  AutoPostBack="True"></asp:DropDownList>
                 </td>
                 <td>
                     Session
                 </td>
                 <td>
-                    <asp:DropDownList ID="ddSession" runat="server"></asp:DropDownList>
+                    <asp:DropDownList ID="ddSession" runat="server" AutoPostBack="True"></asp:DropDownList>
                 </td>
             </tr>
             <tr>

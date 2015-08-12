@@ -15,19 +15,42 @@ namespace Group_Project_Online_Exam
         string conn = ConfigurationManager.ConnectionStrings["Exam"].ConnectionString;
         protected void Page_Load(object sender, EventArgs e)
         {
-
+            if(!IsPostBack)
+            {
+                LoadDDProgram();
+                LoadDDSession();
+                LoadDDDifficulty();
+            }
         }
-
-        protected void DropDownList3_SelectedIndexChanged(object sender, EventArgs e)
+        public void LoadDDProgram()
         {
-            DAL mydal = new DAL(conn);
+             DAL mydal = new DAL(conn);
             DataSet ds = new DataSet();
             ds = mydal.ExecuteProcedure("spSelectProgram");
             ddProgram.DataSource = ds.Tables[0];
             ddProgram.DataTextField = "ProgramName";
             ddProgram.DataValueField = "ProgramId";
             ddProgram.DataBind();
-            
+        }
+        public void LoadDDSession()
+        {
+            DAL mydal = new DAL(conn);
+            DataSet ds = new DataSet();
+            ds = mydal.ExecuteProcedure("spSelectSession");
+            ddSession.DataSource = ds.Tables[0];
+            ddSession.DataTextField = "SessionCode";
+            ddSession.DataValueField = "SessionId";
+            ddSession.DataBind();
+        }
+        public void LoadDDDifficulty()
+        {
+            DAL mydal = new DAL(conn);
+            DataSet ds = new DataSet();
+            ds = mydal.ExecuteProcedure("spSelectDifficulty");
+            ddDifficulty.DataSource = ds.Tables[0];
+            ddDifficulty.DataTextField = "Name";
+            ddDifficulty.DataValueField = "DifficultyId";
+            ddDifficulty.DataBind();
         }
 
         
