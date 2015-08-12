@@ -10,7 +10,7 @@
                 <td>Quiz Title</td>
                 <td><asp:TextBox ID="TxtQuizTitle" runat="server"></asp:TextBox></td>
                 <td>
-                    &nbsp;Course
+                    Course
                 </td>
                 <td>
                     <asp:DropDownList ID="DropDownList3" runat="server"></asp:DropDownList>

@@ -156,7 +156,7 @@ create proc spInsertTeacher
 	select 'ERROR!' as Message
 		end
 		else begin
-			insert into tbTeacher(UserName,Password,Email,Admin)values
+			insert into tbTeacher(TeacherName,Password,Email,Admin)values
 			(@TeacherName,@Password,@Email,@Admin)
 			select 'OK' as Message
 end
@@ -192,7 +192,7 @@ end
 -----------------------------------------------
 
 
-
+go
 create proc spQuestionsInsert
 (
 
