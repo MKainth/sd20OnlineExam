@@ -88,6 +88,7 @@ go
 create table tbQuiz
 (
   QuizId int primary key identity(1,1),
+  QuizTitle varchar(60),
   ProgramId int foreign key references tbProgram(ProgramId),
   DifficultyId int foreign key references tbDifficulty(DifficultyId)	
      
