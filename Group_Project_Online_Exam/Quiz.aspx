@@ -18,16 +18,16 @@
                 <td class="auto-style3">Quiz Title</td>
                 <td><asp:TextBox ID="TxtQuizTitle" runat="server"></asp:TextBox></td>
                 <td>
-                    Course
+                    Program
                 </td>
                 <td>
-                    <asp:DropDownList ID="DropDownList3" runat="server" OnSelectedIndexChanged="DropDownList3_SelectedIndexChanged"></asp:DropDownList>
+                    <asp:DropDownList ID="ddProgram" runat="server" OnSelectedIndexChanged="DropDownList3_SelectedIndexChanged"></asp:DropDownList>
                 </td>
                 <td>
                     Session
                 </td>
                 <td>
-                    <asp:DropDownList ID="DropDownList2" runat="server"></asp:DropDownList>
+                    <asp:DropDownList ID="ddSession" runat="server"></asp:DropDownList>
                 </td>
             </tr>
             <tr>
@@ -35,10 +35,10 @@
             </tr>
             <tr>
                 <td class="auto-style3">
-                    Diffculty
+                    Difficulty
                 </td>
                 <td>
-                    <asp:DropDownList ID="DropDownList1" runat="server"></asp:DropDownList>
+                    <asp:DropDownList ID="ddDifficulty" runat="server"></asp:DropDownList>
                 </td>
                <td>Time in Minutes</td>
                <td>
