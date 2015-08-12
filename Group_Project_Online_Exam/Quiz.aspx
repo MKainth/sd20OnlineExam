@@ -49,7 +49,7 @@
                         Type of Question
                     </td>
                     <td>
-                        <asp:DropDownList ID="ddTypeofQuestions" runat="server"></asp:DropDownList></td>
+                        <asp:DropDownList ID="ddTypeofQuestions" runat="server" AutoPostBack="True"></asp:DropDownList></td>
                 </tr>
                 <tr>
 

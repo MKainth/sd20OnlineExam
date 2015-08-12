@@ -20,6 +20,7 @@ namespace Group_Project_Online_Exam
                 LoadDDProgram();
                 LoadDDSession();
                 LoadDDDifficulty();
+                LoadDDTypeOfQuestions();
             }
         }
         public void LoadDDProgram()
@@ -53,6 +54,15 @@ namespace Group_Project_Online_Exam
             ddDifficulty.DataBind();
         }
 
-        
+        public void LoadDDTypeOfQuestions()
+        {
+            DAL mydal = new DAL(conn);
+            DataSet ds = new DataSet();
+            ds = mydal.ExecuteProcedure("spSelectTypeofQusetions");
+            ddTypeofQuestions.DataSource = ds.Tables[0];
+            ddTypeofQuestions.DataTextField = "Name";
+            ddTypeofQuestions.DataValueField = "TypeOfQuestionsId";
+            ddTypeofQuestions.DataBind();
+        }
     }
 }

@@ -56,7 +56,7 @@ TypeOfQuestionsId int primary key identity(1,1),
 Name varchar(60)
 )
 go
-insert into tbTypeOfQuestions(Name)values('Multiple Questions'),('True/False'),('Fill tha blanks')
+insert into tbTypeOfQuestions(Name)values('Multiple Questions'),('True/False'),('Fill the blanks')
 go
 -----------------------------------------------
 
@@ -323,4 +323,11 @@ select * from tbDifficulty
 end
 go
 exec spSelectDifficulty
+go
+create proc spSelectTypeofQusetions
+as begin
+select * from tbTypeOfQuestions
+end
+go
+exec spSelectTypeofQusetions
 
