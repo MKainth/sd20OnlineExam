@@ -14,7 +14,7 @@ create table tbSession
 )
 go
 
-	--insert into tbSession (SessionCode) values ('SD20'),('AS')
+	insert into tbSession (SessionCode) values ('SD20'),('AS')
 -----------------------------------------------
 
 create table tbProgram
@@ -26,12 +26,12 @@ create table tbProgram
 go
 
 insert into tbProgram(ProgramName, SessionId)values
-	('Software and Database Developer', '1'),('Accounting Specialist', '2'),('Administrative Professional', '3'),
-	('Business Administration', '4'),('Casino / Resort / Event Coordinator', '5'),('Legal Assistant', '6'),
-	('Travel Counsellor', '7'),('Veterinary Office Assistant', '8'),('Network Engineering', '9'),
-	('Enhanced Health Care Aide', '10'),('Health Care Aide ', '11'),('Massage Therapy ', '12'),
-	('Medical Laboratory Assistant', '13'),('Medical Office Assistant', '14'),('Nursing Assistant', '15'),
-	('Pharmacy Technician', '16')
+	('Software and Database Developer', 1),('Accounting Specialist', 2)/*('Administrative Professional', 3),
+	('Business Administration', 4),('Casino / Resort / Event Coordinator', 5),('Legal Assistant', 6),
+	('Travel Counsellor', 7),('Veterinary Office Assistant', 8),('Network Engineering', 9),
+	('Enhanced Health Care Aide', 10),('Health Care Aide ', 11),('Massage Therapy ', 12),
+	('Medical Laboratory Assistant', 13),('Medical Office Assistant', 14),('Nursing Assistant', 15),
+	('Pharmacy Technician', 16)*/
 go
 
 -----------------------------------------------
@@ -84,8 +84,7 @@ create table tbQuiz
 (
   QuizId int primary key identity(1,1),
   ProgramId int foreign key references tbProgram(ProgramId),
-  DifficultyId int foreign key references tbDifficulty(DifficultyId)	
-     
+  DifficultyId int foreign key references tbDifficulty(DifficultyId)	   
 )
 go
 
@@ -133,4 +132,56 @@ create table tbActiveExam
 )
 go
 
------------------------------------------------
+--------------------------------------------------------------
+-----------------*******STUDENT CRUD*******-------------------
+create procedure spGetStudentById
+(
+  @StudentId int = NULL
+)
+as begin
+ select * from tbStudent where StudentId=ISNULL(@StudentId, StudentId)
+end
+go
+create procedure spInsertStudent
+(
+  @FirstName Varchar(max),
+  @LastName Varchar(max),
+  @Email Varchar(60),---User Name----
+  @Password Varchar(60),	
+  @ProgramId int,
+  @SessionId int
+)
+as begin
+ insert into tbStudent(FirstName, LastName, Email, Password, ProgramId, SessionId)values
+                      (@FirstName, @LastName, @Email, @Password, @ProgramId, @SessionId)
+end
+go
+create procedure spUpdateStudent
+(
+ @StudentId int,
+ @FirstName Varchar(max),
+ @LastName Varchar(max),
+ @Email Varchar(60),---User Name----
+ @Password Varchar(60),
+ @ProgramId int,
+ @SessionId int	
+)
+as begin
+  update tbStudent set
+   FirstName = @FirstName,
+   LastName = @LastName,
+   Email = @Email,
+   Password = @Password,
+   ProgramId = @ProgramId,
+   SessionId = @SessionId 
+  where StudentId = @StudentId
+end
+go
+create procedure spDeleteStudent
+(
+  @StudentId int = NULL
+)
+as begin
+  delete from tbStudent where StudentId = @StudentId
+end 
+go
