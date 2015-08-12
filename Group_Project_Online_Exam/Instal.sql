@@ -45,8 +45,7 @@ create table tbTeacher
 	Admin int 
 )
 go
-
---select * from tbTeacher
+insert into tbTeacher(TeacherName,Password,Email,Admin) values ('Rimon','1234','rimon.bishay@robertson.com',0)
 -----------------------------------------------
 
 create table tbStudent
@@ -151,12 +150,12 @@ create proc spInsertTeacher
 	@Admin int 
 )
 	as begin
-	if exists (select @TeacherName from tbTeacher where TeacherName=@TeacherName)
+	if exists (select Email from tbTeacher where Email=@Email)
 	begin
 	select 'ERROR!' as Message
 		end
 		else begin
-			insert into tbTeacher(UserName,Password,Email,Admin)values
+			insert into tbTeacher(TeacherName,Password,Email,Admin)values
 			(@TeacherName,@Password,@Email,@Admin)
 			select 'OK' as Message
 end
@@ -189,10 +188,22 @@ end
 
 --exec spDeleteTeacher @TeacherId='Rahim'
 
------------------------------------------------
+--------------------spUpdateTeacher-----------------------------
 
+go
+create proc spUpdateTeacher
+(
+	@TeacherId int,
+	@TeacherName Varchar(60),
+	@Password Varchar(60),
+	@Email Varchar(50),
+	@Admin int
+)
+	as begin update tbTeacher set TeacherName=@TeacherName,Password=@Password, Email=@Email,Admin=@Admin
+	where teacherId=@TeacherId
+	end
 
-
+go
 create proc spQuestionsInsert
 (
 
@@ -305,4 +316,25 @@ create procedure spDeleteStudent
 as begin
   delete from tbStudent where StudentId = @StudentId
 end 
+go
+---------------------Create Login Proc For Student--------------------------
+
+create procedure StudentspLogin(
+@Email varchar(60),
+@Password varchar(60)
+)
+as begin
+	select * from tbStudent where tbStudent.Email = @Email and tbStudent.Password = @Password 
+end
+go
+
+---------------------Create Login Proc For Teacher--------------------------
+
+create procedure TeacherspLogin(
+@Email varchar(60),
+@Password varchar(60)
+)
+as begin
+	select * from tbTeacher where tbTeacher.Email = @Email and tbTeacher.Password = @Password 
+end
 go
