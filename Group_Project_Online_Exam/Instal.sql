@@ -75,8 +75,13 @@ create table tbQuestion
 )
 go
 
-
------------------------------------------------
+---------------------------------------------
+create table tbDifficulty
+(
+	DifficultyId int primary key identity(1,1),
+	Name Varchar(60)
+)
+go
 
 ------------------------------------------------
 
@@ -84,7 +89,8 @@ create table tbQuiz
 (
   QuizId int primary key identity(1,1),
   ProgramId int foreign key references tbProgram(ProgramId),
-  DifficultyId int foreign key references tbDifficulty(DifficultyId)	   
+  DifficultyId int foreign key references tbDifficulty(DifficultyId)	
+     
 )
 go
 
@@ -132,6 +138,70 @@ create table tbActiveExam
 )
 go
 
+-----------------------------------------------
+
+
+
+create proc spQuestionsInsert
+(
+
+  @Question varchar(500),
+  @Answer1 varchar(50),
+  @Answer2 varchar(50),
+  @Answer3 varchar(50),
+  @Answer4 varchar(50),
+  @CorrectAnswer varchar(4),
+  @Marks int
+  )
+
+  as begin
+  insert into tbQuestion(Question,Answer1,Answer2,Answer3,Answer4,CorrectAnswer,Marks)values
+						(@Question,@Answer1,@Answer2,@Answer3,@Answer4,@CorrectAnswer,@Marks)
+
+end
+go
+create proc spQuestionsUpdate
+(
+@QuestionId int,
+  @Question varchar(500),
+  @Answer1 varchar(50),
+  @Answer2 varchar(50),
+  @Answer3 varchar(50),
+  @Answer4 varchar(50),
+  @CorrectAnswer varchar(4),
+  @Marks int
+  )
+
+  as begin
+  update tbQuestion
+  set Question=@Question,
+	  Answer1=@Answer1,
+	  Answer2=@Answer2,
+	  Answer3=@Answer3,
+	  Answer4=@Answer4,
+	  CorrectAnswer=@CorrectAnswer,
+	  Marks=@Marks
+	  where QuestionId=@QuestionId
+
+end
+go
+create proc spQuestionDelete
+(
+@QuestionId int
+)
+as begin
+	delete from tbQuestion
+	where QuestionId=@QuestionId
+end
+go
+create proc spQuestion
+(
+@QusetionId int
+)
+as begin
+	select * from tbQuestion
+end 
+go
 --------------------------------------------------------------
 -----------------*******STUDENT CRUD*******-------------------
 create procedure spGetStudentById
