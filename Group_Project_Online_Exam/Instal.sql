@@ -11,10 +11,28 @@ create table tbSession
 (
 	SessionId int primary key identity(1,1),
 	SessionCode Varchar(60)
+	
 )
 go
 
-	insert into tbSession (SessionCode) values ('SD20'),('AS')
+	insert into tbSession (SessionCode) values ('SD20'),('AS'),
+	('SD18'),('SD19'),('SD20'),
+('AS01'),('AS02'),('AS03')
+/*('AP12',2),('AP13',2),('AP14',2),
+('BA23',3),('BA24',3),('BA25',3),
+('CREC01',4),('CREC02',4),('CREC03',4),
+('LA10',5),('LA11',5),('LA12',5),
+('TC002',6),('TC003',6),('TC004',6),
+('VOA1',7),('VOA2',7),('VOA3',7),
+('NA001',8),('NA002',8),('NA003',8),
+('EHCA31',9),('EHCA32',9),('EHCA3',9),
+('HCA07',10),('HCA08',10),('HCA09',10),
+('MT03',11),('MT04',11),('MT05',11),
+('MLA022',12),('MLA023',12),('MLA024',12),
+('MOA11',13),('MOA12',13),('MOA14',13),
+('NA15',14),('NA16',14),('NA17',14),
+('PT007',15),('PT008',15),('PT009',15)*/
+go
 -----------------------------------------------
 
 create table tbProgram
