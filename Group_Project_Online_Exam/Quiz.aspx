@@ -21,7 +21,7 @@
                     Course
                 </td>
                 <td>
-                    <asp:DropDownList ID="DropDownList3" runat="server"></asp:DropDownList>
+                    <asp:DropDownList ID="DropDownList3" runat="server" OnSelectedIndexChanged="DropDownList3_SelectedIndexChanged"></asp:DropDownList>
                 </td>
                 <td>
                     Session
