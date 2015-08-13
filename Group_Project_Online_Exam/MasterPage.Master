@@ -11,6 +11,19 @@
 
     <asp:ContentPlaceHolder ID="head" runat="server">
     </asp:ContentPlaceHolder>
+    <style type="text/css">
+        .auto-style1 {
+            width: 171px;
+        }
+        .auto-style2 {
+            width: 138px;
+        }
+        .auto-style3 {
+            width: 107px;
+            text-align: justify;
+        }
+        .textbox {}
+    </style>
 </head>
 <body>
     
@@ -49,43 +62,43 @@
             <asp:Panel ID="pnlLogin" runat="server">
                  <table style="column-width:50px; width: 613px;">                   
                     <tr>
-                        <td>
+                        
+       <td class="auto-style3">
                             <asp:Label ID="lblUserName" CssClass="Text" runat="server" Text="Email:"></asp:Label>
-                        </td>
-                        <td class="auto-style2" >
-                            <asp:TextBox ID="txtUserName" CssClass="textbox" runat="server" Text=""></asp:TextBox>
+                        </td>                 <td class="auto-style1" >
+                            <asp:TextBox ID="txtUserName" CssClass="textbox" runat="server" Text="" Width="158px"></asp:TextBox>
                         </td>
                         <td>
                             @robertsoncollege.net
                         </td>
                     </tr>
                     <tr>
-                        <td>
+                        <td class="auto-style3">
                             <br />
                             <asp:Label ID="lblPassword" CssClass="Text" runat="server" Text="Password:"></asp:Label>
                         </td>
-                        <td class="auto-style2">
+                        <td class="auto-style1">
                             <br />
-                            <asp:TextBox ID="txtPassword" CssClass="textbox" runat="server" Text="" TextMode="Password"></asp:TextBox>
+                            <asp:TextBox ID="txtPassword" CssClass="textbox" runat="server" Text="" TextMode="Password" Width="156px"></asp:TextBox>
                         </td>
                     </tr>
                     <tr>
-                        <td></td>
-                        <td class="auto-style2"></td>
+                        <td class="auto-style3"></td>
+                        <td class="auto-style1"></td>
                     </tr>
                     <tr>
-                        <td>                   
+                        <td class="auto-style3">                   
                         </td>
-                        <td class="auto-style2">
+                        <td class="auto-style1">
                             &nbsp; &nbsp;&nbsp; &nbsp;
                             <asp:Button ID="btnLogin" CssClass="button" runat="server" Text="Log In" OnClick="btnLogin_Click"  />                   
                         </td>
                     </tr>
                     <tr>
-                        <td></td>
-                        <td class="auto-style2">
+                        <td class="auto-style3"></td>
+                        <td class="auto-style1">
                             &nbsp; &nbsp;
-                            <asp:LinkButton ID="lbForgotPassword" runat="server" >Forgot Password?</asp:LinkButton>
+                            <a href="ForgotPassword.aspx">Forgot Password ?</a>
                         </td>
                     </tr>
                 </table>    
