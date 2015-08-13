@@ -64,5 +64,10 @@ namespace Group_Project_Online_Exam
             ddTypeofQuestions.DataValueField = "TypeOfQuestionsId";
             ddTypeofQuestions.DataBind();
         }
+
+        protected void btnAddQuestion_Click(object sender, EventArgs e)
+        {
+            PaneltypeQuestion.Visible = true;
+        }
     }
 }
