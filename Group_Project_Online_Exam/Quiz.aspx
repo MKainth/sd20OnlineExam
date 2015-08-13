@@ -18,7 +18,7 @@
 <asp:Content ID="Content2" ContentPlaceHolderID="ContentPlaceHolder1" runat="server">
     <h1>Quiz Maker App</h1>
 
-    <asp:Panel ID="PanelQuiz" BorderColor="Black" BorderStyle="Solid" runat="server">
+    <asp:Panel ID="PanelQuiz" runat="server">
         <br />
         <h3 class="auto-style2">Quiz Summary</h3>
         <table>
@@ -85,7 +85,7 @@
     </asp:Panel>
   
     <br />
-    <asp:Panel ID="PanelQuizPArt1" Visible="false" BorderStyle="Solid" BorderColor="black" runat="server">
+    <asp:Panel ID="PanelQuizPArt1" Visible="false"  runat="server">
         <table>
             <tr>
                 <td>Question:</td>
@@ -113,7 +113,7 @@
             </tr>
            
         <asp:Panel ID="PanelPart1" Visible="false" runat="server">
-            <table>
+         
                 <tr>
                     <td>Answer 1:</td>
                     <td class="auto-style4">
@@ -138,21 +138,23 @@
                 <tr>
                     <td></td>
                 </tr>
-            </table>
+         
         </asp:Panel>
         <asp:Panel ID="PanelPart2" Visible="false" runat="server">
-            <table>
+         
                 <tr>
+                    <td>
                     <asp:RadioButtonList ID="RdoAnswer" runat="server">
                         <asp:ListItem Text="True" Value="True"></asp:ListItem>
                         <asp:ListItem Text="False" Value="False"></asp:ListItem>
                     </asp:RadioButtonList>
+                        </td>
                 </tr>
-            </table>
+         
         </asp:Panel>
              <tr>
                 <td>
-                    <asp:Button ID="btnSubmit" runat="server" Text="Submit" /></td>
+                    <asp:Button ID="btnSubmit" runat="server" Text="Submit" OnClick="btnSubmit_Click" /></td>
             </tr>
         </table>
 

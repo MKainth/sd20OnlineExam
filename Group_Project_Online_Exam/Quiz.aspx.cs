@@ -86,5 +86,24 @@ namespace Group_Project_Online_Exam
                         PanelQuizPArt1.Visible = true;
                     }
         }
+
+        protected void btnSubmit_Click(object sender, EventArgs e)
+        {
+            DAL mydal = new DAL(conn);
+            mydal.AddParam("@QuizTitle",TxtQuizTitle.Text);
+            mydal.AddParam("@ProgramId",ddProgram.SelectedValue);
+            mydal.AddParam("@DifficultyId",ddDifficulty.SelectedValue);
+            mydal.AddParam("@TimeInMinute",txtTimeinMinutes.Text);
+            mydal.AddParam("@TypeOfQuestionsId",ddTypeofQuestions.SelectedValue);
+            mydal.AddParam("@Question",txtQuestion.Text);
+            mydal.AddParam("@Answer1",txtAns1.Text);
+            mydal.AddParam("@Answer2",txtAns2.Text);
+            mydal.AddParam("@Answer3",txtAns3.Text);
+            mydal.AddParam("@Answer4",txtAns4.Text);
+            mydal.AddParam("@CorrectAnswer",txtCorrectAnswer.Text);
+            mydal.AddParam("@Mark",txtMarks.Text);            
+            mydal.ExecuteProcedure("spInsertQuestion");
+
+        }
     }
 }
