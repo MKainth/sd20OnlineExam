@@ -73,7 +73,7 @@ create table tbUser
 	UserId int primary key identity(1,1),
 	FirstName Varchar(max),
 	LastName Varchar(max),
-	Email Varchar(max) unique,---User Name----
+	Email Varchar(60) unique,---User Name----
 	Password Varchar(max),
 	SecurityLevel int 
 	
