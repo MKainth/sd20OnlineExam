@@ -112,6 +112,7 @@ create table tbQuiz
 (
   QuizId int primary key identity(1,1),
   QuizTitle varchar(60),
+  TimeinMinute datetime,
   ProgramId int foreign key references tbProgram(ProgramId),
   DifficultyId int foreign key references tbDifficulty(DifficultyId),
   TypeOfQuestionsId int foreign key references tbTypeOfQuestions(TypeOfQuestionsId)	
@@ -347,3 +348,30 @@ as begin
                   where SecurityLevel=2
 end
 go
+-----------------------------------------------------------------------
+create proc spInsertQuestion
+(
+@QuizTitle varchar(60),
+@ProgramId int,
+@DifficultyId int,
+@TimeInMinute dateTime,
+@TypeOfQuestionsId int,
+@Question varchar(max),
+@Answer1 varchar(60),
+@Answer2 varchar(60),
+@Answer3 varchar(60),
+@Answer4 varchar(60),
+@CorrectAnswer varchar(60),
+@Mark int
+)
+as begin
+ insert into tbQuiz(QuizTitle,TimeInMinute,ProgramId,DifficultyId,TypeOfQuestionsId)values
+				   (@QuizTitle,@TimeInMinute,@ProgramId,@DifficultyId,@TypeOfQuestionsId)
+ insert into tbQuestion(Question,Answer1,Answer2,Answer3,Answer4,CorrectAnswer,Marks)values
+						(@Question,@Answer1,@Answer2,@Answer3,@Answer4,@CorrectAnswer,@Mark)
+end
+go
+
+
+select * from tbQuiz
+select * from tbQuestion
