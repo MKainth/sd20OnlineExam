@@ -74,7 +74,7 @@
                     </td>
                     <td>
                         <asp:DropDownList ID="ddTypeofQuestions" runat="server" AutoPostBack="True" OnSelectedIndexChanged="ddTypeofQuestions_SelectedIndexChanged">
-                            <asp:ListItem Value="-1">Select One</asp:ListItem>
+                          
                         </asp:DropDownList></td>
 
 
@@ -96,21 +96,7 @@
             <tr>
                 <td></td>
             </tr>
-            <tr>
-                <td>Correct Answer
-                </td>
-                <td>
-                    <asp:TextBox ID="txtCorrectAnswer" runat="server"></asp:TextBox>
-                </td>
-            </tr>
-            <tr>
-                <td>Marks</td>
-                <td>
-                    <asp:TextBox ID="txtMarks" runat="server"></asp:TextBox></td>
-            </tr>
-            <tr>
-                <td></td>
-            </tr>
+            
            
         <asp:Panel ID="PanelPart1" Visible="false" runat="server">
          
@@ -138,20 +124,35 @@
                 <tr>
                     <td></td>
                 </tr>
-         
+         <tr>
+                <td>Correct Answer
+                </td>
+                <td>
+                    <asp:TextBox ID="txtCorrectAnswer" runat="server"></asp:TextBox>
+                </td>
+            </tr>
         </asp:Panel>
         <asp:Panel ID="PanelPart2" Visible="false" runat="server">
          
                 <tr>
                     <td>
                     <asp:RadioButtonList ID="RdoAnswer" runat="server">
-                        <asp:ListItem Text="True" Value="True"></asp:ListItem>
+                        <asp:ListItem Text="True" Value="True" ></asp:ListItem>
                         <asp:ListItem Text="False" Value="False"></asp:ListItem>
                     </asp:RadioButtonList>
                         </td>
                 </tr>
          
         </asp:Panel>
+             <tr>
+                <td>Marks</td>
+                <td>
+                    <asp:TextBox ID="txtMarks" runat="server"></asp:TextBox></td>
+            </tr>
+            <tr>
+                <td></td>
+            </tr>
+           
              <tr>
                 <td>
                     <asp:Button ID="btnSubmit" runat="server" Text="Submit" OnClick="btnSubmit_Click" /></td>

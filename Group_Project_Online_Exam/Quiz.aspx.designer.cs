@@ -112,24 +112,6 @@ namespace Group_Project_Online_Exam {
         protected global::System.Web.UI.WebControls.TextBox txtQuestion;
         
         /// <summary>
-        /// txtCorrectAnswer control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.TextBox txtCorrectAnswer;
-        
-        /// <summary>
-        /// txtMarks control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.TextBox txtMarks;
-        
-        /// <summary>
         /// PanelPart1 control.
         /// </summary>
         /// <remarks>
@@ -175,6 +157,15 @@ namespace Group_Project_Online_Exam {
         protected global::System.Web.UI.WebControls.TextBox txtAns4;
         
         /// <summary>
+        /// txtCorrectAnswer control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.TextBox txtCorrectAnswer;
+        
+        /// <summary>
         /// PanelPart2 control.
         /// </summary>
         /// <remarks>
@@ -191,6 +182,15 @@ namespace Group_Project_Online_Exam {
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::System.Web.UI.WebControls.RadioButtonList RdoAnswer;
+        
+        /// <summary>
+        /// txtMarks control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.TextBox txtMarks;
         
         /// <summary>
         /// btnSubmit control.
