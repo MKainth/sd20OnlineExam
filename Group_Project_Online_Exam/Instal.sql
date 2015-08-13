@@ -65,6 +65,10 @@ create table tbUser
 )
 go
 
+Insert into tbUser (FirstName,LastName,Email,Password,SecurityLevel) values 
+('Mohammad','Rahim','mohammad.rahim@robertsoncollege.net','W!nn!peG',1),
+('Mandeep','Kainth','mandeep.kainth@robertsoncollege.net','W!nn!peG',2),
+('Rimon','Bishay','rimon.bishay@robertsoncollege.net','W!nn!peG',3)
 -----------------------------------------------
 
 create table tbUserSession

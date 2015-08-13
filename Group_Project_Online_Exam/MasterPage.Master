@@ -11,17 +11,10 @@
 
     <asp:ContentPlaceHolder ID="head" runat="server">
     </asp:ContentPlaceHolder>
-    <style type="text/css">
-        .auto-style1 {
-            margin-bottom: 45px;
-            text-align: center;
-        }
-        .auto-style2 {
-            text-align: center;
-        }
-    </style>
-</head>
+    </head>
 <body>
+    
+    <form id="form1" runat="server">
     <div id="logo">
 		</div>
 	<hr />
@@ -37,30 +30,75 @@
 		</div>
 		
 		<div id="search">
-			<form method="get" action="">
-				<fieldset>
-				<input type="text" name="s" id="search-text" size="15" />
-				<input type="submit" id="search-submit" value="GO" />
-				</fieldset>
-			</form>
+             <div id="buttonLogout">
+            
+        </div><asp:Panel ID="pnlLogout" runat="server">
+            <asp:Button ID="btnLogout" runat="server" Text="Logout" OnClick="btnLogout_Click"  />    
+                <asp:Label ID="lblFirstname" Font-Size="Medium" ForeColor="White" runat="server" Text=""></asp:Label>
+                <br />
+            
+            </asp:Panel>
+			
 		</div>
 		
 	</div>
 	
 	<div id="page">
 		<div id="content">
-    <form id="form1" runat="server">
     <div>
-  <asp:HyperLink ID="h1Techer" runat="server" NavigateUrl="~/TeacherLogin.aspx">Teacher</asp:HyperLink>
-                <br />
-		
-  <asp:HyperLink ID="h1Student" runat="server" NavigateUrl="~/StudentLogin.aspx">Student</asp:HyperLink>
-               
-        <asp:ContentPlaceHolder ID="ContentPlaceHolder1" runat="server">
+        <div class="LoginPanel">
+            <asp:Panel ID="pnlLogin" runat="server">
+                 <table style="column-width:50px; width: 613px;">                   
+                    <tr>
+                        <td>
+                            <asp:Label ID="lblUserName" CssClass="Text" runat="server" Text="Email:"></asp:Label>
+                        </td>
+                        <td class="auto-style2" >
+                            <asp:TextBox ID="txtUserName" CssClass="textbox" runat="server" Text=""></asp:TextBox>
+                        </td>
+                        <td>
+                            @robertsoncollege.net
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>
+                            <br />
+                            <asp:Label ID="lblPassword" CssClass="Text" runat="server" Text="Password:"></asp:Label>
+                        </td>
+                        <td class="auto-style2">
+                            <br />
+                            <asp:TextBox ID="txtPassword" CssClass="textbox" runat="server" Text="" TextMode="Password"></asp:TextBox>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td></td>
+                        <td class="auto-style2"></td>
+                    </tr>
+                    <tr>
+                        <td>                   
+                        </td>
+                        <td class="auto-style2">
+                            &nbsp; &nbsp;&nbsp; &nbsp;
+                            <asp:Button ID="btnLogin" CssClass="button" runat="server" Text="Log In" OnClick="btnLogin_Click"  />                   
+                        </td>
+                    </tr>
+                    <tr>
+                        <td></td>
+                        <td class="auto-style2">
+                            &nbsp; &nbsp;
+                            <asp:LinkButton ID="lbForgotPassword" runat="server" >Forgot Password?</asp:LinkButton>
+                        </td>
+                    </tr>
+                </table>    
+            </asp:Panel> 
+        </div>  
         
+		
+        <asp:ContentPlaceHolder ID="ContentPlaceHolder1" runat="server">
+            
         </asp:ContentPlaceHolder>
 		  </div>
-    </form>
+   
 		
 			</div>
 		<div id="sidebar">
@@ -109,6 +147,6 @@ href="http://jigsaw.w3.org/css-validator/check/referer" title="This page validat
 
 title="Cascading Style Sheets">CSS</abbr></a></p>
 	</div>
-	
+	 </form>
 </body>
 </html>
