@@ -10,195 +10,141 @@
 namespace Group_Project_Online_Exam {
     
     
-    public partial class Quiz1 {
+    public partial class ForgotPassword {
         
         /// <summary>
-        /// PanelQuiz control.
+        /// pnlForgot control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.Panel PanelQuiz;
+        protected global::System.Web.UI.WebControls.Panel pnlForgot;
         
         /// <summary>
-        /// TxtQuizTitle control.
+        /// RetrievePass control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.TextBox TxtQuizTitle;
+        protected global::System.Web.UI.HtmlControls.HtmlGenericControl RetrievePass;
         
         /// <summary>
-        /// ddProgram control.
+        /// txtEmail control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.DropDownList ddProgram;
+        protected global::System.Web.UI.WebControls.TextBox txtEmail;
         
         /// <summary>
-        /// ddSession control.
+        /// btnRecoverPassword control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.DropDownList ddSession;
+        protected global::System.Web.UI.WebControls.Button btnRecoverPassword;
         
         /// <summary>
-        /// ddDifficulty control.
+        /// CheckMail control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.DropDownList ddDifficulty;
+        protected global::System.Web.UI.HtmlControls.HtmlGenericControl CheckMail;
         
         /// <summary>
-        /// txtTimeinMinutes control.
+        /// lblMessage control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.TextBox txtTimeinMinutes;
+        protected global::System.Web.UI.WebControls.Label lblMessage;
         
         /// <summary>
-        /// btnAddQuestion control.
+        /// pnlChangePassword control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.Button btnAddQuestion;
+        protected global::System.Web.UI.WebControls.Panel pnlChangePassword;
         
         /// <summary>
-        /// PaneltypeQuestion control.
+        /// ChangePass control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.Panel PaneltypeQuestion;
+        protected global::System.Web.UI.HtmlControls.HtmlGenericControl ChangePass;
         
         /// <summary>
-        /// ddTypeofQuestions control.
+        /// txtPass control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.DropDownList ddTypeofQuestions;
+        protected global::System.Web.UI.WebControls.TextBox txtPass;
         
         /// <summary>
-        /// PanelQuizPArt1 control.
+        /// RFVPass control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.Panel PanelQuizPArt1;
+        protected global::System.Web.UI.WebControls.RequiredFieldValidator RFVPass;
         
         /// <summary>
-        /// txtQuestion control.
+        /// txtPass2 control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.TextBox txtQuestion;
+        protected global::System.Web.UI.WebControls.TextBox txtPass2;
         
         /// <summary>
-        /// PanelPart1 control.
+        /// RFVPass2 control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.Panel PanelPart1;
+        protected global::System.Web.UI.WebControls.CompareValidator RFVPass2;
         
         /// <summary>
-        /// txtAns1 control.
+        /// btnChange control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.TextBox txtAns1;
+        protected global::System.Web.UI.WebControls.Button btnChange;
         
         /// <summary>
-        /// txtAns2 control.
+        /// ChangeSuccess control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.TextBox txtAns2;
+        protected global::System.Web.UI.HtmlControls.HtmlGenericControl ChangeSuccess;
         
         /// <summary>
-        /// txtAns3 control.
+        /// ChangeFailed control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.TextBox txtAns3;
-        
-        /// <summary>
-        /// txtAns4 control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.TextBox txtAns4;
-        
-        /// <summary>
-        /// txtCorrectAnswer control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.TextBox txtCorrectAnswer;
-        
-        /// <summary>
-        /// PanelPart2 control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.Panel PanelPart2;
-        
-        /// <summary>
-        /// RdoAnswer control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.RadioButtonList RdoAnswer;
-        
-        /// <summary>
-        /// txtMarks control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.TextBox txtMarks;
-        
-        /// <summary>
-        /// btnSubmit control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.Button btnSubmit;
+        protected global::System.Web.UI.HtmlControls.HtmlGenericControl ChangeFailed;
     }
 }

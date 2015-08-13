@@ -58,6 +58,7 @@
     <Reference Include="System.EnterpriseServices" />
   </ItemGroup>
   <ItemGroup>
+    <Content Include="ForgotPassword.aspx" />
     <Content Include="MasterPage.Master" />
     <Content Include="images\Thumbs.db" />
     <None Include="Web.Debug.config">
@@ -77,12 +78,20 @@
     <Content Include="Registration.aspx" />
     <Content Include="style.css" />
     <Content Include="Instal.sql" />
+    <Content Include="UpdateDelete.aspx" />
     <Content Include="UserInformation.aspx" />
     <Content Include="Web.config" />
   </ItemGroup>
   <ItemGroup>
     <Compile Include="ActiveExam.cs" />
     <Compile Include="Diffcultly.cs" />
+    <Compile Include="ForgotPassword.aspx.cs">
+      <DependentUpon>ForgotPassword.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="ForgotPassword.aspx.designer.cs">
+      <DependentUpon>ForgotPassword.aspx</DependentUpon>
+    </Compile>
     <Compile Include="Home.aspx.cs">
       <DependentUpon>Home.aspx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
@@ -127,6 +136,13 @@
     </Compile>
     <Compile Include="UserInformation.aspx.designer.cs">
       <DependentUpon>UserInformation.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="UpdateDelete.aspx.cs">
+      <DependentUpon>UpdateDelete.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="UpdateDelete.aspx.designer.cs">
+      <DependentUpon>UpdateDelete.aspx</DependentUpon>
     </Compile>
   </ItemGroup>
   <ItemGroup>
