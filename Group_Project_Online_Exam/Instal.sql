@@ -50,9 +50,9 @@ Name varchar(60)
 )
 go
 insert into tbTypeOfQuestions(Name)values
-			('Multiple Questions'),
-			('True/False'),
-			('Fill the blanks')
+			('Multiple Questions/Fill the Blanks'),
+			('True/False')
+			
 go
 create table tbDifficulty
 (
@@ -113,7 +113,8 @@ create table tbQuiz
   QuizId int primary key identity(1,1),
   QuizTitle varchar(60),
   ProgramId int foreign key references tbProgram(ProgramId),
-  DifficultyId int foreign key references tbDifficulty(DifficultyId)	
+  DifficultyId int foreign key references tbDifficulty(DifficultyId),
+  TypeOfQuestionsId int foreign key references tbTypeOfQuestions(TypeOfQuestionsId)	
      
 )
 go
