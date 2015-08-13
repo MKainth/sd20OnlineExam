@@ -329,4 +329,20 @@ select * from tbTypeOfQuestions
 end
 go
 exec spSelectTypeofQusetions
+go
 
+----------------------------------------------------------------------------
+create procedure spTeacher
+as begin
+  select FirstName, LastName, Password, Email, SecurityLevel from tbUser
+                   where SecurityLevel=1
+end 
+go
+ 
+----------------------------------------------------------------------
+create procedure spStudent
+as begin
+  select FirstName, LastName, Password, Email, SecurityLevel from tbUser
+                  where SecurityLevel=2
+end
+go
