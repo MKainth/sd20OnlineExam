@@ -73,12 +73,9 @@
     <Content Include="images\img02.jpg" />
     <Content Include="images\img03.gif" />
     <Content Include="images\img04.jpg" />
-    <Content Include="StudentLogin.aspx" />
     <Content Include="Quiz.aspx" />
     <Content Include="style.css" />
     <Content Include="Instal.sql" />
-    <Content Include="Registration.aspx" />
-    <Content Include="TeacherLogin.aspx" />
     <Content Include="Web.config" />
   </ItemGroup>
   <ItemGroup>
@@ -113,13 +110,7 @@
     <Compile Include="QuizResponse.cs" />
     <Compile Include="Security.cs" />
     <Compile Include="session.cs" />
-    <Compile Include="StudentLogin.aspx.cs">
-      <DependentUpon>StudentLogin.aspx</DependentUpon>
-      <SubType>ASPXCodeBehind</SubType>
-    </Compile>
-    <Compile Include="StudentLogin.aspx.designer.cs">
-      <DependentUpon>StudentLogin.aspx</DependentUpon>
-    </Compile>
+    <Compile Include="Student.cs" />
     <Compile Include="Subject.cs" />
     <Compile Include="Registration.aspx.cs">
       <DependentUpon>Registration.aspx</DependentUpon>
@@ -128,14 +119,7 @@
     <Compile Include="Registration.aspx.designer.cs">
       <DependentUpon>Registration.aspx</DependentUpon>
     </Compile>
-    <Compile Include="User.cs" />
-    <Compile Include="TeacherLogin.aspx.cs">
-      <DependentUpon>TeacherLogin.aspx</DependentUpon>
-      <SubType>ASPXCodeBehind</SubType>
-    </Compile>
-    <Compile Include="TeacherLogin.aspx.designer.cs">
-      <DependentUpon>TeacherLogin.aspx</DependentUpon>
-    </Compile>
+    <Compile Include="Teacher.cs" />
     <Compile Include="TeacherProgram.cs" />
   </ItemGroup>
   <ItemGroup>

@@ -112,13 +112,31 @@ namespace Group_Project_Online_Exam {
         protected global::System.Web.UI.WebControls.TextBox txtQuestion;
         
         /// <summary>
-        /// Panel2 control.
+        /// txtCorrectAnswer control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.Panel Panel2;
+        protected global::System.Web.UI.WebControls.TextBox txtCorrectAnswer;
+        
+        /// <summary>
+        /// txtMarks control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.TextBox txtMarks;
+        
+        /// <summary>
+        /// PanelPart1 control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Panel PanelPart1;
         
         /// <summary>
         /// txtAns1 control.
@@ -157,13 +175,13 @@ namespace Group_Project_Online_Exam {
         protected global::System.Web.UI.WebControls.TextBox txtAns4;
         
         /// <summary>
-        /// PanelQuestionPart2 control.
+        /// PanelPart2 control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.Panel PanelQuestionPart2;
+        protected global::System.Web.UI.WebControls.Panel PanelPart2;
         
         /// <summary>
         /// RdoAnswer control.
@@ -173,24 +191,6 @@ namespace Group_Project_Online_Exam {
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::System.Web.UI.WebControls.RadioButtonList RdoAnswer;
-        
-        /// <summary>
-        /// txtCorrectAnswer control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.TextBox txtCorrectAnswer;
-        
-        /// <summary>
-        /// txtMarks control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.TextBox txtMarks;
         
         /// <summary>
         /// btnSubmit control.

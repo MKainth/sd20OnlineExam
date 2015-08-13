@@ -5,8 +5,13 @@
         .auto-style3 {
             width: 203px;
         }
+
         .auto-style4 {
             width: 464px;
+        }
+
+        .auto-style5 {
+            height: 29px;
         }
     </style>
 </asp:Content>
@@ -63,73 +68,36 @@
                 <td>
                     <asp:Button ID="btnAddQuestion" runat="server" Text="Add" OnClick="btnAddQuestion_Click" /></td>
             </tr>
-            <asp:Panel ID="PaneltypeQuestion" Visible="false" runat="server">
-            <tr>
-                <td>Type of Question
-                </td>
-                <td>
-                    <asp:DropDownList ID="ddTypeofQuestions" runat="server" AutoPostBack="True"></asp:DropDownList></td>
+            <asp:Panel ID="PaneltypeQuestion" runat="server">
+                <tr>
+                    <td>Type of Question
+                    </td>
+                    <td>
+                        <asp:DropDownList ID="ddTypeofQuestions" runat="server" AutoPostBack="True" OnSelectedIndexChanged="ddTypeofQuestions_SelectedIndexChanged">
+                            <asp:ListItem Value="-1">Select One</asp:ListItem>
+                        </asp:DropDownList></td>
 
 
-            </tr>
-                </asp:Panel>
-        </table>
-
-    </asp:Panel><br />
+                </tr>
+              
+            </asp:Panel>
+  </table>
+    </asp:Panel>
+  
     <br />
     <asp:Panel ID="PanelQuizPArt1" Visible="false" BorderStyle="Solid" BorderColor="black" runat="server">
         <table>
             <tr>
-                <td>
-                Question:</td>
+                <td>Question:</td>
                 <td class="auto-style4">
-                    <asp:TextBox ID="txtQuestion" runat="server" ></asp:TextBox></td>
-                
-            </tr>
-            <tr>
-                <td>
+                    <asp:TextBox ID="txtQuestion" runat="server"></asp:TextBox></td>
 
-                </td>
-            </tr>
-            <asp:Panel ID="Panel2" runat="server"  >
-            <tr>
-                <td>Answer 1:</td>
-                <td class="auto-style4">
-
-                    <asp:TextBox ID="txtAns1" runat="server"></asp:TextBox></td>
-                </tr>
-            <tr>
-                 <td>Answer 2:</td>
-                <td class="auto-style4">
-                    <asp:TextBox ID="txtAns2" runat="server"></asp:TextBox></td>
-            </tr>
-           <tr>
-                <td>Answer 3:</td>
-                <td class="auto-style4">
-                    <asp:TextBox ID="txtAns3" runat="server"></asp:TextBox></td>
-               </tr>
-            <tr>
-                 <td>Answer 4:</td>
-                <td class="auto-style4">
-                    <asp:TextBox ID="txtAns4" runat="server"></asp:TextBox></td>
             </tr>
             <tr>
                 <td></td>
             </tr>
-                </asp:Panel>
-            <asp:Panel ID="PanelQuestionPart2"  runat="server">
             <tr>
-                <asp:RadioButtonList ID="RdoAnswer" runat="server">
-                    <asp:ListItem Text="True" Value="True"></asp:ListItem>
-                    <asp:ListItem Text="False" Value="False"></asp:ListItem>
-                </asp:RadioButtonList>
-            </tr>
-         
-          </asp:Panel>
-     
-            <tr>
-                <td>
-                    Correct Answer
+                <td>Correct Answer
                 </td>
                 <td>
                     <asp:TextBox ID="txtCorrectAnswer" runat="server"></asp:TextBox>
@@ -143,12 +111,51 @@
             <tr>
                 <td></td>
             </tr>
-            <tr>
+           
+        <asp:Panel ID="PanelPart1" Visible="false" runat="server">
+            <table>
+                <tr>
+                    <td>Answer 1:</td>
+                    <td class="auto-style4">
+
+                        <asp:TextBox ID="txtAns1" runat="server"></asp:TextBox></td>
+                </tr>
+                <tr>
+                    <td>Answer 2:</td>
+                    <td class="auto-style4">
+                        <asp:TextBox ID="txtAns2" runat="server"></asp:TextBox></td>
+                </tr>
+                <tr>
+                    <td>Answer 3:</td>
+                    <td class="auto-style4">
+                        <asp:TextBox ID="txtAns3" runat="server"></asp:TextBox></td>
+                </tr>
+                <tr>
+                    <td>Answer 4:</td>
+                    <td class="auto-style4">
+                        <asp:TextBox ID="txtAns4" runat="server"></asp:TextBox></td>
+                </tr>
+                <tr>
+                    <td></td>
+                </tr>
+            </table>
+        </asp:Panel>
+        <asp:Panel ID="PanelPart2" Visible="false" runat="server">
+            <table>
+                <tr>
+                    <asp:RadioButtonList ID="RdoAnswer" runat="server">
+                        <asp:ListItem Text="True" Value="True"></asp:ListItem>
+                        <asp:ListItem Text="False" Value="False"></asp:ListItem>
+                    </asp:RadioButtonList>
+                </tr>
+            </table>
+        </asp:Panel>
+             <tr>
                 <td>
                     <asp:Button ID="btnSubmit" runat="server" Text="Submit" /></td>
             </tr>
         </table>
 
     </asp:Panel>
-        
+      
 </asp:Content>

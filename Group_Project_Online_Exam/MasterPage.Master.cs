@@ -12,7 +12,66 @@ namespace Group_Project_Online_Exam
     {
         protected void Page_Load(object sender, EventArgs e)
         {
+            CheckSecurity();
+
+            if (!IsPostBack)
+            {
+
+            }
+        }
+        private void CheckSecurity()
+        {
+            Security mySecurity = new Security();
+            lblFirstname.Text = mySecurity.Firstname;
+            if (!mySecurity.IsLoggedIn())
+            {
+                btnLogout.Visible = false;     
+            }
+            else
+            { //Adjust links visible according to Security Level(Admin or Regular)
+
+                pnlLogin.Visible = false;
+                pnlLogout.Visible = true;
+
+                if (mySecurity.IsAdmin())
+                {
+                    // if there are any admin specific things to show, show them
+                }
+                else if (mySecurity.IsTeacher())
+                {
+                     // if there are any TEACHER specific things to show, show them
+                }
+                else if (mySecurity.IsStudent())
+                {
+                    // if there are any TEACHER specific things to show, show them
+                }
+            }
+
+           
 
         }
+        protected void btnLogin_Click(object sender, EventArgs e)
+        {
+            string FullEmail = txtUserName.Text;
+            Security mySecurity = new Security(FullEmail, txtPassword.Text);
+            if (mySecurity.IsLoggedIn())
+            {
+                Response.Redirect("Home.aspx");
+            }
+            else
+            {
+                ScriptManager.RegisterStartupScript(this, this.GetType(), "Message", "alert('Your User Name or Password Not Correct');", true);
+            }
+            
+        }
+
+        protected void btnLogout_Click(object sender, EventArgs e)
+        {
+            Session.Abandon();
+            Response.Redirect("Home.aspx");
+            pnlLogin.Visible = true;
+            
+        }
+
     }
 }
