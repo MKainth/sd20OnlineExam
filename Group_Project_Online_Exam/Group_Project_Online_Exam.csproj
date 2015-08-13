@@ -76,6 +76,7 @@
     <Content Include="Quiz.aspx" />
     <Content Include="style.css" />
     <Content Include="Instal.sql" />
+    <Content Include="UpdateDelete.aspx" />
     <Content Include="Web.config" />
   </ItemGroup>
   <ItemGroup>
@@ -112,6 +113,13 @@
     <Compile Include="session.cs" />
     <Compile Include="Subject.cs" />
     <Compile Include="TeacherProgram.cs" />
+    <Compile Include="UpdateDelete.aspx.cs">
+      <DependentUpon>UpdateDelete.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="UpdateDelete.aspx.designer.cs">
+      <DependentUpon>UpdateDelete.aspx</DependentUpon>
+    </Compile>
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\DAL_Project\DAL_Project.csproj">

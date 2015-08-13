@@ -106,7 +106,7 @@
 					<h2>Lorem Ipsum </h2>
 					<ul>
 						<li><a href="Quiz.aspx">Quiz Maker</a></li>
-						<li><a href="#">lorem ipsum </a></li>
+						<li><a href="UpdateDelete.aspx">Quiz Update/Delete </a></li>
 						<li><a href="#">lorem ipsum </a></li>
 						<li><a href="#">lorem ipsum </a></li>
 						<li><a href="#">lorem ipsum </a></li>
