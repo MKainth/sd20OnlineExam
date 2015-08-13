@@ -66,9 +66,13 @@ create table tbUser
 go
 
 Insert into tbUser (FirstName,LastName,Email,Password,SecurityLevel) values 
-('Mohammad','Rahim','mohammad.rahim@robertsoncollege.net','W!nn!peG',1),
-('Mandeep','Kainth','mandeep.kainth@robertsoncollege.net','W!nn!peG',2),
-('Rimon','Bishay','rimon.bishay@robertsoncollege.net','W!nn!peG',3)
+('Mohammad','Rahim','mohammad.rahim@robertsoncollege.net','1234',1),
+('Mandeep','Kainth','mandeep.kainth@robertsoncollege.net','1234',2),
+('Rimon','Bishay','rimon.bishay@robertsoncollege.net','1234',3)
+
+go 
+select * from tbUser
+go
 -----------------------------------------------
 
 create table tbUserSession
