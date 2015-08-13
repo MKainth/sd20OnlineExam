@@ -69,5 +69,22 @@ namespace Group_Project_Online_Exam
         {
             PaneltypeQuestion.Visible = true;
         }
+
+        protected void ddTypeofQuestions_SelectedIndexChanged(object sender, EventArgs e)
+        {
+
+                    if (ddTypeofQuestions.SelectedItem.Text == "Multiple Questions/Fill the Blanks" )
+                    {
+                        PanelPart1.Visible = true;
+                        PanelPart2.Visible = false;
+                        PanelQuizPArt1.Visible = true;
+                    }
+                    else if (ddTypeofQuestions.SelectedItem.Text == "True/False")
+                    {
+                        PanelPart2.Visible = true;
+                        PanelPart1.Visible = false;
+                        PanelQuizPArt1.Visible = true;
+                    }
+        }
     }
 }
