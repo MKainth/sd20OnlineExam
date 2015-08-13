@@ -110,16 +110,7 @@
     <Compile Include="QuizResponse.cs" />
     <Compile Include="Security.cs" />
     <Compile Include="session.cs" />
-    <Compile Include="Student.cs" />
     <Compile Include="Subject.cs" />
-    <Compile Include="Registration.aspx.cs">
-      <DependentUpon>Registration.aspx</DependentUpon>
-      <SubType>ASPXCodeBehind</SubType>
-    </Compile>
-    <Compile Include="Registration.aspx.designer.cs">
-      <DependentUpon>Registration.aspx</DependentUpon>
-    </Compile>
-    <Compile Include="Teacher.cs" />
     <Compile Include="TeacherProgram.cs" />
   </ItemGroup>
   <ItemGroup>
