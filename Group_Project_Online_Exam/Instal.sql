@@ -10,20 +10,17 @@ create table tbProgram
 (
 	ProgramId int primary key identity(1,1),
 	ProgramName varchar(max)
-	
 )
 go
 insert into tbProgram(ProgramName)values
-	('Software and Database Developer'),('Accounting Specialist')
-	--('Administrative Professional', '3'),
-	--('Business Administration', '4'),('Casino / Resort / Event Coordinator', '5'),('Legal Assistant', '6'),
-	--('Travel Counsellor', '7'),('Veterinary Office Assistant', '8'),('Network Engineering', '9'),
-	--('Enhanced Health Care Aide', '10'),('Health Care Aide ', '11'),('Massage Therapy ', '12'),
-	--('Medical Laboratory Assistant', '13'),('Medical Office Assistant', '14'),('Nursing Assistant', '15'),
-	--('Pharmacy Technician', '16')
+	('Software and Database Developer'),('Accounting Specialist'),
+	('Administrative Professional'),('Business Administration'),
+	('Casino / Resort / Event Coordinator'),('Legal Assistant'),
+	('Travel Counsellor'),('Veterinary Office Assistant'),('Network Engineering'),
+	('Enhanced Health Care Aide'),('Health Care Aide '),('Massage Therapy '),
+	('Medical Laboratory Assistant'),('Medical Office Assistant'),('Nursing Assistant'),
+	('Pharmacy Technician')
 go
-
-
 create table tbSession
 (
 	SessionId int primary key identity(1,1),
@@ -31,12 +28,8 @@ create table tbSession
 	ProgramId int foreign key references tbProgram(ProgramId) 
 )
 go
-
-	insert into tbSession(SessionCode,ProgramId) values
-	('AP12',1),('AP13',2)
-	
-	/*
-('CREC01',4),('CREC02',4),('CREC03',4),
+insert into tbSession(SessionCode,ProgramId) values
+('AP12',1),('AP13',2),('CREC01',4),('CREC02',4),('CREC03',4),
 ('LA10',5),('LA11',5),('LA12',5),
 ('TC002',6),('TC003',6),('TC004',6),
 ('VOA1',7),('VOA2',7),('VOA3',7),
@@ -47,7 +40,7 @@ go
 ('MLA022',12),('MLA023',12),('MLA024',12),
 ('MOA11',13),('MOA12',13),('MOA14',13),
 ('NA15',14),('NA16',14),('NA17',14),
-('PT007',15),('PT008',15),('PT009',15)*/
+('PT007',15),('PT008',15),('PT009',15)
 go
 -----------------------------------------------
 create table tbTypeOfQuestions
@@ -56,8 +49,23 @@ TypeOfQuestionsId int primary key identity(1,1),
 Name varchar(60)
 )
 go
-insert into tbTypeOfQuestions(Name)values('Multiple Questions'),('True/False'),('Fill the blanks')
+insert into tbTypeOfQuestions(Name)values
+			('Multiple Questions'),
+			('True/False'),
+			('Fill the blanks')
 go
+create table tbDifficulty
+(
+	DifficultyId int primary key identity(1,1),
+	Name Varchar(60)
+)
+go
+Insert into tbDifficulty(Name)values
+			('Beginner'),
+			('Intermediate'),
+			('Advance')											
+go
+
 -----------------------------------------------
 
 create table tbUser
@@ -98,15 +106,6 @@ create table tbQuestion
 go
 
 ---------------------------------------------
-create table tbDifficulty
-(
-	DifficultyId int primary key identity(1,1),
-	Name Varchar(60)
-)
-go
-Insert into tbDifficulty(Name)values('Beginner'),('Intermediate'),('Advance')
-
-go
 ------------------------------------------------
 
 create table tbQuiz
@@ -222,14 +221,17 @@ create proc spUpdateUser
 	@Email Varchar(50),
 	@SecurityLevel int
 )
-	as begin update tbUser set FirstName=@FirstName, LastName=@LastName,Password=@Password, Email=@Email, SecurityLevel=@SecurityLevel
+	as begin update tbUser 
+	set FirstName=@FirstName, 
+		LastName=@LastName,
+		Password=@Password, 
+		Email=@Email, 
+		SecurityLevel=@SecurityLevel
 	where UserId=@UserId
 	end
-
 go
 create proc spQuestionsInsert
 (
-
   @Question varchar(500),
   @Answer1 varchar(50),
   @Answer2 varchar(50),
@@ -237,17 +239,15 @@ create proc spQuestionsInsert
   @Answer4 varchar(50),
   @CorrectAnswer varchar(4),
   @Marks int
-  )
-
-  as begin
+ )
+as begin
   insert into tbQuestion(Question,Answer1,Answer2,Answer3,Answer4,CorrectAnswer,Marks)values
 						(@Question,@Answer1,@Answer2,@Answer3,@Answer4,@CorrectAnswer,@Marks)
-
 end
 go
 create proc spQuestionsUpdate
 (
-@QuestionId int,
+  @QuestionId int,
   @Question varchar(500),
   @Answer1 varchar(50),
   @Answer2 varchar(50),
@@ -255,9 +255,8 @@ create proc spQuestionsUpdate
   @Answer4 varchar(50),
   @CorrectAnswer varchar(4),
   @Marks int
-  )
-
-  as begin
+)
+as begin
   update tbQuestion
   set Question=@Question,
 	  Answer1=@Answer1,
