@@ -58,6 +58,7 @@
     <Reference Include="System.EnterpriseServices" />
   </ItemGroup>
   <ItemGroup>
+    <Content Include="ForgotPassword.aspx" />
     <Content Include="MasterPage.Master" />
     <Content Include="images\Thumbs.db" />
     <None Include="Web.Debug.config">
@@ -81,6 +82,13 @@
   <ItemGroup>
     <Compile Include="ActiveExam.cs" />
     <Compile Include="Diffcultly.cs" />
+    <Compile Include="ForgotPassword.aspx.cs">
+      <DependentUpon>ForgotPassword.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="ForgotPassword.aspx.designer.cs">
+      <DependentUpon>ForgotPassword.aspx</DependentUpon>
+    </Compile>
     <Compile Include="Home.aspx.cs">
       <DependentUpon>Home.aspx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
@@ -110,7 +118,6 @@
     <Compile Include="QuizResponse.cs" />
     <Compile Include="Security.cs" />
     <Compile Include="session.cs" />
-    <Compile Include="Student.cs" />
     <Compile Include="Subject.cs" />
     <Compile Include="Registration.aspx.cs">
       <DependentUpon>Registration.aspx</DependentUpon>
@@ -119,7 +126,6 @@
     <Compile Include="Registration.aspx.designer.cs">
       <DependentUpon>Registration.aspx</DependentUpon>
     </Compile>
-    <Compile Include="Teacher.cs" />
     <Compile Include="TeacherProgram.cs" />
   </ItemGroup>
   <ItemGroup>

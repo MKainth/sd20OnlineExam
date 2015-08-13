@@ -383,3 +383,47 @@ go
 
 select * from tbQuiz
 select * from tbQuestion
+---------------------------------------------------------------------------------------------
+-----------------------------------------------------tbResetpasswordRequest---------------------------------------------
+--drop table tbResetpasswordRequest
+go
+create table tbResetpasswordRequest
+(
+ID uniqueidentifier primary key,
+UserId int foreign key references tbUser(UserId),
+ResetRequestDateTime datetime 
+)
+go
+insert into tbResetpasswordRequest values ('a1c52544-0eb8-4912-8d38-241fbfcf9753',1,GETDATE())
+
+
+
+go
+create proc spResetPassword 
+(
+@Email varchar(60)
+)
+as begin
+    Declare @UserId INT
+
+	select @UserId=UserId, @Email=Email
+		from tbUser
+		where Email=@Email
+
+    if (@UserId is Not null)
+	  begin
+		Declare @GUID uniqueIdentifier
+		set @GUID=NEWID()
+     
+		INSERT INTO tbResetpasswordRequest (ID,UserId,ResetRequestDateTime)
+		VALUES (@GUID,@UserId,GETDATE())
+
+		SELECT 1 AS RETURNCODE,@UserId as Uniqueid, @Email as Email
+	 end
+	 else 
+	 begin	 
+		 -- if username does not exist
+		 select 0 as RETURNCODE, NULL AS UNIQUEID, NULL AS EMAIL
+	 END
+	 END
+	

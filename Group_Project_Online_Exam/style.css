@@ -344,7 +344,7 @@ hr { display: none; }
 
 #sidebar li li a {
 	padding: 0px 0px 0px 20px;
-	font-weight: normal;
+	font-weight: 700;
 }
 
 #sidebar li li a:hover {
