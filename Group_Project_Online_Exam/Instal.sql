@@ -24,7 +24,7 @@ go
 create table tbSession
 (
 	SessionId int primary key identity(1,1),
-	SessionCode Varchar(60),
+	SessionCode Varchar(max),
 	ProgramId int foreign key references tbProgram(ProgramId) 
 )
 go
@@ -46,7 +46,7 @@ go
 create table tbTypeOfQuestions
 (
 TypeOfQuestionsId int primary key identity(1,1),
-Name varchar(60)
+Name varchar(max)
 )
 go
 insert into tbTypeOfQuestions(Name)values
@@ -57,7 +57,7 @@ go
 create table tbDifficulty
 (
 	DifficultyId int primary key identity(1,1),
-	Name Varchar(60)
+	Name Varchar(max)
 )
 go
 Insert into tbDifficulty(Name)values
@@ -73,8 +73,8 @@ create table tbUser
 	UserId int primary key identity(1,1),
 	FirstName Varchar(max),
 	LastName Varchar(max),
-	Email Varchar(60) unique,---User Name----
-	Password Varchar(60),
+	Email Varchar(max) unique,---User Name----
+	Password Varchar(max),
 	SecurityLevel int 
 	
 )
@@ -103,12 +103,12 @@ go
 create table tbQuestion
 (
   QuestionId int primary key identity(1,1),
-  Question varchar(500),
-  Answer1 varchar(50),
-  Answer2 varchar(50),
-  Answer3 varchar(50),
-  Answer4 varchar(50),
-  CorrectAnswer varchar(4),
+  Question varchar(max),
+  Answer1 varchar(max) NULL,
+  Answer2 varchar(max) NULL,
+  Answer3 varchar(max) NULL,
+  Answer4 varchar(max) NULL,
+  CorrectAnswer varchar(max),
   Marks int
 )
 go
@@ -119,7 +119,7 @@ go
 create table tbQuiz
 (
   QuizId int primary key identity(1,1),
-  QuizTitle varchar(60),
+  QuizTitle varchar(max),
   TimeinMinute datetime,
   ProgramId int foreign key references tbProgram(ProgramId),
   DifficultyId int foreign key references tbDifficulty(DifficultyId),
@@ -144,7 +144,7 @@ create table tbQuestionResponse
   QuestionResponseId int primary key identity(1,1),
   QuizResponseId int foreign key references tbQuizResponse(QuizResponseId),
   QuestionId int foreign key references tbQuestion(QuestionId),
-  Response varchar(4)   
+  Response varchar(max)   
 )
 go
 
@@ -357,7 +357,7 @@ as begin
 end
 go
 -----------------------------------------------------------------------
-create proc spInsertQuestion
+create proc spInsertQuestionMultiChoice
 (
 @QuizTitle varchar(60),
 @ProgramId int,
@@ -377,6 +377,26 @@ as begin
 				   (@QuizTitle,@TimeInMinute,@ProgramId,@DifficultyId,@TypeOfQuestionsId)
  insert into tbQuestion(Question,Answer1,Answer2,Answer3,Answer4,CorrectAnswer,Marks)values
 						(@Question,@Answer1,@Answer2,@Answer3,@Answer4,@CorrectAnswer,@Mark)
+end
+go
+create proc spInsertQuestionTrueFalse
+(
+@QuizTitle varchar(max),
+@ProgramId int,
+@DifficultyId int,
+@TimeInMinute dateTime,
+@TypeOfQuestionsId int,
+@Question varchar(max),
+--@Answer1 varchar(60),
+--@Answer2 varchar(60),
+@CorrectAnswer varchar(max),
+@Mark int
+)
+as begin
+ insert into tbQuiz(QuizTitle,TimeInMinute,ProgramId,DifficultyId,TypeOfQuestionsId)values
+				   (@QuizTitle,@TimeInMinute,@ProgramId,@DifficultyId,@TypeOfQuestionsId)
+ insert into tbQuestion(Question,CorrectAnswer,Marks)values
+						(@Question,@CorrectAnswer,@Mark)
 end
 go
 
