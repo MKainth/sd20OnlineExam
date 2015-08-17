@@ -29,7 +29,7 @@ create table tbSession
 )
 go
 insert into tbSession(SessionCode,ProgramId) values
-('AP12',1),('AP13',2),('CREC01',4),('CREC02',4),('CREC03',4),
+('AP12',1),('AP13',2),('SD20',3),('CREC01',4),('CREC02',4),('CREC03',4),
 ('LA10',5),('LA11',5),('LA12',5),
 ('TC002',6),('TC003',6),('TC004',6),
 ('VOA1',7),('VOA2',7),('VOA3',7),
@@ -113,6 +113,21 @@ create table tbQuestion
 )
 go
 
+
+INSERT INTO tbQuestion  (Question,Answer1,Answer2,Answer3,Answer4,CorrectAnswer,Marks)VALUES
+('What  Default Data Type ?', 'String', 'Variant', 'Integer', 'Boolear', 2,1),
+( 'What is Default Form Border Style ?', 'Fixed Single', 'None', 'Sizeable', 'Fixed Diaglog', 3,1),
+ ( 'Which is not type of Control ?', 'text', 'lable', 'checkbox', 'option button', 1,1),
+( 'Which of the follwing contexts are available in the add watch window?', 'Project', 'Module', 'Procedure', 'All', 4,1),
+( 'Which window will allow you to halt the execution of your code when a variable changes?', 'The call stack window', 'The immedite window', 'The locals window', 'The watch window', 4,1),
+( 'How can you print the object name associated with the last VB  error to the Immediate window?', 'Debug.Print Err.Number', 'Debug.Print Err.Source', 'Debug.Print Err.Description', 'Debug.Print Err.LastDLLError', 2,1),
+('boolean has two values true or false','true','false',null,null,1,1),	
+( 'How can you print the object name associated with the last VB  error to the Immediate window?', 'Debug.Print Err.Number', 'Debug.Print Err.Source', 'Debug.Print Err.Description', 'Debug.Print Err.LastDLLError', 2,1),
+( 'What function does the TabStop property on a command button perform?', 'It determines whether the button can get the focus', 'If set to False it disables the Tabindex property.', 'It determines the order in which the button will receive the focus', 'It determines if the access key swquence can be used', 1,1),
+( 'You application creates an instance of a form. What is the first event that will be triggered in the from?', 'Load', 'GotFocus', 'Instance', 'Initialize', 4,1)
+
+go
+select * from tbQuestion
 ---------------------------------------------
 ------------------------------------------------
 

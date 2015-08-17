@@ -58,6 +58,7 @@
     <Reference Include="System.EnterpriseServices" />
   </ItemGroup>
   <ItemGroup>
+    <Content Include="ExamPage.aspx" />
     <Content Include="ForgotPassword.aspx" />
     <Content Include="MasterPage.Master" />
     <Content Include="images\Thumbs.db" />
@@ -85,6 +86,13 @@
   <ItemGroup>
     <Compile Include="ActiveExam.cs" />
     <Compile Include="Diffcultly.cs" />
+    <Compile Include="ExamPage.aspx.cs">
+      <DependentUpon>ExamPage.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="ExamPage.aspx.designer.cs">
+      <DependentUpon>ExamPage.aspx</DependentUpon>
+    </Compile>
     <Compile Include="ForgotPassword.aspx.cs">
       <DependentUpon>ForgotPassword.aspx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
