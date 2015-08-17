@@ -25,7 +25,7 @@
         </UpdateParameters>
     </asp:SqlDataSource>
 
-    <div style="overflow-x: auto; width: 600px">
+    <div style="overflow-x: auto; width: 550px">
         <asp:ValidationSummary ID="ValidationSummary1" runat="server" ValidationGroup="Insert" />
         <asp:GridView ID="gvUserInfo" runat="server" AllowPaging="True" AllowSorting="True" AutoGenerateColumns="False" DataKeyNames="UserId" DataSourceID="SqlDataSource1" ShowFooter="True">
             <Columns>

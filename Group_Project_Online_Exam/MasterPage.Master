@@ -15,9 +15,6 @@
         .auto-style1 {
             width: 171px;
         }
-        .auto-style2 {
-            width: 138px;
-        }
         .auto-style3 {
             width: 107px;
             text-align: justify;
@@ -95,10 +92,13 @@
                         </td>
                     </tr>
                     <tr>
-                        <td class="auto-style3"></td>
+                        
+                        <td class="auto-style1">
+                            <a href="Registration.aspx">New User</a>
+                        </td>
                         <td class="auto-style1">
                             &nbsp; &nbsp;
-                            <a href="ForgotPassword.aspx">Forgot Password ?</a>
+                            <a href="ForgotPassword.aspx">Forgot Password?</a>
                         </td>
                     </tr>
                 </table>    
