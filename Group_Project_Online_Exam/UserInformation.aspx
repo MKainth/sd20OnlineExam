@@ -76,7 +76,8 @@
                      <FooterTemplate>
                         <asp:TextBox ID="txtEmail" runat="server"></asp:TextBox>
                          <asp:RequiredFieldValidator ID="reqemail" ValidationGroup="Insert"  ControlToValidate="txtEmail" Text="*" runat="server" ErrorMessage="Required Email"></asp:RequiredFieldValidator>
-                    </FooterTemplate>
+                         <asp:RegularExpressionValidator ID="valEmail" runat="server" ErrorMessage="Email Required!" ControlToValidate="txtEmail" Text="*" ValidationExpression="\w+([-+.']\w+)*@\w+([-.]\w+)*\.\w+([-.]\w+)*"></asp:RegularExpressionValidator>
+                     </FooterTemplate>
                 </asp:TemplateField>
                 <asp:TemplateField HeaderText="Password" SortExpression="Password">
                     <EditItemTemplate>
@@ -99,8 +100,9 @@
                     </ItemTemplate>
                      <FooterTemplate>
                         <asp:TextBox ID="txtSecurityLevel" runat="server"></asp:TextBox>
-                         <asp:RequiredFieldValidator ID="reqsecuritylevel" ValidationGroup="Insert" runat="server"  ControlToValidate="txtSecurityLevel" Text="*" ErrorMessage="Required Security Level"></asp:RequiredFieldValidator>
-                    </FooterTemplate>
+                         <asp:RequiredFieldValidator ID="reqsecuritylevel" ValidationGroup="Insert" runat="server" ControlToValidate="txtSecurityLevel" Text="*" ErrorMessage="Required Security Level"></asp:RequiredFieldValidator>
+                         <asp:RangeValidator ID="valSecuritylevel" runat="server" ErrorMessage="Value should be 1, 2, 3"  MinimumValue="1" MaximumValue="3" CultureInvariantValues="False" ControlToValidate="txtSecurityLevel"></asp:RangeValidator>                     
+                     </FooterTemplate>
                 </asp:TemplateField>
             </Columns>
         </asp:GridView>
