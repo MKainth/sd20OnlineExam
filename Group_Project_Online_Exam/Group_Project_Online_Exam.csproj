@@ -58,6 +58,7 @@
     <Reference Include="System.EnterpriseServices" />
   </ItemGroup>
   <ItemGroup>
+    <Content Include="ChangePassword.aspx" />
     <Content Include="ExamPage.aspx" />
     <Content Include="ForgotPassword.aspx" />
     <Content Include="jquery-2.1.4.js" />
@@ -86,6 +87,13 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="ActiveExam.cs" />
+    <Compile Include="ChangePassword.aspx.cs">
+      <DependentUpon>ChangePassword.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="ChangePassword.aspx.designer.cs">
+      <DependentUpon>ChangePassword.aspx</DependentUpon>
+    </Compile>
     <Compile Include="Diffcultly.cs" />
     <Compile Include="ExamPage.aspx.cs">
       <DependentUpon>ExamPage.aspx</DependentUpon>
