@@ -59,6 +59,7 @@
   </ItemGroup>
   <ItemGroup>
     <Content Include="ChangePassword.aspx" />
+    <Content Include="ExamPage.aspx" />
     <Content Include="ForgotPassword.aspx" />
     <Content Include="MasterPage.Master" />
     <Content Include="images\Thumbs.db" />
@@ -76,9 +77,11 @@
     <Content Include="images\img03.gif" />
     <Content Include="images\img04.jpg" />
     <Content Include="Quiz.aspx" />
+    <Content Include="Registration.aspx" />
     <Content Include="style.css" />
     <Content Include="Instal.sql" />
     <Content Include="UpdateDelete.aspx" />
+    <Content Include="UserInformation.aspx" />
     <Content Include="Web.config" />
   </ItemGroup>
   <ItemGroup>
@@ -91,6 +94,13 @@
       <DependentUpon>ChangePassword.aspx</DependentUpon>
     </Compile>
     <Compile Include="Diffcultly.cs" />
+    <Compile Include="ExamPage.aspx.cs">
+      <DependentUpon>ExamPage.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="ExamPage.aspx.designer.cs">
+      <DependentUpon>ExamPage.aspx</DependentUpon>
+    </Compile>
     <Compile Include="ForgotPassword.aspx.cs">
       <DependentUpon>ForgotPassword.aspx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
@@ -125,10 +135,24 @@
     </Compile>
     <Compile Include="Quiz.cs" />
     <Compile Include="QuizResponse.cs" />
+    <Compile Include="Registration.aspx.cs">
+      <DependentUpon>Registration.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Registration.aspx.designer.cs">
+      <DependentUpon>Registration.aspx</DependentUpon>
+    </Compile>
     <Compile Include="Security.cs" />
     <Compile Include="session.cs" />
     <Compile Include="Subject.cs" />
     <Compile Include="TeacherProgram.cs" />
+    <Compile Include="UserInformation.aspx.cs">
+      <DependentUpon>UserInformation.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="UserInformation.aspx.designer.cs">
+      <DependentUpon>UserInformation.aspx</DependentUpon>
+    </Compile>
     <Compile Include="UpdateDelete.aspx.cs">
       <DependentUpon>UpdateDelete.aspx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>

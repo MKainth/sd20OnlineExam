@@ -120,7 +120,7 @@
 					<ul>
 						<li><a href="Quiz.aspx">Quiz Maker</a></li>
 						<li><a href="UpdateDelete.aspx">Quiz Update/Delete </a></li>
-						<li><a href="#">lorem ipsum </a></li>
+						<li><a href="UserInformation.aspx">User Information </a></li>
 						<li><a href="#">lorem ipsum </a></li>
 						<li><a href="#">lorem ipsum </a></li>
 						<li><a href="#">lorem ipsum </a></li>
