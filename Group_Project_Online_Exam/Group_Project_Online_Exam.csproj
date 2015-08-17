@@ -60,6 +60,7 @@
   <ItemGroup>
     <Content Include="ExamPage.aspx" />
     <Content Include="ForgotPassword.aspx" />
+    <Content Include="jquery-2.1.4.js" />
     <Content Include="MasterPage.Master" />
     <Content Include="images\Thumbs.db" />
     <None Include="Web.Debug.config">

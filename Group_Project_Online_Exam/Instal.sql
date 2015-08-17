@@ -99,38 +99,6 @@ UserId int foreign key references tbUser(UserId),
 go
 
 -----------------------------------------------
-
-create table tbQuestion
-(
-  QuestionId int primary key identity(1,1),
-  Question varchar(max),
-  Answer1 varchar(max) NULL,
-  Answer2 varchar(max) NULL,
-  Answer3 varchar(max) NULL,
-  Answer4 varchar(max) NULL,
-  CorrectAnswer varchar(max),
-  Marks int
-)
-go
-
-
-INSERT INTO tbQuestion  (Question,Answer1,Answer2,Answer3,Answer4,CorrectAnswer,Marks)VALUES
-('What  Default Data Type ?', 'String', 'Variant', 'Integer', 'Boolear', 2,1),
-( 'What is Default Form Border Style ?', 'Fixed Single', 'None', 'Sizeable', 'Fixed Diaglog', 3,1),
- ( 'Which is not type of Control ?', 'text', 'lable', 'checkbox', 'option button', 1,1),
-( 'Which of the follwing contexts are available in the add watch window?', 'Project', 'Module', 'Procedure', 'All', 4,1),
-( 'Which window will allow you to halt the execution of your code when a variable changes?', 'The call stack window', 'The immedite window', 'The locals window', 'The watch window', 4,1),
-( 'How can you print the object name associated with the last VB  error to the Immediate window?', 'Debug.Print Err.Number', 'Debug.Print Err.Source', 'Debug.Print Err.Description', 'Debug.Print Err.LastDLLError', 2,1),
-('boolean has two values true or false','true','false',null,null,1,1),	
-( 'How can you print the object name associated with the last VB  error to the Immediate window?', 'Debug.Print Err.Number', 'Debug.Print Err.Source', 'Debug.Print Err.Description', 'Debug.Print Err.LastDLLError', 2,1),
-( 'What function does the TabStop property on a command button perform?', 'It determines whether the button can get the focus', 'If set to False it disables the Tabindex property.', 'It determines the order in which the button will receive the focus', 'It determines if the access key swquence can be used', 1,1),
-( 'You application creates an instance of a form. What is the first event that will be triggered in the from?', 'Load', 'GotFocus', 'Instance', 'Initialize', 4,1)
-
-go
-select * from tbQuestion
----------------------------------------------
-------------------------------------------------
-
 create table tbQuiz
 (
   QuizId int primary key identity(1,1),
@@ -141,6 +109,47 @@ create table tbQuiz
   TypeOfQuestionsId int foreign key references tbTypeOfQuestions(TypeOfQuestionsId)	
      
 )
+
+go
+insert into tbQuiz(QuizTitle,TimeinMinute,ProgramId,DifficultyId,TypeOfQuestionsId)values
+					('Test1','00:30',1,1,1)
+					
+
+
+
+go
+create table tbQuestion
+(
+  QuestionId int primary key identity(1,1),
+  Question varchar(max),
+  Answer1 varchar(max) NULL,
+  Answer2 varchar(max) NULL,
+  Answer3 varchar(max) NULL,
+  Answer4 varchar(max) NULL,
+  CorrectAnswer varchar(max),
+  Marks int,
+  QuizId int foreign key references tbQuiz(QuizId)
+)
+go
+
+
+INSERT INTO tbQuestion  (Question,Answer1,Answer2,Answer3,Answer4,CorrectAnswer,Marks,QuizId)VALUES
+('What  Default Data Type ?', 'String', 'Variant', 'Integer', 'Boolear', 2,1,1),
+( 'What is Default Form Border Style ?', 'Fixed Single', 'None', 'Sizeable', 'Fixed Diaglog', 3,1,1),
+ ( 'Which is not type of Control ?', 'text', 'lable', 'checkbox', 'option button', 1,1,1),
+( 'Which of the follwing contexts are available in the add watch window?', 'Project', 'Module', 'Procedure', 'All', 4,1,1),
+( 'Which window will allow you to halt the execution of your code when a variable changes?', 'The call stack window', 'The immedite window', 'The locals window', 'The watch window', 4,1,1),
+( 'How can you print the object name associated with the last VB  error to the Immediate window?', 'Debug.Print Err.Number', 'Debug.Print Err.Source', 'Debug.Print Err.Description', 'Debug.Print Err.LastDLLError', 2,1,1),
+('boolean has two values true or false','true','false',null,null,1,1,1),	
+( 'How can you print the object name associated with the last VB  error to the Immediate window?', 'Debug.Print Err.Number', 'Debug.Print Err.Source', 'Debug.Print Err.Description', 'Debug.Print Err.LastDLLError', 2,1,1),
+( 'What function does the TabStop property on a command button perform?', 'It determines whether the button can get the focus', 'If set to False it disables the Tabindex property.', 'It determines the order in which the button will receive the focus', 'It determines if the access key swquence can be used', 1,1,1),
+( 'You application creates an instance of a form. What is the first event that will be triggered in the from?', 'Load', 'GotFocus', 'Instance', 'Initialize', 4,1,1)
+
+go
+select * from tbQuestion
+---------------------------------------------
+------------------------------------------------
+
 go
 
 ------------------------------------------------
@@ -180,6 +189,7 @@ create table tbActiveExam
   ActiveExamId int primary key identity(1,1),
   StartTime Time,
   EndTime Time,
+  QuizId INT FOREIGN KEY REFERENCES tbQuiz(QuizId),
   SessionId int foreign key references tbSession(SessionId) 	    
 )
 go
@@ -304,9 +314,7 @@ as begin
 end
 go
 create proc spQuestion
-(
-@QusetionId int
-)
+
 as begin
 	select * from tbQuestion
 end 
@@ -461,5 +469,6 @@ as begin
 		 select 0 as RETURNCODE, NULL AS UNIQUEID, NULL AS EMAIL
 	 END
 	 END
-	
+	go
 	select* from tbUser
+	go
