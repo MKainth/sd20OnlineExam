@@ -21,6 +21,10 @@ namespace Group_Project_Online_Exam
             rowindex = ViewState["RowIndex"] == null ? 0 : (int)ViewState["RowIndex"];
             loadQuestions();
 
+            if (!IsPostBack)
+            {
+                LoadQuestion();
+            }
 
             lblQuestion.Text = dt.Rows[rowindex]["Question"].ToString();
             HiddenField1.Value = "1";
@@ -28,6 +32,23 @@ namespace Group_Project_Online_Exam
             if (Request.Form["HiddenField1"] != null)
                 rowindex = Convert.ToInt32(Request.Form["HiddenField1"].ToString());
 
+        }
+
+        private void LoadQuestion()
+        {
+            lblQuestion.Text = dt.Rows[rowindex]["Question"].ToString();
+
+            RadioButtonList1.Items.Clear();
+
+            for (int i = 1; i <= 4; i++)
+            {
+                string answerText = dt.Rows[rowindex]["Answer" + i].ToString();
+
+                if (!string.IsNullOrEmpty(answerText))
+                {
+                    RadioButtonList1.Items.Add(new ListItem(answerText, i.ToString()));
+                }
+            }
         }
 
 
@@ -40,20 +61,6 @@ namespace Group_Project_Online_Exam
            if (dt.Rows.Count < 1)
            {
                lblQuestion.Text = "ERROR, QUIZ RETURNED WITH 0 ROWS!";
-           }
-           else
-           {
-               RadioButtonList1.Items.Clear();
-
-               for (int i = 1; i <= 4; i++)
-               {
-                   string answerText = dt.Rows[rowindex]["Answer"+i].ToString();
-
-                   if (!string.IsNullOrEmpty(answerText))
-                   {
-                       RadioButtonList1.Items.Add(new ListItem(answerText, i.ToString()));
-                   }
-               }
            }
         }
 
@@ -68,7 +75,7 @@ namespace Group_Project_Online_Exam
                 HiddenField1.Value = "0";
             }
 
-            lblQuestion.Text = dt.Rows[rowindex]["Question"].ToString();
+            LoadQuestion();
 
             ViewState["RowIndex"] = rowindex;
             HiddenField1.Value = rowindex.ToString();
