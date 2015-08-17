@@ -438,7 +438,7 @@ as begin
 		INSERT INTO tbResetpasswordRequest (ID,UserId,ResetRequestDateTime)
 		VALUES (@GUID,@UserId,GETDATE())
 
-		SELECT 1 AS RETURNCODE,@UserId as Uniqueid, @Email as Email
+		SELECT 1 AS RETURNCODE,@GUID as Uniqueid, @Email as Email
 	 end
 	 else 
 	 begin	 
@@ -446,4 +446,54 @@ as begin
 		 select 0 as RETURNCODE, NULL AS UNIQUEID, NULL AS EMAIL
 	 END
 	 END
-	
+-------------------------------------------------------spIsPasswordResetLinkValid--------------------------------------------------------------------------------------
+GO
+create proc spIsPasswordResetLinkValid
+(
+@GUID uniqueidentifier
+
+)
+AS BEGIN
+IF (EXISTS (SELECT  UserId from tbResetpasswordRequest where ID = @GUID))
+ begin
+     select 1 as [IsvalidPasswordResetLink]
+ end
+ else
+ begin
+     select 0 as [IsvalidPasswordResetLink] 
+	 end
+end
+go
+-------------------------------------------------spChangePassword--------------------------------------------------
+create proc spChangePassword 
+(
+@GUID uniqueidentifier,
+@Password varchar(60)
+)
+as begin
+        Declare @UserId int 
+		select @UserId=UserId
+		from tbResetpasswordRequest
+		where ID =@GUID
+
+ IF (@UserId IS NULL)
+ BEGIN
+ -- IF CustID DOES NOT EXIST
+ SELECT 0 AS IspasswordChanged
+ end
+ else
+ begin
+ --- IF CustID EXISTS, UPDATE WITH NEW PASSWORD 
+ UPDATE tbUser SET 
+ [Password]=@Password
+ where UserId=@UserId
+
+ -- delete the password reset request row 
+ delete from tbResetpasswordRequest
+ where ID=@GUID
+
+ SELECT 1 AS IsPasswordChanged
+ end
+ end
+---------------------------------------------------spResetPassword---------------------------------------------------------------
+

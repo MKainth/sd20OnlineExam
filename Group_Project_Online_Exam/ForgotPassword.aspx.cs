@@ -15,35 +15,41 @@ namespace Group_Project_Online_Exam
     public partial class ForgotPassword : System.Web.UI.Page
     {
         string conn = ConfigurationManager.ConnectionStrings["Exam"].ConnectionString;
+        string emailDomain = ConfigurationManager.AppSettings["EmailDomainName"];
+
         protected void Page_Load(object sender, EventArgs e)
         {
+            Panel pnlLogin = (Panel)Master.FindControl("pnlLogin");
+            pnlLogin.Visible = false;
 
         }
+
+
 
         protected void btnRecoverPassword_Click(object sender, EventArgs e)
         {
             DAL mydal = new DAL(conn);
-            mydal.AddParam("Email", txtEmail.Text);
+            mydal.AddParam("Email", txtEmail.Text + emailDomain);
             DataSet ds = new DataSet();
             ds = mydal.ExecuteProcedure("spResetPassword");
 
             string theEmail = ds.Tables[0].Rows[0]["Email"].ToString();
             string id = ds.Tables[0].Rows[0]["Uniqueid"].ToString();
-            string FirstName = ds.Tables[0].Rows[0]["FirstName"].ToString();
+           
             string Email = txtEmail.Text;
-            sendpasswordEmail(theEmail,FirstName, id);
-            lblMessage.Text = "Please open you Email to reset your password";
+            sendpasswordEmail(theEmail, id);
+           
         }
 
-                private void sendpasswordEmail(string ToEmail, string FirstName, string uniqueId)
+        private void sendpasswordEmail(string ToEmail, string uniqueId)
         {
 
             MailMessage mailmessage = new MailMessage("Rimon.Bishay@robertsoncollege.net", ToEmail);
             StringBuilder sbEmailBody = new StringBuilder();
-            sbEmailBody.Append("Dear" + FirstName + ",<br/><br/>");
+            sbEmailBody.Append("Dear"+" "+ ToEmail + ",<br/><br/>");
             sbEmailBody.Append("Please Click on the following link to reset your password");
             sbEmailBody.Append("<br/>");
-            sbEmailBody.Append("<a href='http://" + HttpContext.Current.Request.Url.Authority + "/ForgotPassword.aspx?uid=" + uniqueId + "'>http://" + HttpContext.Current.Request.Url.Authority + "/ChangePassword.aspx?uid=" + uniqueId + "</a>");
+            sbEmailBody.Append("<a href='http://" + HttpContext.Current.Request.Url.Authority + "/ChangePassword.aspx?uid=" + uniqueId + "'>http://" + HttpContext.Current.Request.Url.Authority + "/ChangePassword.aspx?uid=" + uniqueId + "</a>");
             sbEmailBody.Append("<br/><br/>");
             sbEmailBody.Append("<br>Steve WebSite<br/>");
             mailmessage.IsBodyHtml = true;
@@ -60,5 +66,6 @@ namespace Group_Project_Online_Exam
             Response.Redirect("Home.aspx");
 
         }
+               
+           }
     }
-}
