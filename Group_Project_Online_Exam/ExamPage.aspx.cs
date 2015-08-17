@@ -34,12 +34,26 @@ namespace Group_Project_Online_Exam
         public void loadQuestions()
         {
            DAL mydal = new DAL(conn);
-           DataSet ds= mydal.ExecuteProcedure("spQuestion");
+           DataSet ds = mydal.ExecuteProcedure("spQuestion");
            dt = ds.Tables[0];
-
+           
            if (dt.Rows.Count < 1)
            {
                lblQuestion.Text = "ERROR, QUIZ RETURNED WITH 0 ROWS!";
+           }
+           else
+           {
+               RadioButtonList1.Items.Clear();
+
+               for (int i = 1; i <= 4; i++)
+               {
+                   string answerText = dt.Rows[rowindex]["Answer"+i].ToString();
+
+                   if (!string.IsNullOrEmpty(answerText))
+                   {
+                       RadioButtonList1.Items.Add(new ListItem(answerText, i.ToString()));
+                   }
+               }
            }
         }
 

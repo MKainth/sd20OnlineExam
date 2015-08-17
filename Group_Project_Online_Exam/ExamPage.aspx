@@ -7,5 +7,8 @@
 
     <asp:HiddenField ID="HiddenField1" runat="server" />
     <asp:Label ID="lblQuestion" runat="server" Text="Label"></asp:Label>
+    <asp:RadioButtonList ID="RadioButtonList1" runat="server">
+        
+    </asp:RadioButtonList>
     <asp:Button ID="btnNext" runat="server" Text="Next" OnClick="btnNext_Click" />
 </asp:Content>
