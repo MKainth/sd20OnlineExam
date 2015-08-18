@@ -182,13 +182,15 @@ create table tbUserProgram
 )
 go
 
+--select * from tbUserProgra
 ------------------------------------------------
 
 create table tbActiveExam
 (
   ActiveExamId int primary key identity(1,1),
-  StartTime Time,
-  EndTime Time,
+  StartTime Datetime,
+  EndTime datetime,
+  Date date,
   QuizId INT FOREIGN KEY REFERENCES tbQuiz(QuizId),
   SessionId int foreign key references tbSession(SessionId) 	    
 )
@@ -518,7 +520,23 @@ as begin
  SELECT 1 AS IsPasswordChanged
  end
  end
----------------------------------------------------spResetPassword---------------------------------------------------------------
-	
-	select* from tbUser
-	go
+-----------------------------------------------------------------------------------------------------------------
+go
+create procedure spGetActiveQuizByUser
+(
+@UserId int
+)
+as begin
+	if Exists (SELECT * FROM tbUserSession WHERE UserId=@UserId)
+		select FirstName,LastName,Date,SessionCode,ProgramName, tbQuiz.QuizTitle
+			from tbUserSession JOIN tbUser ON tbUser.UserId=tbUserSession.UserId
+							   JOIN tbSession ON tbSession.SessionId= tbUserSession.SessionId
+							   JOIN tbProgram ON tbProgram.ProgramId=tbSession.ProgramId
+							   JOIN tbActiveExam ON tbActiveExam.SessionId = tbSession.SessionId
+							   JOIN tbQuiz ON tbQuiz.QuizId = tbActiveExam.QuizId
+			where tbUser.UserId = @UserId AND tbActiveExam.EndTime < GETDATE()
+end
+go
+
+
+--exec spGetActiveQuizByUser @UserId=3
