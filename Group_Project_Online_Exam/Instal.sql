@@ -208,8 +208,8 @@ go
 create table tbActiveExam
 (
   ActiveExamId int primary key identity(1,1),
-  StartTime Datetime,
-  EndTime datetime,
+  StartTime int,
+  EndTime int,
   Date date,
   QuizId INT FOREIGN KEY REFERENCES tbQuiz(QuizId),
   SessionId int foreign key references tbSession(SessionId) 	    
@@ -372,7 +372,7 @@ exec spSelectProgram
 go
 create proc spSelectQuiz
 as begin
-select QuizTitle,  CONVERT(VARCHAR(8),GETDATE(),108) AS TimeinMinute,ProgramId,DifficultyId,TypeOfQuestionsId
+select QuizId,QuizTitle,  CONVERT(VARCHAR(8),GETDATE(),108) AS TimeinMinute,ProgramId,DifficultyId,TypeOfQuestionsId
  from tbQuiz
 end
 go
@@ -567,3 +567,31 @@ go
 
 
 --exec spGetActiveQuizByUser @UserId=3
+create proc spActiveExam
+(
+  
+  @StartTime int,
+  @EndTime int,
+  @Date date,
+  @QuizId INT, 
+  @SessionId int 
+)
+as begin
+
+	insert into tbActiveExam(StartTime,EndTime,Date,SessionId,QuizId)values
+							(@StartTime,@EndTime,@Date,@SessionId,@QuizId)
+
+end
+go
+create proc spShowExam
+as begin
+select distinct QuizTitle,TimeinMinute,tbProgram.ProgramName,tbDifficulty.Name as Difficulty,tbTypeOfQuestions.Name as Type_of_Question 
+		from tbQuiz,tbProgram,tbDifficulty,tbTypeOfQuestions,tbSession
+		where tbProgram.ProgramId=tbQuiz.ProgramId and
+				tbDifficulty.DifficultyId=tbQuiz.DifficultyId and
+				tbTypeOfQuestions.TypeOfQuestionsId=tbQuiz.TypeOfQuestionsId 
+
+
+				
+end
+go

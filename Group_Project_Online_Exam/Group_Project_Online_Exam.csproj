@@ -58,6 +58,7 @@
     <Reference Include="System.EnterpriseServices" />
   </ItemGroup>
   <ItemGroup>
+    <Content Include="ActiveExam.aspx" />
     <Content Include="ChangePassword.aspx" />
     <Content Include="ExamPage.aspx" />
     <Content Include="FinishExam.aspx" />
@@ -88,6 +89,13 @@
     <Content Include="Web.config" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="ActiveExam.aspx.cs">
+      <DependentUpon>ActiveExam.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="ActiveExam.aspx.designer.cs">
+      <DependentUpon>ActiveExam.aspx</DependentUpon>
+    </Compile>
     <Compile Include="ActiveExam.cs" />
     <Compile Include="ChangePassword.aspx.cs">
       <DependentUpon>ChangePassword.aspx</DependentUpon>
