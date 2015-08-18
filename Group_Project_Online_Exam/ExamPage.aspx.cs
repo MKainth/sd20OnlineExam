@@ -36,6 +36,8 @@ namespace Group_Project_Online_Exam
 
         private void LoadQuestion()
         {
+
+            lblmsg.Text = "Question #" + dt.Rows[rowindex]["QuestionId"].ToString()+":&nbsp";
             lblQuestion.Text = dt.Rows[rowindex]["Question"].ToString();
 
             RadioButtonList1.Items.Clear();
@@ -43,7 +45,7 @@ namespace Group_Project_Online_Exam
             for (int i = 1; i <= 4; i++)
             {
                 string answerText = dt.Rows[rowindex]["Answer" + i].ToString();
-
+                
                 if (!string.IsNullOrEmpty(answerText))
                 {
                     RadioButtonList1.Items.Add(new ListItem(answerText, i.ToString()));
@@ -57,7 +59,8 @@ namespace Group_Project_Online_Exam
            DAL mydal = new DAL(conn);
            DataSet ds = mydal.ExecuteProcedure("spQuestion");
            dt = ds.Tables[0];
-           
+           string CorrectAnswer = dt.Rows[rowindex]["CorrectAnswer"].ToString();
+           Session["CorrectAnswer"] = CorrectAnswer;
            if (dt.Rows.Count < 1)
            {
                lblQuestion.Text = "ERROR, QUIZ RETURNED WITH 0 ROWS!";
@@ -79,6 +82,20 @@ namespace Group_Project_Online_Exam
 
             ViewState["RowIndex"] = rowindex;
             HiddenField1.Value = rowindex.ToString();
+            int correct = 0;
+            int wrong = 0; 
+            string value = Session["CorrectAnswer"].ToString();
+            string selectAns = RadioButtonList1.SelectedValue.ToString();
+            if(RadioButtonList1.SelectedValue==value)
+            {
+                correct++;
+            }
+            else
+            {
+                wrong++;
+            }
+
+
         }
 
         
