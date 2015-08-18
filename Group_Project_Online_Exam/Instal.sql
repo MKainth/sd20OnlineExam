@@ -83,8 +83,15 @@ go
 Insert into tbUser (FirstName,LastName,Email,Password,SecurityLevel) values 
 ('Mohammad','Rahim','mohammad.rahim@robertsoncollege.net','1234',1),
 ('Mandeep','Kainth','mandeep.kainth@robertsoncollege.net','1234',2),
-('Rimon','Bishay','rimon.bishay@robertsoncollege.net','1234',3)
-
+('Rimon','Bishay','rimon.bishay@robertsoncollege.net','1234',3),
+('Adam','Jakab','adam@yahoo.com','1234',3),
+('Jackey','Walter','JackeyW@yahoo.com','1234',3),
+('Trish','Khan','trishK@gmail.com','1234',3),
+('Rahul','Metha','RMetha@abc.com','1234',3),
+('Kathy','McDonald','Km@yahoo.com','1234',3),
+('Mathew','Robert','mathewR@gmail.com','1234',3),
+('Paul','Barida','PaulB@yahoo.com','1234',3),
+('Adda','Jackson','AdaJackson@yahoo.com','1234',3)
 go 
 select * from tbUser
 go
@@ -112,8 +119,10 @@ create table tbQuiz
 
 go
 insert into tbQuiz(QuizTitle,TimeinMinute,ProgramId,DifficultyId,TypeOfQuestionsId)values
-					('Test1','00:30',1,1,1)
-					
+					--('Test1',DATEADD(Minute,60,GETDATE()),1,1,1)
+					('Test1',30,1,1,1)
+
+--SELECT * FROM tbQuiz WHERE TimeinMinute > GETDATE()			
 
 
 
@@ -134,26 +143,22 @@ go
 
 
 INSERT INTO tbQuestion  (Question,Answer1,Answer2,Answer3,Answer4,CorrectAnswer,Marks,QuizId)VALUES
-('What  Default Data Type ?', 'String', 'Variant', 'Integer', 'Boolear', 2,1,1),
-( 'What is Default Form Border Style ?', 'Fixed Single', 'None', 'Sizeable', 'Fixed Diaglog', 3,1,1),
- ( 'Which is not type of Control ?', 'text', 'lable', 'checkbox', 'option button', 1,1,1),
-( 'Which of the follwing contexts are available in the add watch window?', 'Project', 'Module', 'Procedure', 'All', 4,1,1),
-( 'Which window will allow you to halt the execution of your code when a variable changes?', 'The call stack window', 'The immedite window', 'The locals window', 'The watch window', 4,1,1),
-( 'How can you print the object name associated with the last VB  error to the Immediate window?', 'Debug.Print Err.Number', 'Debug.Print Err.Source', 'Debug.Print Err.Description', 'Debug.Print Err.LastDLLError', 2,1,1),
-('boolean has two values true or false','true','false',null,null,1,1,1),	
-( 'How can you print the object name associated with the last VB  error to the Immediate window?', 'Debug.Print Err.Number', 'Debug.Print Err.Source', 'Debug.Print Err.Description', 'Debug.Print Err.LastDLLError', 2,1,1),
-( 'What function does the TabStop property on a command button perform?', 'It determines whether the button can get the focus', 'If set to False it disables the Tabindex property.', 'It determines the order in which the button will receive the focus', 'It determines if the access key swquence can be used', 1,1,1),
-( 'You application creates an instance of a form. What is the first event that will be triggered in the from?', 'Load', 'GotFocus', 'Instance', 'Initialize', 4,1,1)
+('What  Default Data Type ?', 'String', 'Variant', 'Integer', 'Boolear','Variant',1,1),
+( 'What is Default Form Border Style ?', 'Fixed Single', 'None', 'Sizeable','Fixed Diaglog', 'Sizeable',1,1),
+ ( 'Which is not type of Control ?', 'text', 'lable', 'checkbox', 'option button', 'text',1,1),
+( 'Which of the follwing contexts are available in the add watch window?', 'Project', 'Module', 'Procedure', 'All', 'All',1,1),
+( 'Which window will allow you to halt the execution of your code when a variable changes?', 'The call stack window', 'The immedite window', 'The locals window', 'The watch window', 'The watch window',1,1),
+( 'How can you print the object name associated with the last VB  error to the Immediate window?', 'Debug.Print Err.Number', 'Debug.Print Err.Source', 'Debug.Print Err.Description', 'Debug.Print Err.LastDLLError', 'Debug.Print Err.Source',1,1),
+('boolean has two values true or false','true','false',null,null,'true',1,1),	
+( 'How can you print the object name associated with the last VB  error to the Immediate window?', 'Debug.Print Err.Number', 'Debug.Print Err.Source', 'Debug.Print Err.Description', 'Debug.Print Err.LastDLLError', 'Debug.Print Err.Source',1,1),
+( 'What function does the TabStop property on a command button perform?', 'It determines whether the button can get the focus', 'If set to False it disables the Tabindex property.', 'It determines the order in which the button will receive the focus', 'It determines if the access key swquence can be used', 'It determines whether the button can get the focus',1,1),
+( 'You application creates an instance of a form. What is the first event that will be triggered in the from?', 'Load', 'GotFocus', 'Instance', 'Initialize', 'Initialize',1,1)
 
 go
 select * from tbQuestion
+
 ---------------------------------------------
-------------------------------------------------
-
 go
-
-------------------------------------------------
-
 create table tbQuizResponse
 (
   QuizResponseId int primary key identity(1,1),
@@ -162,6 +167,15 @@ create table tbQuizResponse
 )
 go
 
+INSERT INTO tbQuizResponse(ExamDate, UserId)VALUES
+('2015-02-07',3), ('2015-05-09',10),('2015-07-10',9), ('2014-03-30',4),
+('2015-05-15',6), ('2015-07-07',7),('2014-08-14',8), ('2015-08-07',11),
+('2014-01-10',5), ('2015-04-03',2),('2015-04-09',1)
+go
+
+--select * from tbUser
+--select * from tbQuizResponse
+--select * from tbQuestion
 ------------------------------------------------
 create table tbQuestionResponse
 (
@@ -172,6 +186,12 @@ create table tbQuestionResponse
 )
 go
 
+INSERT INTO tbQuestionResponse(QuizResponseId, QuestionId, Response)VALUES
+
+(2,5,'None'),(3,4,'lable'),(4,6,'None'),(5,7,'false'),(6,8,'Module'),(7,9,'Variant')
+
+GO
+select * from tbQuestionResponse
 ------------------------------------------------
 
 create table tbUserProgram
@@ -208,15 +228,15 @@ create proc spInsertUser
 	@SecurityLevel int 
 )
 	as begin
-	if exists (select Email from tbUser where Email=@Email)
+		if exists (select Email from tbUser where Email=@Email)
 	begin
-	select 'ERROR!' as Message
-		end
+		select 'ERROR!' as Message
+	end
 		else begin
 			insert into tbUser(FirstName,LastName,Password,Email,SecurityLevel)values
 			(@FirstName,@LastName,@Password,@Email,@SecurityLevel)
 			select 'OK' as Message
-end
+	end
 end
 
 
@@ -228,9 +248,9 @@ create proc spGetUser
 	@UserId int=NULL
 )
 	as begin
-	Select  * from tbUser
-	Where UserId=ISNULL (UserId,@UserId)
-end
+		Select  * from tbUser
+		Where UserId=ISNULL (UserId,@UserId)
+	end
 
 --------------------spDeleteUser-----------------------------
 
@@ -350,7 +370,14 @@ end
 go
 exec spSelectProgram
 go
-
+create proc spSelectQuiz
+as begin
+select QuizTitle,  CONVERT(VARCHAR(8),GETDATE(),108) AS TimeinMinute,ProgramId,DifficultyId,TypeOfQuestionsId
+ from tbQuiz
+end
+go
+select * from tbQuiz
+go
 create proc spSelectDifficulty
 as begin
 select * from tbDifficulty
