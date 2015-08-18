@@ -119,8 +119,10 @@ create table tbQuiz
 
 go
 insert into tbQuiz(QuizTitle,TimeinMinute,ProgramId,DifficultyId,TypeOfQuestionsId)values
-					('Test1','00:30',1,1,1)
-					
+					--('Test1',DATEADD(Minute,60,GETDATE()),1,1,1)
+					('Test1',30,1,1,1)
+
+--SELECT * FROM tbQuiz WHERE TimeinMinute > GETDATE()			
 
 
 
@@ -366,7 +368,14 @@ end
 go
 exec spSelectProgram
 go
-
+create proc spSelectQuiz
+as begin
+select QuizTitle,  CONVERT(VARCHAR(8),GETDATE(),108) AS TimeinMinute,ProgramId,DifficultyId,TypeOfQuestionsId
+ from tbQuiz
+end
+go
+select * from tbQuiz
+go
 create proc spSelectDifficulty
 as begin
 select * from tbDifficulty
