@@ -83,8 +83,15 @@ go
 Insert into tbUser (FirstName,LastName,Email,Password,SecurityLevel) values 
 ('Mohammad','Rahim','mohammad.rahim@robertsoncollege.net','1234',1),
 ('Mandeep','Kainth','mandeep.kainth@robertsoncollege.net','1234',2),
-('Rimon','Bishay','rimon.bishay@robertsoncollege.net','1234',3)
-
+('Rimon','Bishay','rimon.bishay@robertsoncollege.net','1234',3),
+('Adam','Jakab','adam@yahoo.com','1234',3),
+('Jackey','Walter','JackeyW@yahoo.com','1234',3),
+('Trish','Khan','trishK@gmail.com','1234',3),
+('Rahul','Metha','RMetha@abc.com','1234',3),
+('Kathy','McDonald','Km@yahoo.com','1234',3),
+('Mathew','Robert','mathewR@gmail.com','1234',3),
+('Paul','Barida','PaulB@yahoo.com','1234',3),
+('Adda','Jackson','AdaJackson@yahoo.com','1234',3)
 go 
 select * from tbUser
 go
@@ -147,13 +154,9 @@ INSERT INTO tbQuestion  (Question,Answer1,Answer2,Answer3,Answer4,CorrectAnswer,
 
 go
 select * from tbQuestion
+
 ---------------------------------------------
-------------------------------------------------
-
 go
-
-------------------------------------------------
-
 create table tbQuizResponse
 (
   QuizResponseId int primary key identity(1,1),
@@ -162,6 +165,17 @@ create table tbQuizResponse
 )
 go
 
+INSERT INTO tbQuizResponse(ExamDate, UserId)VALUES
+('2015-02-07',3), ('2015-05-09',10),('2015-07-10',9), ('2014-03-30',4),
+('2015-05-15',6), ('2015-07-07',7),('2014-08-14',8), ('2015-08-07',11),
+('2014-01-10',5), ('2015-04-03',2),('2015-04-09',1)
+go
+
+
+
+
+
+--select * from tbUser
 ------------------------------------------------
 create table tbQuestionResponse
 (
