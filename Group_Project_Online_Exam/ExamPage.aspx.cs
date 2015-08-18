@@ -25,19 +25,18 @@ namespace Group_Project_Online_Exam
             {
                 LoadQuestion();
             }
-
-            lblQuestion.Text = dt.Rows[rowindex]["Question"].ToString();
-            //    HiddenField1.Value = "1";
-
-            //if (Request.Form["HiddenField1"] != null)
-            //    rowindex = Convert.ToInt32(Request.Form["HiddenField1"].ToString());
+            if (rowindex != -1)
+            {
+                lblQuestion.Text = dt.Rows[rowindex]["Question"].ToString();
+            }
 
         }
 
         private void LoadQuestion()
         {
-
-            lblmsg.Text = "Question #" + dt.Rows[rowindex]["QuestionId"].ToString() + ":&nbsp";
+            string QusetionNumber = dt.Rows[rowindex]["QuestionId"].ToString();
+            lblComplted.Text = "Questions &nbsp" + QusetionNumber + "&nbsp of &nbsp" + dt.Rows.Count + "<br/>";
+            lblmsg.Text = "Question #" + QusetionNumber + ":&nbsp";
             lblQuestion.Text = dt.Rows[rowindex]["Question"].ToString();
 
             RadioButtonList1.Items.Clear();
@@ -56,14 +55,17 @@ namespace Group_Project_Online_Exam
 
         public void loadQuestions()
         {
-            DAL mydal = new DAL(conn);
-            DataSet ds = mydal.ExecuteProcedure("spQuestion");
-            dt = ds.Tables[0];
-            string CorrectAnswer = dt.Rows[rowindex]["CorrectAnswer"].ToString();
-            Session["CorrectAnswer"] = CorrectAnswer;
-            if (dt.Rows.Count < 1)
+            if (rowindex != -1)
             {
-                lblQuestion.Text = "ERROR, QUIZ RETURNED WITH 0 ROWS!";
+                DAL mydal = new DAL(conn);
+                DataSet ds = mydal.ExecuteProcedure("spQuestion");
+                dt = ds.Tables[0];
+                string CorrectAnswer = dt.Rows[rowindex]["CorrectAnswer"].ToString();
+                Session["CorrectAnswer"] = CorrectAnswer;
+                if (dt.Rows.Count < 1)
+                {
+                    lblQuestion.Text = "ERROR, QUIZ RETURNED WITH 0 ROWS!";
+                }
             }
         }
 
@@ -87,15 +89,19 @@ namespace Group_Project_Online_Exam
             rowindex++;
             ViewState["RowIndex"] = rowindex;
 
-            if (rowindex > dt.Rows.Count - 1)
+            if (rowindex >dt.Rows.Count - 1)
             {
+                Response.Redirect("FinishExam.aspx");
+                rowindex = -1;
+                ViewState["RowIndex"] = rowindex;
                 // TEST IS OVER.
-                rowindex = 0;
-                //   HiddenField1.Value = "0";
             }
+            else
+            {
+                LoadQuestion();
 
-            LoadQuestion();
-            //   HiddenField1.Value = rowindex.ToString();
+
+            }
 
         }
     }

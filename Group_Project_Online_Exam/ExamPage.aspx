@@ -4,9 +4,12 @@
 </asp:Content>
 <asp:Content ID="Content2" ContentPlaceHolderID="ContentPlaceHolder1" runat="server">
 
-    <asp:Label ID="lblmsg" runat="server" Text="Label"></asp:Label>
+    <asp:Label ID="lblComplted" runat="server" Text=""></asp:Label>
+
+
+    <asp:Label ID="lblmsg" runat="server" Text=""></asp:Label>
     <asp:HiddenField ID="HiddenField1" runat="server" />
-    <asp:Label ID="lblQuestion" runat="server" Text="Label"></asp:Label>
+    <asp:Label ID="lblQuestion" runat="server" Text=""></asp:Label>
     <asp:RadioButtonList ID="RadioButtonList1" runat="server">
         
     </asp:RadioButtonList>
