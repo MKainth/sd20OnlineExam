@@ -27,17 +27,17 @@ namespace Group_Project_Online_Exam
             }
 
             lblQuestion.Text = dt.Rows[rowindex]["Question"].ToString();
-            HiddenField1.Value = "1";
+            //    HiddenField1.Value = "1";
 
-            if (Request.Form["HiddenField1"] != null)
-                rowindex = Convert.ToInt32(Request.Form["HiddenField1"].ToString());
+            //if (Request.Form["HiddenField1"] != null)
+            //    rowindex = Convert.ToInt32(Request.Form["HiddenField1"].ToString());
 
         }
 
         private void LoadQuestion()
         {
 
-            lblmsg.Text = "Question #" + dt.Rows[rowindex]["QuestionId"].ToString()+":&nbsp";
+            lblmsg.Text = "Question #" + dt.Rows[rowindex]["QuestionId"].ToString() + ":&nbsp";
             lblQuestion.Text = dt.Rows[rowindex]["Question"].ToString();
 
             RadioButtonList1.Items.Clear();
@@ -45,7 +45,7 @@ namespace Group_Project_Online_Exam
             for (int i = 1; i <= 4; i++)
             {
                 string answerText = dt.Rows[rowindex]["Answer" + i].ToString();
-                
+
                 if (!string.IsNullOrEmpty(answerText))
                 {
                     RadioButtonList1.Items.Add(new ListItem(answerText, i.ToString()));
@@ -56,48 +56,47 @@ namespace Group_Project_Online_Exam
 
         public void loadQuestions()
         {
-           DAL mydal = new DAL(conn);
-           DataSet ds = mydal.ExecuteProcedure("spQuestion");
-           dt = ds.Tables[0];
-           string CorrectAnswer = dt.Rows[rowindex]["CorrectAnswer"].ToString();
-           Session["CorrectAnswer"] = CorrectAnswer;
-           if (dt.Rows.Count < 1)
-           {
-               lblQuestion.Text = "ERROR, QUIZ RETURNED WITH 0 ROWS!";
-           }
+            DAL mydal = new DAL(conn);
+            DataSet ds = mydal.ExecuteProcedure("spQuestion");
+            dt = ds.Tables[0];
+            string CorrectAnswer = dt.Rows[rowindex]["CorrectAnswer"].ToString();
+            Session["CorrectAnswer"] = CorrectAnswer;
+            if (dt.Rows.Count < 1)
+            {
+                lblQuestion.Text = "ERROR, QUIZ RETURNED WITH 0 ROWS!";
+            }
         }
 
         protected void btnNext_Click(object sender, EventArgs e)
         {
+            int correct = 0;
+            int wrong = 0;
+            string value = Session["CorrectAnswer"].ToString();
+
+            if (!string.IsNullOrEmpty(RadioButtonList1.SelectedItem.Value))
+            {
+                if (RadioButtonList1.SelectedItem.Text == value)
+                {
+                    correct++;
+                }
+                else
+                {
+                    wrong++;
+                }
+            }
             rowindex++;
+            ViewState["RowIndex"] = rowindex;
 
             if (rowindex > dt.Rows.Count - 1)
             {
                 // TEST IS OVER.
                 rowindex = 0;
-                HiddenField1.Value = "0";
+                //   HiddenField1.Value = "0";
             }
 
             LoadQuestion();
-
-            ViewState["RowIndex"] = rowindex;
-            HiddenField1.Value = rowindex.ToString();
-            int correct = 0;
-            int wrong = 0; 
-            string value = Session["CorrectAnswer"].ToString();
-            string selectAns = RadioButtonList1.SelectedValue.ToString();
-            if(RadioButtonList1.SelectedValue==value)
-            {
-                correct++;
-            }
-            else
-            {
-                wrong++;
-            }
-
+            //   HiddenField1.Value = rowindex.ToString();
 
         }
-
-        
     }
 }
