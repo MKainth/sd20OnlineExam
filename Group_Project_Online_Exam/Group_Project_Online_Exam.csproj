@@ -62,6 +62,7 @@
     <Content Include="ExamPage.aspx" />
     <Content Include="FinishExam.aspx" />
     <Content Include="ForgotPassword.aspx" />
+    <Content Include="InsturctionForExam.aspx" />
     <Content Include="jquery-2.1.4.js" />
     <Content Include="MasterPage.Master" />
     <Content Include="images\Thumbs.db" />
@@ -123,6 +124,13 @@
     </Compile>
     <Compile Include="Home.aspx.designer.cs">
       <DependentUpon>Home.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="InsturctionForExam.aspx.cs">
+      <DependentUpon>InsturctionForExam.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="InsturctionForExam.aspx.designer.cs">
+      <DependentUpon>InsturctionForExam.aspx</DependentUpon>
     </Compile>
     <Compile Include="MasterPage.Master.cs">
       <DependentUpon>MasterPage.Master</DependentUpon>

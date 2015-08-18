@@ -15,9 +15,13 @@ namespace Group_Project_Online_Exam
         string conn = ConfigurationManager.ConnectionStrings["Exam"].ConnectionString;
         DataTable dt = new DataTable();
         int rowindex = 0;
+        static int counter = 10;
 
         protected void Page_Load(object sender, EventArgs e)
         {
+            lblDate.Text = DateTime.Today.ToString("dd/MM/yyyy");
+            lblTime.Text = DateTime.Now.ToString("hh:mm tt");
+
             rowindex = ViewState["RowIndex"] == null ? 0 : (int)ViewState["RowIndex"];
             loadQuestions();
 
@@ -61,6 +65,7 @@ namespace Group_Project_Online_Exam
                 DataSet ds = mydal.ExecuteProcedure("spQuestion");
                 dt = ds.Tables[0];
                 string CorrectAnswer = dt.Rows[rowindex]["CorrectAnswer"].ToString();
+
                 Session["CorrectAnswer"] = CorrectAnswer;
                 if (dt.Rows.Count < 1)
                 {
@@ -89,7 +94,7 @@ namespace Group_Project_Online_Exam
             rowindex++;
             ViewState["RowIndex"] = rowindex;
 
-            if (rowindex >dt.Rows.Count - 1)
+            if (rowindex > dt.Rows.Count - 1)
             {
                 Response.Redirect("FinishExam.aspx");
                 rowindex = -1;
@@ -104,5 +109,7 @@ namespace Group_Project_Online_Exam
             }
 
         }
+
+       
     }
 }
