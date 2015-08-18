@@ -171,11 +171,9 @@ INSERT INTO tbQuizResponse(ExamDate, UserId)VALUES
 ('2014-01-10',5), ('2015-04-03',2),('2015-04-09',1)
 go
 
-
-
-
-
 --select * from tbUser
+--select * from tbQuizResponse
+--select * from tbQuestion
 ------------------------------------------------
 create table tbQuestionResponse
 (
@@ -186,6 +184,12 @@ create table tbQuestionResponse
 )
 go
 
+INSERT INTO tbQuestionResponse(QuizResponseId, QuestionId, Response)VALUES
+
+(2,5,'None'),(3,4,'lable'),(4,6,'None'),(5,7,'false'),(6,8,'Module'),(7,9,'Variant')
+
+GO
+select * from tbQuestionResponse
 ------------------------------------------------
 
 create table tbUserProgram
@@ -220,15 +224,15 @@ create proc spInsertUser
 	@SecurityLevel int 
 )
 	as begin
-	if exists (select Email from tbUser where Email=@Email)
+		if exists (select Email from tbUser where Email=@Email)
 	begin
-	select 'ERROR!' as Message
-		end
+		select 'ERROR!' as Message
+	end
 		else begin
 			insert into tbUser(FirstName,LastName,Password,Email,SecurityLevel)values
 			(@FirstName,@LastName,@Password,@Email,@SecurityLevel)
 			select 'OK' as Message
-end
+	end
 end
 
 
@@ -240,9 +244,9 @@ create proc spGetUser
 	@UserId int=NULL
 )
 	as begin
-	Select  * from tbUser
-	Where UserId=ISNULL (UserId,@UserId)
-end
+		Select  * from tbUser
+		Where UserId=ISNULL (UserId,@UserId)
+	end
 
 --------------------spDeleteUser-----------------------------
 
