@@ -19,8 +19,8 @@ namespace Group_Project_Online_Exam
 
         protected void Page_Load(object sender, EventArgs e)
         {
-            lblDate.Text = DateTime.Today.ToString("dd/MM/yyyy");
-            lblTime.Text = DateTime.Now.ToString("hh:mm tt");
+           // lblDate.Text = DateTime.Today.ToString("dd/MM/yyyy");
+           // lblTime.Text = DateTime.Now.ToString("hh:mm tt");
 
             rowindex = ViewState["RowIndex"] == null ? 0 : (int)ViewState["RowIndex"];
             loadQuestions();

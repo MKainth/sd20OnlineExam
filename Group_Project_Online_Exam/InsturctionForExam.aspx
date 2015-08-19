@@ -3,5 +3,5 @@
 </asp:Content>
 <asp:Content ID="Content2" ContentPlaceHolderID="ContentPlaceHolder1" runat="server">
     <h3>Instructions</h3><br />
-    <asp:Button ID="btnStart" runat="server" Text="Start Exam" />
+    <asp:Button ID="btnStart" runat="server" Text="Start Exam" OnClick="btnStart_Click" />
 </asp:Content>
