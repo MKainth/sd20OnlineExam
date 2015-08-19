@@ -128,7 +128,7 @@
 		
 			</div>
 		<div id="sidebar">
-            <asp:Panel ID="PanelSidebar"  runat="server">
+            <asp:Panel ID="PanelSidebar" Visible="false" runat="server">
 			<ul>
 				<li>
 					<h2>Lorem Ipsum </h2>

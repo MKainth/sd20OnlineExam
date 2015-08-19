@@ -81,17 +81,17 @@ create table tbUser
 go
 
 Insert into tbUser (FirstName,LastName,Email,Password,SecurityLevel) values 
-('Mohammad','Rahim','mohammad.rahim@robertsoncollege.net','1234',1),
+('Mohammad','Rahim','mohammad.rahim@robertsoncollege.net','1234',3),
 ('Mandeep','Kainth','mandeep.kainth@robertsoncollege.net','1234',2),
-('Rimon','Bishay','rimon.bishay@robertsoncollege.net','1234',3),
-('Adam','Jakab','adam@yahoo.com','1234',3),
-('Jackey','Walter','JackeyW@yahoo.com','1234',3),
-('Trish','Khan','trishK@gmail.com','1234',3),
-('Rahul','Metha','RMetha@abc.com','1234',3),
-('Kathy','McDonald','Km@yahoo.com','1234',3),
-('Mathew','Robert','mathewR@gmail.com','1234',3),
-('Paul','Barida','PaulB@yahoo.com','1234',3),
-('Adda','Jackson','AdaJackson@yahoo.com','1234',3)
+('Rimon','Bishay','rimon.bishay@robertsoncollege.net','1234',1),
+('Adam','Jakab','adam@yahoo.com','1234',1),
+('Jackey','Walter','JackeyW@yahoo.com','1234',1),
+('Trish','Khan','trishK@gmail.com','1234',1),
+('Rahul','Metha','RMetha@abc.com','1234',1),
+('Kathy','McDonald','Km@yahoo.com','1234',1),
+('Mathew','Robert','mathewR@gmail.com','1234',1),
+('Paul','Barida','PaulB@yahoo.com','1234',1),
+('Adda','Jackson','AdaJackson@yahoo.com','1234',1)
 go 
 select * from tbUser
 go
