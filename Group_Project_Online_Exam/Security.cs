@@ -108,7 +108,7 @@ namespace Group_Project_Online_Exam
             }
             public bool IsTeacher()
             {
-                return GetRole() == "teacher";
+                return GetRole() == "Teacher";
             }
             public bool IsStudent()
             {
