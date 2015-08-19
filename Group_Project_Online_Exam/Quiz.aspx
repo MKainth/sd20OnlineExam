@@ -16,9 +16,11 @@
     </style>
 </asp:Content>
 <asp:Content ID="Content2" ContentPlaceHolderID="ContentPlaceHolder1" runat="server">
-    <h1>Quiz Maker App</h1>
 
-    <asp:Panel ID="PanelQuiz" runat="server">
+    <asp:ScriptManager ID="ScriptManager1" runat="server"></asp:ScriptManager>
+    <h1>Quiz Maker App</h1>
+    <asp:UpdatePanel ID="PanelQuiz" runat="server">
+   <ContentTemplate>
         <br />
         <h3 class="auto-style2">Quiz Summary</h3>
         <table>
@@ -158,7 +160,7 @@
                     <asp:Button ID="btnSubmit" runat="server" Text="Submit" OnClick="btnSubmit_Click" /></td>
             </tr>
         </table>
-
-    </asp:Panel>
-      
+</ContentTemplate>
+  
+  </asp:UpdatePanel>
 </asp:Content>
