@@ -70,8 +70,10 @@
 		<div id="content">
     <div>
         <div class="LoginPanel">
-            <asp:Panel ID="pnlLogin" runat="server" >
-                <h3 class="auto-style9"><strong>LOGIN</strong></h3><br />
+                <asp:ScriptManager ID="ScriptManager1" runat="server"></asp:ScriptManager>
+            <asp:UpdatePanel ID="UpdatePanelLogin"  runat="server">
+                <ContentTemplate>
+  <h3 class="auto-style9"><strong>LOGIN</strong></h3><br />
                  <table style="column-width:50px; width: 500px;">                   
                                       
                     <tr>
@@ -116,7 +118,10 @@
                         </td>
                     </tr>
                 </table>    
-            </asp:Panel> 
+                </ContentTemplate>
+            </asp:UpdatePanel>
+        
+          
         </div>  
         
                
