@@ -208,16 +208,41 @@ go
 create table tbActiveExam
 (
   ActiveExamId int primary key identity(1,1),
-  StartTime int,
-  EndTime int,
-  Date date,
+  StartTime datetime,
+  EndTime datetime,
   QuizId INT FOREIGN KEY REFERENCES tbQuiz(QuizId),
   SessionId int foreign key references tbSession(SessionId) 	    
 )
 go
 --select * from tbActiveExam
-------------------------spInsertUser--------------------------
 
+insert into tbActiveExam (StartTime,EndTime,QuizId,SessionId)values
+						 (GETDATE(),DATEADD(minute,30,GETDATE()),1,3)
+------------------------spInsertUser--------------------------
+go
+create proc spShowQuiz
+as begin
+select * from tbQuiz
+end
+go
+create proc spDeleteQuiz
+(
+@QuizId int
+)
+as begin
+if exists 
+	(
+		select * from tbActiveExam where QuizId=@QuizId
+	)
+	select 'Failed' as Result
+	else
+	begin
+	
+delete from tbQuiz
+where QuizId=@QuizId
+select 'Success' as Result
+end
+end
 go
 create proc spInsertUser
 (
@@ -555,7 +580,7 @@ create procedure spGetActiveQuizByUser
 )
 as begin
 	if Exists (SELECT * FROM tbUserSession WHERE UserId=@UserId)
-		select FirstName,LastName,Date,SessionCode,ProgramName, tbQuiz.QuizTitle
+		select FirstName,LastName,SessionCode,ProgramName, tbQuiz.QuizTitle
 			from tbUserSession JOIN tbUser ON tbUser.UserId=tbUserSession.UserId
 							   JOIN tbSession ON tbSession.SessionId= tbUserSession.SessionId
 							   JOIN tbProgram ON tbProgram.ProgramId=tbSession.ProgramId
@@ -569,29 +594,31 @@ go
 --exec spGetActiveQuizByUser @UserId=3
 create proc spActiveExam
 (
-  
-  @StartTime int,
-  @EndTime int,
-  @Date date,
+  @StartTime DATETIME,
+  @EndTime DATETIME,
   @QuizId INT, 
   @SessionId int 
 )
 as begin
 
-	insert into tbActiveExam(StartTime,EndTime,Date,SessionId,QuizId)values
-							(@StartTime,@EndTime,@Date,@SessionId,@QuizId)
+	insert into tbActiveExam(StartTime,EndTime,SessionId,QuizId)values
+							(@StartTime,@EndTime,@SessionId,@QuizId)
 
 end
 go
 create proc spShowExam
 as begin
-select distinct QuizTitle,TimeinMinute,tbProgram.ProgramName,tbDifficulty.Name as Difficulty,tbTypeOfQuestions.Name as Type_of_Question 
+select distinct QuizId,QuizTitle,TimeinMinute,tbProgram.ProgramName,tbDifficulty.Name as Difficulty,tbTypeOfQuestions.Name as Type_of_Question 
 		from tbQuiz,tbProgram,tbDifficulty,tbTypeOfQuestions,tbSession
 		where tbProgram.ProgramId=tbQuiz.ProgramId and
 				tbDifficulty.DifficultyId=tbQuiz.DifficultyId and
 				tbTypeOfQuestions.TypeOfQuestionsId=tbQuiz.TypeOfQuestionsId 
-
-
-				
 end
 go
+create proc spShowActiveExam
+as begin
+select * from tbActiveExam
+end
+go
+
+SELECT * FROM tbActiveExam

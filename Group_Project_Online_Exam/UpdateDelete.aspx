@@ -26,26 +26,37 @@
         <asp:Parameter Name="QuestionId" Type="Int32" />
     </UpdateParameters>
 </asp:SqlDataSource>
-    <asp:GridView ID="GridView1" runat="server" AllowPaging="True" AllowSorting="True" AutoGenerateColumns="False" DataKeyNames="QuestionId" DataSourceID="SqlDataSource1">
+      <div style="overflow-x: auto; width: 550px">
+    
+          
+          <asp:GridView ID="GridView1" runat="server"  AllowPaging="True" AllowSorting="True" AutoGenerateColumns="False" DataKeyNames="QuestionId" DataSourceID="SqlDataSource1" PageSize="5" ShowFooter="True">
         <Columns>
             <asp:CommandField ShowDeleteButton="True" ShowEditButton="True" />
-            <asp:BoundField DataField="QuestionId" HeaderText="QuestionId" InsertVisible="False" ReadOnly="True" SortExpression="QuestionId" />
-            <asp:TemplateField HeaderText="Question" SortExpression="Question">
+           
+             <asp:TemplateField HeaderText="QuestionId" SortExpression="QuestionId" InsertVisible="False">
+                <EditItemTemplate>
+                    <asp:Label ID="Label1" runat="server" Text='<%# Eval("QuestionId") %>'></asp:Label>
+                </EditItemTemplate>
+                <ItemTemplate>
+                    <asp:Label ID="Label8" runat="server" Text='<%# Bind("QuestionId") %>'></asp:Label>
+                </ItemTemplate>
+                <FooterTemplate>
+                    <asp:LinkButton ID="lbInsert" runat="server">Insert</asp:LinkButton>
+                </FooterTemplate>
+            </asp:TemplateField>
+           
+             <asp:TemplateField HeaderText="Question" SortExpression="Question">
                 <EditItemTemplate>
                     <asp:TextBox ID="TextBox1" runat="server" Text='<%# Bind("Question") %>'></asp:TextBox>
                 </EditItemTemplate>
                 <ItemTemplate>
                     <asp:Label ID="Label1" runat="server" Text='<%# Bind("Question") %>'></asp:Label>
                 </ItemTemplate>
+                 <FooterTemplate>
+                     <asp:TextBox ID="TextBox2" runat="server"></asp:TextBox>
+                 </FooterTemplate>
             </asp:TemplateField>
-            <asp:TemplateField HeaderText="Answer1" SortExpression="Answer1">
-                <EditItemTemplate>
-                    <asp:TextBox ID="TextBox2" runat="server" Text='<%# Bind("Answer1") %>'></asp:TextBox>
-                </EditItemTemplate>
-                <ItemTemplate>
-                    <asp:Label ID="Label2" runat="server" Text='<%# Bind("Answer1") %>'></asp:Label>
-                </ItemTemplate>
-            </asp:TemplateField>
+            
             <asp:TemplateField HeaderText="Answer2" SortExpression="Answer2">
                 <EditItemTemplate>
                     <asp:TextBox ID="TextBox3" runat="server" Text='<%# Bind("Answer2") %>'></asp:TextBox>
@@ -53,15 +64,23 @@
                 <ItemTemplate>
                     <asp:Label ID="Label3" runat="server" Text='<%# Bind("Answer2") %>'></asp:Label>
                 </ItemTemplate>
+                <FooterTemplate>
+                     <asp:TextBox ID="TextBox2" runat="server"></asp:TextBox>
+                 </FooterTemplate>
             </asp:TemplateField>
-            <asp:TemplateField HeaderText="Answer3" SortExpression="Answer3">
+           
+             <asp:TemplateField HeaderText="Answer3" SortExpression="Answer3">
                 <EditItemTemplate>
                     <asp:TextBox ID="TextBox4" runat="server" Text='<%# Bind("Answer3") %>'></asp:TextBox>
                 </EditItemTemplate>
                 <ItemTemplate>
                     <asp:Label ID="Label4" runat="server" Text='<%# Bind("Answer3") %>'></asp:Label>
                 </ItemTemplate>
+                 <FooterTemplate>
+                     <asp:TextBox ID="TextBox2" runat="server"></asp:TextBox>
+                 </FooterTemplate>
             </asp:TemplateField>
+            
             <asp:TemplateField HeaderText="Answer4" SortExpression="Answer4">
                 <EditItemTemplate>
                     <asp:TextBox ID="TextBox5" runat="server" Text='<%# Bind("Answer4") %>'></asp:TextBox>
@@ -69,7 +88,11 @@
                 <ItemTemplate>
                     <asp:Label ID="Label5" runat="server" Text='<%# Bind("Answer4") %>'></asp:Label>
                 </ItemTemplate>
+                <FooterTemplate>
+                     <asp:TextBox ID="TextBox2" runat="server"></asp:TextBox>
+                 </FooterTemplate>
             </asp:TemplateField>
+            
             <asp:TemplateField HeaderText="CorrectAnswer" SortExpression="CorrectAnswer">
                 <EditItemTemplate>
                     <asp:TextBox ID="TextBox6" runat="server" Text='<%# Bind("CorrectAnswer") %>'></asp:TextBox>
@@ -77,7 +100,11 @@
                 <ItemTemplate>
                     <asp:Label ID="Label6" runat="server" Text='<%# Bind("CorrectAnswer") %>'></asp:Label>
                 </ItemTemplate>
+                <FooterTemplate>
+                     <asp:TextBox ID="TextBox2" runat="server"></asp:TextBox>
+                 </FooterTemplate>
             </asp:TemplateField>
+            
             <asp:TemplateField HeaderText="Marks" SortExpression="Marks">
                 <EditItemTemplate>
                     <asp:TextBox ID="TextBox7" runat="server" Text='<%# Bind("Marks") %>'></asp:TextBox>
@@ -85,7 +112,12 @@
                 <ItemTemplate>
                     <asp:Label ID="Label7" runat="server" Text='<%# Bind("Marks") %>'></asp:Label>
                 </ItemTemplate>
+                <FooterTemplate>
+                     <asp:TextBox ID="TextBox2" runat="server"></asp:TextBox>
+                 </FooterTemplate>
             </asp:TemplateField>
+        
         </Columns>
 </asp:GridView>
+ </div>           
 </asp:Content>
