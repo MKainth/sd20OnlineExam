@@ -35,6 +35,7 @@ namespace Group_Project_Online_Exam
 
                 if (mySecurity.IsAdmin())
                 {
+                    PanelSidebar.Visible = true;
                     // if there are any admin specific things to show, show them
                 }
                 else if (mySecurity.IsTeacher())

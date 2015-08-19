@@ -94,8 +94,8 @@ namespace Group_Project_Online_Exam
             if (ddTypeofQuestions.SelectedItem.Text == "Multiple Questions/Fill the Blanks")
             {
                 DAL mydal = new DAL(conn);
-                mydal.AddParam("@QuizTitle", TxtQuizTitle.Text);
-                mydal.AddParam("@ProgramId", ddProgram.SelectedValue);
+                mydal.AddParam("@QuizTitle",TxtQuizTitle.Text);
+                mydal.AddParam("@ProgramId",ddProgram.SelectedValue);
                 mydal.AddParam("@DifficultyId", ddDifficulty.SelectedValue);
                 mydal.AddParam("@TimeInMinute", Convert.ToDateTime(txtTimeinMinutes.Text));
                 mydal.AddParam("@TypeOfQuestionsId", ddTypeofQuestions.SelectedValue);

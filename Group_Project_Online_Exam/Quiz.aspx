@@ -70,7 +70,7 @@
                 <td>
                     <asp:Button ID="btnAddQuestion" runat="server" Text="Add" OnClick="btnAddQuestion_Click" /></td>
             </tr>
-            <asp:Panel ID="PaneltypeQuestion" runat="server">
+            <asp:Panel ID="PaneltypeQuestion" Visible="false" runat="server">
                 <tr>
                     <td>Type of Question
                     </td>
@@ -84,7 +84,11 @@
               
             </asp:Panel>
   </table>
-    </asp:Panel>
+       </ContentTemplate>
+  
+  </asp:UpdatePanel>
+
+   
   
     <br />
     <asp:Panel ID="PanelQuizPArt1" Visible="false"  runat="server">
@@ -160,7 +164,5 @@
                     <asp:Button ID="btnSubmit" runat="server" Text="Submit" OnClick="btnSubmit_Click" /></td>
             </tr>
         </table>
-</ContentTemplate>
-  
-  </asp:UpdatePanel>
+         </asp:Panel>
 </asp:Content>
