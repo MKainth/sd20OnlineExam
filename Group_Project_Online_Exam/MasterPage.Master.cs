@@ -30,7 +30,7 @@ namespace Group_Project_Online_Exam
             else
             { //Adjust links visible according to Security Level(Admin or Regular)
 
-                pnlLogin.Visible = false;
+                UpdatePanelLogin.Visible = false;
                 pnlLogout.Visible = true;
 
                 if (mySecurity.IsAdmin())
@@ -71,7 +71,7 @@ namespace Group_Project_Online_Exam
         {
             Session.Abandon();
             Response.Redirect("Home.aspx");
-            pnlLogin.Visible = true;
+            UpdatePanelLogin.Visible = true;
             
         }
 
