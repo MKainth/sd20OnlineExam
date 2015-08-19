@@ -215,7 +215,7 @@ create table tbActiveExam
   SessionId int foreign key references tbSession(SessionId) 	    
 )
 go
-
+--select * from tbActiveExam
 ------------------------spInsertUser--------------------------
 
 go

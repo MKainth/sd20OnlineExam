@@ -16,9 +16,6 @@
             width: 171px;
         }
         .textbox {}
-        .auto-style5 {
-            width: 84px;
-        }
         .auto-style6 {
             width: 84px;
             text-align: justify;
@@ -31,6 +28,10 @@
         .auto-style8 {
             width: 171px;
             height: 23px;
+        }
+        .auto-style9 {
+            font-size: x-large;
+            text-align: left;
         }
     </style>
 </head>
@@ -69,8 +70,10 @@
 		<div id="content">
     <div>
         <div class="LoginPanel">
-            <asp:Panel ID="pnlLogin" runat="server">
+            <asp:Panel ID="pnlLogin" runat="server" >
+                <h3 class="auto-style9"><strong>LOGIN</strong></h3><br />
                  <table style="column-width:50px; width: 500px;">                   
+                                      
                     <tr>
                         
        <td class="auto-style6">
@@ -104,11 +107,12 @@
                     </tr>
                     <tr>
                         
-                        <td class="auto-style5">
-                            <a href="Registration.aspx">New User</a>
-                        </td>
+                        <td></td>
                         <td class="auto-style1">
-                            <a href="ForgotPassword.aspx">Forgot Password?</a>
+                            <a href="ForgotPassword.aspx">Forgot Password?</a><br />
+                            
+                            <a href="Registration.aspx">New User</a>
+                        
                         </td>
                     </tr>
                 </table>    
@@ -124,20 +128,22 @@
 		
 			</div>
 		<div id="sidebar">
+            <asp:Panel ID="PanelSidebar"  runat="server">
 			<ul>
 				<li>
 					<h2>Lorem Ipsum </h2>
 					<ul>
-						<li><a href="Quiz.aspx">Quiz Maker</a></li>
-						<li><a href="UpdateDelete.aspx">Quiz Update/Delete </a></li>
-						<li><a href="UserInformation.aspx">User Information </a></li>
-						<li><a href="ExamPage.aspx">Exam </a></li>
+						<li><a  id="linkQuiz" href="Quiz.aspx">Quiz Maker</a></li>
+						<li><a id="updatedelete" href="UpdateDelete.aspx">Quiz Update/Delete </a></li>
+						<li><a id="userinfo" href="UserInformation.aspx">User Information </a></li>
+						<li><a id="exam" href="ExamPage.aspx">Exam </a></li>
 						<li><a href="#">lorem ipsum </a></li>
 						<li><a href="#">lorem ipsum </a></li>
 						<li><a href="#">lorem ipsum </a></li>
 						<li><a href="#">lorem ipsum </a></li>
 					</ul>
 				</li>
+               
 				<li>
 					<h2>Lorem Ipsum </h2>
 					<ul>
@@ -156,6 +162,7 @@
 					</ul>
 				</li>
 			</ul>
+                 </asp:Panel>
 	  </div>
 		<div style="clear: both;">&nbsp;</div>
 	</div>

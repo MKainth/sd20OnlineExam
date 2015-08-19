@@ -16,9 +16,11 @@
     </style>
 </asp:Content>
 <asp:Content ID="Content2" ContentPlaceHolderID="ContentPlaceHolder1" runat="server">
-    <h1>Quiz Maker App</h1>
 
-    <asp:Panel ID="PanelQuiz" runat="server">
+    <asp:ScriptManager ID="ScriptManager1" runat="server"></asp:ScriptManager>
+    <h1>Quiz Maker App</h1>
+    <asp:UpdatePanel ID="PanelQuiz" runat="server">
+   <ContentTemplate>
         <br />
         <h3 class="auto-style2">Quiz Summary</h3>
         <table>
@@ -68,7 +70,7 @@
                 <td>
                     <asp:Button ID="btnAddQuestion" runat="server" Text="Add" OnClick="btnAddQuestion_Click" /></td>
             </tr>
-            <asp:Panel ID="PaneltypeQuestion" runat="server">
+            <asp:Panel ID="PaneltypeQuestion" Visible="false" runat="server">
                 <tr>
                     <td>Type of Question
                     </td>
@@ -82,7 +84,11 @@
               
             </asp:Panel>
   </table>
-    </asp:Panel>
+       </ContentTemplate>
+  
+  </asp:UpdatePanel>
+
+   
   
     <br />
     <asp:Panel ID="PanelQuizPArt1" Visible="false"  runat="server">
@@ -158,7 +164,5 @@
                     <asp:Button ID="btnSubmit" runat="server" Text="Submit" OnClick="btnSubmit_Click" /></td>
             </tr>
         </table>
-
-    </asp:Panel>
-      
+         </asp:Panel>
 </asp:Content>
