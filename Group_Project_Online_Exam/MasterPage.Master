@@ -52,12 +52,12 @@
 		</div>
 		
 		<div id="search">
+             <asp:Label ID="lblFirstname" Font-Size="Medium" ForeColor="White" runat="server" Text=""></asp:Label>
              <div id="buttonLogout">
             
         </div><asp:Panel ID="pnlLogout" runat="server">
-           <asp:Button ID="btnLogout" runat="server" Text="Logout" OnClick="btnLogout_Click"  />    
-                <asp:Label ID="lblFirstname" Font-Size="Medium" ForeColor="White" runat="server" Text=""></asp:Label>
-             
+            <asp:Button ID="btnLogout" runat="server" Text="Logout" OnClick="btnLogout_Click"  />    
+               
                 <br />
             
             </asp:Panel>
@@ -72,7 +72,7 @@
         <div class="LoginPanel">
             <asp:Panel ID="pnlLogin" runat="server" >
                 <h3 class="auto-style9"><strong>LOGIN</strong></h3><br />
-                 <table style="column-width:50px; width: 500px;"> 
+                 <table style="column-width:50px; width: 500px;">                   
                                       
                     <tr>
                         
