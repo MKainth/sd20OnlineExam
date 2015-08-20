@@ -133,8 +133,7 @@
 		
 			</div>
 		<div id="sidebar">
-            <asp:Panel ID="PanelSidebar" Visible="false" runat="server">
-			<ul>
+            <ul>
 				<li>
 					<h2>Lorem Ipsum </h2>
 					<ul>
@@ -167,7 +166,6 @@
 					</ul>
 				</li>
 			</ul>
-                 </asp:Panel>
 	  </div>
 		<div style="clear: both;">&nbsp;</div>
 	</div>

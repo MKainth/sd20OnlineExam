@@ -10,7 +10,7 @@ using System.Configuration;
 
 namespace Group_Project_Online_Exam
 {
-    public partial class ActiveExam1 : System.Web.UI.Page
+    public partial class ActiveExam1 : MasterPageSwitch
     {
         string conn = ConfigurationManager.ConnectionStrings["Exam"].ConnectionString;
         protected void Page_Load(object sender, EventArgs e)
