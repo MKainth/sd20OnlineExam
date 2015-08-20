@@ -12,7 +12,6 @@
 
         </Columns>
     </asp:GridView>
-    <asp:ScriptManager ID="ScriptManager1" runat="server"></asp:ScriptManager>
     <asp:UpdatePanel ID="UpdatePanelActive" Visible="false" runat="server">
 
         <ContentTemplate>
