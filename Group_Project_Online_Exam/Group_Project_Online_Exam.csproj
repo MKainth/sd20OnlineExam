@@ -90,6 +90,7 @@
     <Content Include="Registration.aspx" />
     <Content Include="style.css" />
     <Content Include="Instal.sql" />
+    <Content Include="TeacherInsturctions.aspx" />
     <Content Include="UpdateDelete.aspx" />
     <Content Include="UserInformation.aspx" />
     <Content Include="Web.config" />
@@ -211,6 +212,13 @@
     <Compile Include="Security.cs" />
     <Compile Include="session.cs" />
     <Compile Include="Subject.cs" />
+    <Compile Include="TeacherInsturctions.aspx.cs">
+      <DependentUpon>TeacherInsturctions.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="TeacherInsturctions.aspx.designer.cs">
+      <DependentUpon>TeacherInsturctions.aspx</DependentUpon>
+    </Compile>
     <Compile Include="TeacherProgram.cs" />
     <Compile Include="UserInformation.aspx.cs">
       <DependentUpon>UserInformation.aspx</DependentUpon>
