@@ -34,6 +34,6 @@
             
       <asp:Button ID="btnCancel" runat="server" Text="Cancel" OnClick="btnCancel_Click" />
 
-   </div>
-   </div><asp:Button ID="btnSave" runat="server" Text="Save"  Width="59px" style="margin-bottom: 0px" OnClick="btnSave_Click" />
+ 
+   <asp:Button ID="btnSave" runat="server" Text="Save"  Width="59px" style="margin-bottom: 0px" OnClick="btnSave_Click" />
 </asp:Content>
