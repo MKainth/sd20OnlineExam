@@ -6,7 +6,7 @@
 
     <span id="time" runat="server"></span>
 
-    <asp:ScriptManager ID="SM1" runat="server"></asp:ScriptManager>
+   
     <asp:Timer ID="Timer1" runat="server" Interval="3600" OnTick="Timer1_Tick"></asp:Timer>
 
 
