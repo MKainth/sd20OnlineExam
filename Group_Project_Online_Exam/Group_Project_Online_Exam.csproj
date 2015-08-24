@@ -73,7 +73,6 @@
     <Content Include="MasterPage.Master" />
     <Content Include="images\Thumbs.db" />
     <Content Include="MasterPageSwitch.aspx" />
-    <Content Include="NestedMasterSite1.Master" />
     <Content Include="StudentNested.aspx" />
     <Content Include="Header_Footer.Master" />
     <Content Include="NestedStudentMasterPage.master" />
@@ -179,13 +178,6 @@
     </Compile>
     <Compile Include="MasterPageSwitch.aspx.designer.cs">
       <DependentUpon>MasterPageSwitch.aspx</DependentUpon>
-    </Compile>
-    <Compile Include="NestedMasterSite1.Master.cs">
-      <DependentUpon>NestedMasterSite1.Master</DependentUpon>
-      <SubType>ASPXCodeBehind</SubType>
-    </Compile>
-    <Compile Include="NestedMasterSite1.Master.designer.cs">
-      <DependentUpon>NestedMasterSite1.Master</DependentUpon>
     </Compile>
     <Compile Include="NestedTeacherMasterPage.master.cs">
       <DependentUpon>NestedTeacherMasterPage.master</DependentUpon>
