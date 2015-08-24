@@ -89,7 +89,7 @@ hr { display: none; }
 
 #menu {
 	float: left;
-	width: 600px;
+	width: 521px;
 	height: 90px;
 }
 
@@ -133,8 +133,9 @@ hr { display: none; }
 
 #search {
 	float: right;
-	width: 240px;
+	width: 272px;
 	padding: 35px 10px 0px 0px;
+    margin-left: 66px;
 }
 
 #search form {
