@@ -4,6 +4,8 @@
 <asp:Content ID="Content1" ContentPlaceHolderID="head" runat="server">
 </asp:Content>
 <asp:Content ID="Content2" ContentPlaceHolderID="ContentPlaceHolder1" runat="server">
+
+    <h3>Program List</h3>
     <asp:SqlDataSource ID="SqlDataSource2" runat="server" ConnectionString="<%$ ConnectionStrings:dbSD20ConnectionString %>" SelectCommand="SELECT * FROM [tbQuiz]" DeleteCommand="DELETE FROM [tbQuiz] WHERE [QuizId] = @QuizId" InsertCommand="INSERT INTO [tbQuiz] ([QuizTitle], [TimeinMinute], [ProgramId], [DifficultyId], [TypeOfQuestionsId]) VALUES (@QuizTitle, @TimeinMinute, @ProgramId, @DifficultyId, @TypeOfQuestionsId)" UpdateCommand="UPDATE [tbQuiz] SET [QuizTitle] = @QuizTitle, [TimeinMinute] = @TimeinMinute, [ProgramId] = @ProgramId, [DifficultyId] = @DifficultyId, [TypeOfQuestionsId] = @TypeOfQuestionsId WHERE [QuizId] = @QuizId">
         <DeleteParameters>
             <asp:Parameter Name="QuizId" Type="Int32" />
@@ -46,29 +48,29 @@
             </asp:TemplateField>
             <asp:TemplateField HeaderText="ProgramId" SortExpression="ProgramId">
                 <EditItemTemplate>
-                    <asp:DropDownList ID="DropDownList2" runat="server" DataValueField="ProgramName"  DataSourceID="SqlDataSource3" DataTextField="ProgramName"></asp:DropDownList>
-                    <asp:SqlDataSource ID="SqlDataSource3" runat="server" ConnectionString="<%$ ConnectionStrings:dbSD20ConnectionString %>" SelectCommand="SELECT [ProgramName] FROM [tbProgram]"></asp:SqlDataSource>
+                    <asp:DropDownList ID="DropDownList2" runat="server" SelectedValue='<%# Bind("ProgramId") %>'  DataValueField="ProgramId"  DataSourceID="SqlDataSource3" DataTextField="ProgramName"></asp:DropDownList>
+                    <asp:SqlDataSource ID="SqlDataSource3" runat="server" ConnectionString="<%$ ConnectionStrings:dbSD20ConnectionString %>" SelectCommand="SELECT * FROM [tbProgram]"></asp:SqlDataSource>
 
                     <%--  <asp:TextBox ID="TextBox3" runat="server" Text='<%# Bind("ProgramId") %>'></asp:TextBox>--%>
                 </EditItemTemplate>
                 <ItemTemplate>
-                    <asp:Label ID="Label3" runat="server" Text='<%# Bind("ProgramId") %>'></asp:Label>
+                    <asp:Label ID="Label3" runat="server" Text='<%# Eval("ProgramId") %>'></asp:Label>
                 </ItemTemplate>
             </asp:TemplateField>
             <asp:TemplateField HeaderText="DifficultyId" SortExpression="DifficultyId">
                 <EditItemTemplate>
-                    <asp:DropDownList ID="DropDownList5" runat="server" DataSourceID="SqlDataSource6" DataTextField="difficultyName" DataValueField="difficultyName">
+                    <asp:DropDownList ID="DropDownList5" runat="server" SelectedValue='<%# Bind("DifficultyId") %>' DataSourceID="SqlDataSource6" DataTextField="difficultyName" DataValueField="DifficultyId">
                     </asp:DropDownList>
-                    <asp:SqlDataSource ID="SqlDataSource6" runat="server" ConnectionString="<%$ ConnectionStrings:dbSD20ConnectionString %>" SelectCommand="SELECT [difficultyName] FROM [tbDifficulty]"></asp:SqlDataSource>
+                    <asp:SqlDataSource ID="SqlDataSource6" runat="server" ConnectionString="<%$ ConnectionStrings:dbSD20ConnectionString %>" SelectCommand="SELECT * FROM [tbDifficulty]"></asp:SqlDataSource>
                 </EditItemTemplate>
                 <ItemTemplate>
-                    <asp:Label ID="Label4" runat="server" Text='<%# Bind("DifficultyId") %>'></asp:Label>
+                    <asp:Label ID="Label4" runat="server" Text='<%# Eval("DifficultyId") %>'></asp:Label>
                 </ItemTemplate>
             </asp:TemplateField>
             <asp:TemplateField HeaderText="TypeOfQuestionsId" SortExpression="TypeOfQuestionsId">
                 <EditItemTemplate>
-                    <asp:DropDownList ID="DropDownList4" runat="server" DataValueField='TypeName'  DataSourceID="SqlDataSource5" DataTextField="TypeName"></asp:DropDownList>
-                    <asp:SqlDataSource ID="SqlDataSource5" runat="server" ConnectionString="<%$ ConnectionStrings:dbSD20ConnectionString %>" SelectCommand="SELECT [TypeName] FROM [tbTypeOfQuestions]"></asp:SqlDataSource>
+                    <asp:DropDownList ID="DropDownList4" runat="server" SelectedValue='<%# Bind("TypeOfQuestionsId") %>' DataValueField='TypeOfQuestionsId' DataSourceID="SqlDataSource5" DataTextField="TypeName"></asp:DropDownList>
+                    <asp:SqlDataSource ID="SqlDataSource5" runat="server" ConnectionString="<%$ ConnectionStrings:dbSD20ConnectionString %>" SelectCommand="SELECT * FROM [tbTypeOfQuestions]"></asp:SqlDataSource>
 
 
                     <%--     <asp:TextBox ID="TextBox5" runat="server" Text='<%# Bind("TypeOfQuestionsId") %>'></asp:TextBox>--%>
@@ -80,10 +82,10 @@
         </Columns>
     </asp:GridView>
 
+   <br /><br />
+    <br /><br />
 
-
-
-
+    <h3>Session List</h3>
 
     <asp:SqlDataSource ID="SqlDataSource1" runat="server" ConnectionString="<%$ ConnectionStrings:dbSD20ConnectionString %>" DeleteCommand="DELETE FROM [tbQuestion] WHERE [QuestionId] = @QuestionId" InsertCommand="INSERT INTO [tbQuestion] ([Question], [Answer1], [Answer2], [Answer3], [Answer4], [CorrectAnswer], [Marks], [QuizId]) VALUES (@Question, @Answer1, @Answer2, @Answer3, @Answer4, @CorrectAnswer, @Marks, @QuizId)" SelectCommand="SELECT [QuestionId], [Question], [Answer1], [Answer2], [Answer3], [Answer4], [CorrectAnswer], [Marks], [QuizId] FROM [tbQuestion]" UpdateCommand="UPDATE [tbQuestion] SET [Question] = @Question, [Answer1] = @Answer1, [Answer2] = @Answer2, [Answer3] = @Answer3, [Answer4] = @Answer4, [CorrectAnswer] = @CorrectAnswer, [Marks] = @Marks, [QuizId] = @QuizId WHERE [QuestionId] = @QuestionId">
         <DeleteParameters>
@@ -187,7 +189,7 @@
                     <EditItemTemplate>
 
 
-                        <asp:DropDownList ID="DropDownList1" runat="server" DataValueField='QuizId' DataSourceID="SqlDataSource1" DataTextField="QuizTitle"></asp:DropDownList>
+                        <asp:DropDownList ID="DropDownList1" SelectedValue='<%# Bind("QuizId") %>' runat="server" DataValueField='QuizId' DataSourceID="SqlDataSource1" DataTextField="QuizTitle"></asp:DropDownList>
                         <asp:SqlDataSource ID="SqlDataSource1" runat="server" ConnectionString="<%$ ConnectionStrings:dbSD20ConnectionString %>" SelectCommand="SELECT * FROM [tbQuiz]"></asp:SqlDataSource>
                         <%--<asp:SqlDataSource ID="SqlDataSource1" runat="server" ConnectionString="<%$ ConnectionStrings:dbSD20ConnectionString %>" SelectCommand="SELECT [QuizTitle] FROM [tbQuiz]"></asp:SqlDataSource>--%>
                     </EditItemTemplate>

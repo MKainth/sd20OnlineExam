@@ -124,7 +124,6 @@ go
 insert into tbQuiz(QuizTitle,TimeinMinute,ProgramId,DifficultyId,TypeOfQuestionsId)values
 					--('Test1',DATEADD(Minute,60,GETDATE()),1,1,1)
 					('Test1',30,1,1,1)
-
 --SELECT * FROM tbQuiz WHERE TimeinMinute > GETDATE()			
 
 

@@ -79,7 +79,7 @@
             </asp:TemplateField>
             <asp:TemplateField HeaderText="ProgramId" SortExpression="ProgramId">
                 <EditItemTemplate>
-                    <asp:DropDownList ID="DropDownList1" runat="server" DataSourceID="SqlDataSource3" DataTextField="ProgramName" DataValueField="ProgramId">
+                    <asp:DropDownList ID="DropDownList1" SelectedValue='<%# Bind("ProgramId") %>' runat="server" DataSourceID="SqlDataSource3" DataTextField="ProgramName" DataValueField="ProgramId">
                     </asp:DropDownList>
                     <br />
                     <asp:SqlDataSource ID="SqlDataSource3" runat="server" ConnectionString="<%$ ConnectionStrings:dbSD20ConnectionString %>" SelectCommand="SELECT [ProgramName], [ProgramId] FROM [tbProgram]"></asp:SqlDataSource>
