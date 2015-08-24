@@ -8,7 +8,7 @@
     <meta name="keywords" content="" />
 <meta name="description" content="" />
 <link href="style.css" rel="stylesheet" type="text/css" media="screen" />
-
+    <script src="jquery-2.1.4.js"></script>
     <asp:ContentPlaceHolder ID="head" runat="server">
     </asp:ContentPlaceHolder>
     <style type="text/css">
@@ -71,8 +71,10 @@
 		<div id="content">
     <div>
         <div class="LoginPanel">
-            <asp:Panel ID="pnlLogin" runat="server" >
-                <h3 class="auto-style9"><strong>LOGIN</strong></h3><br />
+                <asp:ScriptManager ID="ScriptManager1" runat="server"></asp:ScriptManager>
+            <asp:UpdatePanel ID="UpdatePanelLogin"  runat="server">
+                <ContentTemplate>
+  <h3 class="auto-style9"><strong>LOGIN</strong></h3><br />
                  <table style="column-width:50px; width: 500px;">                   
                                       
                     <tr>
@@ -117,7 +119,10 @@
                         </td>
                     </tr>
                 </table>    
-            </asp:Panel> 
+                </ContentTemplate>
+            </asp:UpdatePanel>
+        
+          
         </div>  
         
                
@@ -129,8 +134,7 @@
 		
 			</div>
 		<div id="sidebar">
-            <asp:Panel ID="PanelSidebar"  runat="server">
-			<ul>
+            <ul>
 				<li>
 					<h2>Lorem Ipsum </h2>
 					<ul>
@@ -138,7 +142,7 @@
 						<li><a id="updatedelete" href="UpdateDelete.aspx">Quiz Update/Delete </a></li>
 						<li><a id="userinfo" href="UserInformation.aspx">User Information </a></li>
 						<li><a id="exam" href="ExamPage.aspx">Exam </a></li>
-						<li><a href="#">lorem ipsum </a></li>
+						<li><a href="ActiveExam.aspx">Available Exam </a></li>
 						<li><a href="#">lorem ipsum </a></li>
 						<li><a href="#">lorem ipsum </a></li>
 						<li><a href="#">lorem ipsum </a></li>
@@ -163,7 +167,6 @@
 					</ul>
 				</li>
 			</ul>
-                 </asp:Panel>
 	  </div>
 		<div style="clear: both;">&nbsp;</div>
 	</div>

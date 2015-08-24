@@ -13,5 +13,10 @@ namespace Group_Project_Online_Exam
         {
 
         }
+
+        protected void btnAddQuiz_Click(object sender, EventArgs e)
+        {
+            Response.Redirect("Quiz.aspx");
+        }
     }
 }

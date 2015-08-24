@@ -12,6 +12,7 @@ namespace Group_Project_Online_Exam
 {
     public partial class InsturctionForExam : System.Web.UI.Page
     {
+        string conn = ConfigurationManager.ConnectionStrings["Exam"].ConnectionString;
         protected void Page_Load(object sender, EventArgs e)
         {
 
@@ -19,6 +20,11 @@ namespace Group_Project_Online_Exam
 
         protected void btnStart_Click(object sender, EventArgs e)
         {
+            DAL mydal = new DAL(conn);
+            DataSet ds= mydal.ExecuteProcedure("spActiveExam");
+            DateTime starttime =Convert.ToDateTime(ds.Tables[0].Rows[0]["Date"].ToString());
+            int StartTime = Convert.ToInt32(ds.Tables[0].Rows[0]["StartTime"].ToString());
+            int EndTime = Convert.ToInt32(ds.Tables[0].Rows[0]["EndTime"].ToString());
             Response.Redirect("");
         }
     }

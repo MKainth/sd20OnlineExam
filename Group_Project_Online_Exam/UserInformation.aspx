@@ -31,7 +31,7 @@
         <asp:ValidationSummary ID="ValidationSummary1" runat="server" ValidationGroup="Insert" />
         <asp:GridView ID="gvUserInfo" runat="server" AllowPaging="True" AllowSorting="True" AutoGenerateColumns="False" DataKeyNames="UserId" DataSourceID="SqlDataSource1" ShowFooter="True">
             <Columns>
-                <asp:CommandField ShowDeleteButton="True" ShowEditButton="True" />
+                <asp:CommandField ShowDeleteButton="True" ShowEditButton="True" ValidationGroup="update" />
                 <asp:TemplateField HeaderText="UserId" InsertVisible="False" SortExpression="UserId">
                     <EditItemTemplate>
                         <asp:Label ID="Label1" runat="server" Text='<%# Eval("UserId") %>'></asp:Label>

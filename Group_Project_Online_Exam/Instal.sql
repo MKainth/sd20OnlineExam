@@ -81,17 +81,17 @@ create table tbUser
 go
 
 Insert into tbUser (FirstName,LastName,Email,Password,SecurityLevel) values 
-('Mohammad','Rahim','mohammad.rahim@robertsoncollege.net','1234',1),
+('Mohammad','Rahim','mohammad.rahim@robertsoncollege.net','1234',3),
 ('Mandeep','Kainth','mandeep.kainth@robertsoncollege.net','1234',2),
-('Rimon','Bishay','rimon.bishay@robertsoncollege.net','1234',3),
-('Adam','Jakab','adam@yahoo.com','1234',3),
-('Jackey','Walter','JackeyW@yahoo.com','1234',3),
-('Trish','Khan','trishK@gmail.com','1234',3),
-('Rahul','Metha','RMetha@abc.com','1234',3),
-('Kathy','McDonald','Km@yahoo.com','1234',3),
-('Mathew','Robert','mathewR@gmail.com','1234',3),
-('Paul','Barida','PaulB@yahoo.com','1234',3),
-('Adda','Jackson','AdaJackson@yahoo.com','1234',3)
+('Rimon','Bishay','rimon.bishay@robertsoncollege.net','1234',1),
+('Adam','Jakab','adam@yahoo.com','1234',1),
+('Jackey','Walter','JackeyW@yahoo.com','1234',1),
+('Trish','Khan','trishK@gmail.com','1234',1),
+('Rahul','Metha','RMetha@abc.com','1234',1),
+('Kathy','McDonald','Km@yahoo.com','1234',1),
+('Mathew','Robert','mathewR@gmail.com','1234',1),
+('Paul','Barida','PaulB@yahoo.com','1234',1),
+('Adda','Jackson','AdaJackson@yahoo.com','1234',1)
 go 
 select * from tbUser
 go
@@ -103,6 +103,9 @@ UserSessionId int primary key identity(1,1),
 UserId int foreign key references tbUser(UserId),
 	SessionId int foreign key references tbSession(SessionId)	
 )
+go
+
+insert into tbUserSession(SessionId,UserId)values(3,3)
 go
 
 -----------------------------------------------
@@ -202,22 +205,25 @@ create table tbUserProgram
 )
 go
 
+insert into tbUserProgram(UserId,ProgramId)values(3,1)
 --select * from tbUserProgra
 ------------------------------------------------
-
+go
 create table tbActiveExam
 (
   ActiveExamId int primary key identity(1,1),
-  StartTime int,
-  EndTime int,
-  Date date,
+  StartTime datetime,
+  EndTime datetime,
   QuizId INT FOREIGN KEY REFERENCES tbQuiz(QuizId),
   SessionId int foreign key references tbSession(SessionId) 	    
 )
 go
 --select * from tbActiveExam
-------------------------spInsertUser--------------------------
 
+insert into tbActiveExam (StartTime,EndTime,QuizId,SessionId)values
+('2015-08-20 14:07:00','2015-08-20 14:15:00',1,3)
+						-- (GETDATE(),DATEADD(minute,30,GETDATE()),1,3)
+------------------------spInsertUser--------------------------
 go
 create proc spInsertUser
 (
@@ -287,6 +293,7 @@ create proc spUpdateUser
 	where UserId=@UserId
 	end
 go
+----------------------------------------
 create proc spQuestionsInsert
 (
   @Question varchar(500),
@@ -358,9 +365,7 @@ create proc spSelectSession
 as begin
 select * from tbSession
 end
-go
-exec spSelectSession
-
+-------------------------------
 
 go
 create proc spSelectProgram
@@ -368,31 +373,54 @@ as begin
 select * from tbProgram
 end
 go
-exec spSelectProgram
+---------------------
+create proc spSelectDifficulty
+as begin
+select * from tbDifficulty
+end
 go
+-----------------------------------
+create proc spSelectTypeofQusetions
+as begin
+select * from tbTypeOfQuestions
+end
+go
+------------------------------------
+
+
+-------------------------------------------
 create proc spSelectQuiz
 as begin
 select QuizId,QuizTitle,  CONVERT(VARCHAR(8),GETDATE(),108) AS TimeinMinute,ProgramId,DifficultyId,TypeOfQuestionsId
  from tbQuiz
 end
 go
+create proc spShowQuiz
+as begin
 select * from tbQuiz
-go
-create proc spSelectDifficulty
-as begin
-select * from tbDifficulty
 end
 go
-exec spSelectDifficulty
-go
-create proc spSelectTypeofQusetions
+create proc spDeleteQuiz
+(
+@QuizId int
+)
 as begin
-select * from tbTypeOfQuestions
+if exists 
+	(
+		select * from tbActiveExam where QuizId=@QuizId
+	)
+	select 'Failed' as Result
+	else
+	begin
+	
+delete from tbQuiz
+where QuizId=@QuizId
+select 'Success' as Result
 end
-go
-exec spSelectTypeofQusetions
+end
 go
 
+--------------------------------------
 ----------------------------------------------------------------------------
 create procedure spTeacher
 as begin
@@ -453,9 +481,62 @@ end
 go
 
 
-select * from tbQuiz
-select * from tbQuestion
+
 ---------------------------------------------------------------------------------------------
+
+create procedure spGetActiveQuizByUser 
+(
+@UserId int
+)
+as begin
+	if Exists (SELECT * FROM tbUserSession WHERE UserId=@UserId)
+		select FirstName,LastName,SessionCode,ProgramName, tbQuiz.QuizTitle
+			from tbUserSession JOIN tbUser ON tbUser.UserId=tbUserSession.UserId
+							   JOIN tbSession ON tbSession.SessionId= tbUserSession.SessionId
+							   JOIN tbProgram ON tbProgram.ProgramId=tbSession.ProgramId
+							   JOIN tbActiveExam ON tbActiveExam.SessionId = tbSession.SessionId
+							   JOIN tbQuiz ON tbQuiz.QuizId = tbActiveExam.QuizId
+			where tbUser.UserId = @UserId AND tbActiveExam.EndTime < GETDATE()
+end
+go
+
+-----------------------------------
+--exec spGetActiveQuizByUser @UserId=3
+create proc spActiveExam
+(
+  @StartTime DATETIME,
+  @EndTime DATETIME,
+  @QuizId INT, 
+  @SessionId int 
+)
+as begin
+
+	insert into tbActiveExam(StartTime,EndTime,SessionId,QuizId)values
+							(@StartTime,@EndTime,@SessionId,@QuizId)
+
+end
+go
+---------------------
+create proc spShowExam
+as begin
+select distinct QuizId,QuizTitle,TimeinMinute,tbProgram.ProgramName,tbDifficulty.Name as Difficulty,tbTypeOfQuestions.Name as Type_of_Question 
+		from tbQuiz,tbProgram,tbDifficulty,tbTypeOfQuestions,tbSession
+		where tbProgram.ProgramId=tbQuiz.ProgramId and
+				tbDifficulty.DifficultyId=tbQuiz.DifficultyId and
+				tbTypeOfQuestions.TypeOfQuestionsId=tbQuiz.TypeOfQuestionsId 
+end
+go
+
+-------------------------
+create proc spShowActiveExam
+as begin
+select * from tbActiveExam
+end
+go
+
+
+
+
 -----------------------------------------------------tbResetpasswordRequest---------------------------------------------
 --drop table tbResetpasswordRequest
 go
@@ -548,50 +629,3 @@ as begin
  end
  end
 -----------------------------------------------------------------------------------------------------------------
-go
-create procedure spGetActiveQuizByUser
-(
-@UserId int
-)
-as begin
-	if Exists (SELECT * FROM tbUserSession WHERE UserId=@UserId)
-		select FirstName,LastName,Date,SessionCode,ProgramName, tbQuiz.QuizTitle
-			from tbUserSession JOIN tbUser ON tbUser.UserId=tbUserSession.UserId
-							   JOIN tbSession ON tbSession.SessionId= tbUserSession.SessionId
-							   JOIN tbProgram ON tbProgram.ProgramId=tbSession.ProgramId
-							   JOIN tbActiveExam ON tbActiveExam.SessionId = tbSession.SessionId
-							   JOIN tbQuiz ON tbQuiz.QuizId = tbActiveExam.QuizId
-			where tbUser.UserId = @UserId AND tbActiveExam.EndTime < GETDATE()
-end
-go
-
-
---exec spGetActiveQuizByUser @UserId=3
-create proc spActiveExam
-(
-  
-  @StartTime int,
-  @EndTime int,
-  @Date date,
-  @QuizId INT, 
-  @SessionId int 
-)
-as begin
-
-	insert into tbActiveExam(StartTime,EndTime,Date,SessionId,QuizId)values
-							(@StartTime,@EndTime,@Date,@SessionId,@QuizId)
-
-end
-go
-create proc spShowExam
-as begin
-select distinct QuizTitle,TimeinMinute,tbProgram.ProgramName,tbDifficulty.Name as Difficulty,tbTypeOfQuestions.Name as Type_of_Question 
-		from tbQuiz,tbProgram,tbDifficulty,tbTypeOfQuestions,tbSession
-		where tbProgram.ProgramId=tbQuiz.ProgramId and
-				tbDifficulty.DifficultyId=tbQuiz.DifficultyId and
-				tbTypeOfQuestions.TypeOfQuestionsId=tbQuiz.TypeOfQuestionsId 
-
-
-				
-end
-go

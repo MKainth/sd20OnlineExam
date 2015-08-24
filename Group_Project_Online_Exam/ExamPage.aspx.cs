@@ -19,14 +19,16 @@ namespace Group_Project_Online_Exam
 
         protected void Page_Load(object sender, EventArgs e)
         {
-           // lblDate.Text = DateTime.Today.ToString("dd/MM/yyyy");
-           // lblTime.Text = DateTime.Now.ToString("hh:mm tt");
+
+            // lblDate.Text = DateTime.Today.ToString("dd/MM/yyyy");
+            // lblTime.Text = DateTime.Now.ToString("hh:mm tt");
 
             rowindex = ViewState["RowIndex"] == null ? 0 : (int)ViewState["RowIndex"];
             loadQuestions();
 
             if (!IsPostBack)
             {
+                GetEndTime();
                 LoadQuestion();
             }
             if (rowindex != -1)
@@ -56,6 +58,15 @@ namespace Group_Project_Online_Exam
             }
         }
 
+        public void GetEndTime()
+        {
+            DAL mydal = new DAL(conn);
+            DataSet ds = mydal.ExecuteProcedure("spShowActiveExam");
+            DateTime EndTime = Convert.ToDateTime(ds.Tables[0].Rows[0]["EndTime"].ToString());
+            Session["EndTime"] = EndTime;
+            time.InnerHtml = Math.Round((EndTime - DateTime.Now).TotalSeconds,0).ToString();
+            UpdateTimer();
+        }
 
         public void loadQuestions()
         {
@@ -104,12 +115,30 @@ namespace Group_Project_Online_Exam
             else
             {
                 LoadQuestion();
-
-
             }
-
         }
 
-       
+        protected void Timer1_Tick(object sender, EventArgs e)
+        {
+            UpdateTimer();
+        }
+
+        private void UpdateTimer()
+        {
+            DateTime endTime = (DateTime)Session["EndTime"];
+            DateTime now = DateTime.Now;
+
+            if (0 > DateTime.Compare(now, endTime))
+            {
+                string minutes = ((Int32)endTime.Subtract(now).TotalMinutes).ToString();
+                string seconds = ((Int32)endTime.Subtract(now).Seconds).ToString();
+                lblTimer.Text = string.Format("Time Left:00:{0}:{1}", minutes, seconds);
+            }
+            else
+            {
+                Timer1.Enabled = true;
+                Response.Redirect("FinishExam.aspx");
+            }
+        }
     }
 }
