@@ -190,10 +190,19 @@ go
 
 INSERT INTO tbQuestionResponse(QuizResponseId, QuestionId, Response)VALUES
 
-(2,5,'None'),(3,4,'lable'),(4,6,'None'),(5,7,'false'),(6,8,'Module'),(7,9,'Variant')
-
+(1,1,'Variant'),(1,2,'lable'),(1,3,'None'),(1,4,'false'),(1,5,'Module'),(1,6,'Variant')
 GO
-select * from tbQuestionResponse
+
+SELECT u.email, SUM(Marks) AS TotalMarks
+	FROM tbQuestionResponse qr 
+		JOIN tbQuestion q ON qr.QuestionId = q.QuestionId
+		JOIN tbQuizResponse r ON r.QuizResponseId = qr.QuestionResponseId
+		JOIN tbUser u ON u.UserId = r.UserId
+	WHERE q.CorrectAnswer = qr.Response
+		AND u.UserId = 3 AND r.QuizResponseId = 1
+	GROUP BY u.UserId, r.QuizResponseId,u.Email
+GO
+select distinct  * from tbQuestionResponse,tbQuiz,tbQuizResponse
 ------------------------------------------------
 
 create table tbUserProgram
@@ -220,7 +229,7 @@ go
 --select * from tbActiveExam
 
 insert into tbActiveExam (StartTime,EndTime,QuizId,SessionId)values
-('2015-08-20 14:07:00','2015-08-20 14:15:00',1,3)
+('2015-08-24 16:00:00','2015-08-24 17:00:00',1,3)
 						-- (GETDATE(),DATEADD(minute,30,GETDATE()),1,3)
 ------------------------spInsertUser--------------------------
 go
