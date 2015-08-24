@@ -105,7 +105,7 @@ UserId int foreign key references tbUser(UserId),
 )
 go
 
-insert into tbUserSession(SessionId,UserId)values(3,3)
+insert into tbUserSession(SessionId,UserId)values(3,3), (2,5),(4,6),(5,7)
 go
 
 -----------------------------------------------
