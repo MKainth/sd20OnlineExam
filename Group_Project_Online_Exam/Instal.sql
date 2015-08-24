@@ -46,10 +46,10 @@ go
 create table tbTypeOfQuestions
 (
 TypeOfQuestionsId int primary key identity(1,1),
-Name varchar(max)
+TypeName varchar(max)
 )
 go
-insert into tbTypeOfQuestions(Name)values
+insert into tbTypeOfQuestions(TypeName)values
 			('Multiple Questions/Fill the Blanks'),
 			('True/False')
 			
@@ -57,10 +57,10 @@ go
 create table tbDifficulty
 (
 	DifficultyId int primary key identity(1,1),
-	Name Varchar(max)
+	difficultyName Varchar(max)
 )
 go
-Insert into tbDifficulty(Name)values
+Insert into tbDifficulty(difficultyName)values
 			('Beginner'),
 			('Intermediate'),
 			('Advance')											
@@ -400,6 +400,24 @@ as begin
 select * from tbQuiz
 end
 go
+create proc spUpdateQuiz
+(@QuizId int,
+@QuizTitle varchar(max),
+@Time datetime,
+@pro_Id int,
+@DifficultyId int,
+@typeofQuestionId int
+)
+as begin
+	update tbQuiz
+	set QuizTitle=@QuizTitle,
+	TimeinMinute=@Time,
+	ProgramId=@pro_Id,
+	DifficultyId=@DifficultyId,
+	TypeOfQuestionsId=@typeofQuestionId
+	where QuizId=@QuizId
+end
+go	
 create proc spDeleteQuiz
 (
 @QuizId int
@@ -421,6 +439,7 @@ end
 go
 
 --------------------------------------
+
 ----------------------------------------------------------------------------
 create procedure spTeacher
 as begin
@@ -519,13 +538,15 @@ go
 ---------------------
 create proc spShowExam
 as begin
-select distinct QuizId,QuizTitle,TimeinMinute,tbProgram.ProgramName,tbDifficulty.Name as Difficulty,tbTypeOfQuestions.Name as Type_of_Question 
+select distinct QuizId,QuizTitle,TimeinMinute,tbProgram.ProgramName,
+	tbDifficulty.difficultyName as Difficulty,tbTypeOfQuestions.TypeName as Type_of_Question 
 		from tbQuiz,tbProgram,tbDifficulty,tbTypeOfQuestions,tbSession
 		where tbProgram.ProgramId=tbQuiz.ProgramId and
 				tbDifficulty.DifficultyId=tbQuiz.DifficultyId and
 				tbTypeOfQuestions.TypeOfQuestionsId=tbQuiz.TypeOfQuestionsId 
 end
 go
+
 
 -------------------------
 create proc spShowActiveExam

@@ -49,7 +49,7 @@ namespace Group_Project_Online_Exam
             DataSet ds = new DataSet();
             ds = mydal.ExecuteProcedure("spSelectDifficulty");
             ddDifficulty.DataSource = ds.Tables[0];
-            ddDifficulty.DataTextField = "Name";
+            ddDifficulty.DataTextField = "difficultyName";
             ddDifficulty.DataValueField = "DifficultyId";
             ddDifficulty.DataBind();
         }
@@ -60,7 +60,7 @@ namespace Group_Project_Online_Exam
             DataSet ds = new DataSet();
             ds = mydal.ExecuteProcedure("spSelectTypeofQusetions");
             ddTypeofQuestions.DataSource = ds.Tables[0];
-            ddTypeofQuestions.DataTextField = "Name";
+            ddTypeofQuestions.DataTextField = "TypeName";
             ddTypeofQuestions.DataValueField = "TypeOfQuestionsId";
             ddTypeofQuestions.DataBind();
             ddTypeofQuestions.Items.Insert(0, new ListItem("Choose an option"));
