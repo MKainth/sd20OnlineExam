@@ -3,7 +3,7 @@
 <asp:Content ID="Content1" ContentPlaceHolderID="head" runat="server">
 </asp:Content>
 <asp:Content ID="Content2" ContentPlaceHolderID="ContentPlaceHolder1" runat="server">
-
+    
     <asp:SqlDataSource ID="SqlDataSource1" runat="server" ConnectionString="<%$ ConnectionStrings:dbSD20ConnectionString %>" DeleteCommand="DELETE FROM [tbProgram] WHERE [ProgramId] = @ProgramId" InsertCommand="INSERT INTO [tbProgram] ([ProgramName]) VALUES (@ProgramName)" SelectCommand="SELECT [ProgramId], [ProgramName] FROM [tbProgram]" UpdateCommand="UPDATE [tbProgram] SET [ProgramName] = @ProgramName WHERE [ProgramId] = @ProgramId">
         <DeleteParameters>
             <asp:Parameter Name="ProgramId" Type="Int32" />
@@ -16,6 +16,7 @@
             <asp:Parameter Name="ProgramId" Type="Int32" />
         </UpdateParameters>
     </asp:SqlDataSource>
+    <h3>Program List</h3>
     <asp:ValidationSummary ID="ValidationSummary1" ValidationGroup="update" runat="server" />
     <asp:ValidationSummary ID="ValidationSummary2" ValidationGroup="insert" runat="server" />
     <asp:GridView ID="GridView1" runat="server" AllowPaging="True" AllowSorting="True" AutoGenerateColumns="False" DataKeyNames="ProgramId" DataSourceID="SqlDataSource1" ShowFooter="True">
@@ -48,9 +49,12 @@
         </Columns>
     </asp:GridView>
 
+    <br />
+    <br />
+    <br />
+    <br />
 
-
-
+    <h3>Session List</h3>
     <asp:SqlDataSource ID="SqlDataSource2" runat="server" ConnectionString="<%$ ConnectionStrings:dbSD20ConnectionString %>" SelectCommand="SELECT * FROM [tbSession]" DeleteCommand="DELETE FROM [tbSession] WHERE [SessionId] = @SessionId" InsertCommand="INSERT INTO [tbSession] ([SessionCode], [ProgramId]) VALUES (@SessionCode, @ProgramId)" UpdateCommand="UPDATE [tbSession] SET [SessionCode] = @SessionCode, [ProgramId] = @ProgramId WHERE [SessionId] = @SessionId">
         <DeleteParameters>
             <asp:Parameter Name="SessionId" Type="Int32" />
