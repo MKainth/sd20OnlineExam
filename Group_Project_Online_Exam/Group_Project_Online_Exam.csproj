@@ -71,6 +71,12 @@
     <Content Include="jquery-2.1.4.js" />
     <Content Include="MasterPage.Master" />
     <Content Include="images\Thumbs.db" />
+    <Content Include="MasterPageSwitch.aspx" />
+    <Content Include="NestedMasterSite1.Master" />
+    <Content Include="StudentNested.aspx" />
+    <Content Include="Header_Footer.Master" />
+    <Content Include="NestedStudentMasterPage.master" />
+    <Content Include="NestedTeacherMasterPage.master" />
     <None Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
     </None>
@@ -88,6 +94,7 @@
     <Content Include="Registration.aspx" />
     <Content Include="style.css" />
     <Content Include="Instal.sql" />
+    <Content Include="TeacherInsturctions.aspx" />
     <Content Include="UpdateDelete.aspx" />
     <Content Include="UserInformation.aspx" />
     <Content Include="Web.config" />
@@ -144,12 +151,47 @@
     <Compile Include="InsturctionForExam.aspx.designer.cs">
       <DependentUpon>InsturctionForExam.aspx</DependentUpon>
     </Compile>
+    <Compile Include="Header_Footer.Master.cs">
+      <DependentUpon>Header_Footer.Master</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Header_Footer.Master.designer.cs">
+      <DependentUpon>Header_Footer.Master</DependentUpon>
+    </Compile>
     <Compile Include="MasterPage.Master.cs">
       <DependentUpon>MasterPage.Master</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
     </Compile>
     <Compile Include="MasterPage.Master.designer.cs">
       <DependentUpon>MasterPage.Master</DependentUpon>
+    </Compile>
+    <Compile Include="MasterPageSwitch.aspx.cs">
+      <DependentUpon>MasterPageSwitch.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="MasterPageSwitch.aspx.designer.cs">
+      <DependentUpon>MasterPageSwitch.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="NestedMasterSite1.Master.cs">
+      <DependentUpon>NestedMasterSite1.Master</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="NestedMasterSite1.Master.designer.cs">
+      <DependentUpon>NestedMasterSite1.Master</DependentUpon>
+    </Compile>
+    <Compile Include="NestedTeacherMasterPage.master.cs">
+      <DependentUpon>NestedTeacherMasterPage.master</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="NestedTeacherMasterPage.master.designer.cs">
+      <DependentUpon>NestedTeacherMasterPage.master</DependentUpon>
+    </Compile>
+    <Compile Include="NestedStudentMasterPage.master.cs">
+      <DependentUpon>NestedStudentMasterPage.master</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="NestedStudentMasterPage.master.designer.cs">
+      <DependentUpon>NestedStudentMasterPage.master</DependentUpon>
     </Compile>
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
@@ -174,6 +216,13 @@
     <Compile Include="Security.cs" />
     <Compile Include="session.cs" />
     <Compile Include="Subject.cs" />
+    <Compile Include="TeacherInsturctions.aspx.cs">
+      <DependentUpon>TeacherInsturctions.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="TeacherInsturctions.aspx.designer.cs">
+      <DependentUpon>TeacherInsturctions.aspx</DependentUpon>
+    </Compile>
     <Compile Include="TeacherProgram.cs" />
     <Compile Include="UserInformation.aspx.cs">
       <DependentUpon>UserInformation.aspx</DependentUpon>
@@ -188,6 +237,13 @@
     </Compile>
     <Compile Include="UpdateDelete.aspx.designer.cs">
       <DependentUpon>UpdateDelete.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="StudentNested.aspx.cs">
+      <DependentUpon>StudentNested.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="StudentNested.aspx.designer.cs">
+      <DependentUpon>StudentNested.aspx</DependentUpon>
     </Compile>
   </ItemGroup>
   <ItemGroup>

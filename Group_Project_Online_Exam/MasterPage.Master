@@ -51,12 +51,13 @@
 			</ul>
 		</div>
 		
-		<div id="search">
-             <asp:Label ID="lblFirstname" Font-Size="Medium" ForeColor="White" runat="server" Text=""></asp:Label>
+		<asp:Label ID="lblFirstname" Font-Size="Medium" ForeColor="White" runat="server" Text=""></asp:Label>
+             
              <div id="buttonLogout">
-            
+           
         </div><asp:Panel ID="pnlLogout" runat="server">
-            <asp:Button ID="btnLogout" runat="server" Text="Logout" OnClick="btnLogout_Click"  />    
+             
+            <asp:Button ID="btnLogout" runat="server" Text="Logout" OnClick="btnLogout_Click" Height="22px" Width="51px"  />    
                
                 <br />
             
@@ -64,7 +65,7 @@
 			
 		</div>
 		
-	</div>
+
 	
 	<div id="page">
 		<div id="content">
@@ -133,8 +134,7 @@
 		
 			</div>
 		<div id="sidebar">
-            <asp:Panel ID="PanelSidebar" Visible="false" runat="server">
-			<ul>
+            <ul>
 				<li>
 					<h2>Lorem Ipsum </h2>
 					<ul>
@@ -167,7 +167,6 @@
 					</ul>
 				</li>
 			</ul>
-                 </asp:Panel>
 	  </div>
 		<div style="clear: both;">&nbsp;</div>
 	</div>

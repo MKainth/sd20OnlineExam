@@ -33,20 +33,20 @@ namespace Group_Project_Online_Exam
                 UpdatePanelLogin.Visible = false;
                 pnlLogout.Visible = true;
 
-                if (mySecurity.IsAdmin())
-                {
-                    PanelSidebar.Visible = true;
-                    // if there are any admin specific things to show, show them
-                }
-                else if (mySecurity.IsTeacher())
-                {
-                    PanelSidebar.Visible = true;
-                     // if there are any TEACHER specific things to show, show them
-                }
-                else if (mySecurity.IsStudent())
-                {
-                    // if there are any TEACHER specific things to show, show them
-                }
+                //if (mySecurity.IsAdmin())
+                //{   
+                //    PanelSidebar.Visible = true;
+                //    // if there are any admin specific things to show, show them
+                //}
+                //else if (mySecurity.IsTeacher())
+                //{
+                //    PanelSidebar.Visible = true;
+                //     // if there are any TEACHER specific things to show, show them
+                //}
+                //else if (mySecurity.IsStudent())
+                //{
+                //    // if there are any TEACHER specific things to show, show them
+                //}
             }
 
            
