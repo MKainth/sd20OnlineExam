@@ -1,8 +1,87 @@
 ﻿<%@ Page Title="" Language="C#" MasterPageFile="~/MasterPage.Master" AutoEventWireup="true" CodeBehind="UpdateDelete.aspx.cs" Inherits="Group_Project_Online_Exam.UpdateDelete" %>
-<%@ Register assembly="AjaxControlToolkit" namespace="AjaxControlToolkit" tagprefix="cc1" %>
+
+<%@ Register Assembly="AjaxControlToolkit" Namespace="AjaxControlToolkit" TagPrefix="cc1" %>
 <asp:Content ID="Content1" ContentPlaceHolderID="head" runat="server">
 </asp:Content>
 <asp:Content ID="Content2" ContentPlaceHolderID="ContentPlaceHolder1" runat="server">
+    <asp:SqlDataSource ID="SqlDataSource2" runat="server" ConnectionString="<%$ ConnectionStrings:dbSD20ConnectionString %>" SelectCommand="SELECT * FROM [tbQuiz]" DeleteCommand="DELETE FROM [tbQuiz] WHERE [QuizId] = @QuizId" InsertCommand="INSERT INTO [tbQuiz] ([QuizTitle], [TimeinMinute], [ProgramId], [DifficultyId], [TypeOfQuestionsId]) VALUES (@QuizTitle, @TimeinMinute, @ProgramId, @DifficultyId, @TypeOfQuestionsId)" UpdateCommand="UPDATE [tbQuiz] SET [QuizTitle] = @QuizTitle, [TimeinMinute] = @TimeinMinute, [ProgramId] = @ProgramId, [DifficultyId] = @DifficultyId, [TypeOfQuestionsId] = @TypeOfQuestionsId WHERE [QuizId] = @QuizId">
+        <DeleteParameters>
+            <asp:Parameter Name="QuizId" Type="Int32" />
+        </DeleteParameters>
+        <InsertParameters>
+            <asp:Parameter Name="QuizTitle" Type="String" />
+            <asp:Parameter Name="TimeinMinute" Type="DateTime" />
+            <asp:Parameter Name="ProgramId" Type="Int32" />
+            <asp:Parameter Name="DifficultyId" Type="Int32" />
+            <asp:Parameter Name="TypeOfQuestionsId" Type="Int32" />
+        </InsertParameters>
+        <UpdateParameters>
+            <asp:Parameter Name="QuizTitle" Type="String" />
+            <asp:Parameter Name="TimeinMinute" Type="DateTime" />
+            <asp:Parameter Name="ProgramId" Type="Int32" />
+            <asp:Parameter Name="DifficultyId" Type="Int32" />
+            <asp:Parameter Name="TypeOfQuestionsId" Type="Int32" />
+            <asp:Parameter Name="QuizId" Type="Int32" />
+        </UpdateParameters>
+    </asp:SqlDataSource>
+    <asp:GridView ID="GridView2" runat="server" AllowPaging="True" AllowSorting="True" AutoGenerateColumns="False" DataKeyNames="QuizId" DataSourceID="SqlDataSource2">
+        <Columns>
+            <asp:CommandField ShowEditButton="True" />
+            <asp:BoundField DataField="QuizId" HeaderText="QuizId" InsertVisible="False" ReadOnly="True" SortExpression="QuizId" />
+            <asp:TemplateField HeaderText="QuizTitle" SortExpression="QuizTitle">
+                <EditItemTemplate>
+                    <asp:TextBox ID="TextBox1" runat="server" Text='<%# Bind("QuizTitle") %>'></asp:TextBox>
+                </EditItemTemplate>
+                <ItemTemplate>
+                    <asp:Label ID="Label1" runat="server" Text='<%# Bind("QuizTitle") %>'></asp:Label>
+                </ItemTemplate>
+            </asp:TemplateField>
+            <asp:TemplateField HeaderText="TimeinMinute" SortExpression="TimeinMinute">
+                <EditItemTemplate>
+                    <asp:TextBox ID="TextBox2" runat="server" Text='<%# Bind("TimeinMinute") %>'></asp:TextBox>
+                </EditItemTemplate>
+                <ItemTemplate>
+                    <asp:Label ID="Label2" runat="server" Text='<%# Bind("TimeinMinute") %>'></asp:Label>
+                </ItemTemplate>
+            </asp:TemplateField>
+            <asp:TemplateField HeaderText="ProgramId" SortExpression="ProgramId">
+                <EditItemTemplate>
+                    <asp:DropDownList ID="DropDownList2" runat="server" DataValueField="ProgramName"  DataSourceID="SqlDataSource3" DataTextField="ProgramName"></asp:DropDownList>
+                    <asp:SqlDataSource ID="SqlDataSource3" runat="server" ConnectionString="<%$ ConnectionStrings:dbSD20ConnectionString %>" SelectCommand="SELECT [ProgramName] FROM [tbProgram]"></asp:SqlDataSource>
+
+                    <%--  <asp:TextBox ID="TextBox3" runat="server" Text='<%# Bind("ProgramId") %>'></asp:TextBox>--%>
+                </EditItemTemplate>
+                <ItemTemplate>
+                    <asp:Label ID="Label3" runat="server" Text='<%# Bind("ProgramId") %>'></asp:Label>
+                </ItemTemplate>
+            </asp:TemplateField>
+            <asp:TemplateField HeaderText="DifficultyId" SortExpression="DifficultyId">
+                <EditItemTemplate>
+                    <asp:DropDownList ID="DropDownList5" runat="server" DataSourceID="SqlDataSource6" DataTextField="difficultyName" DataValueField="difficultyName">
+                    </asp:DropDownList>
+                    <asp:SqlDataSource ID="SqlDataSource6" runat="server" ConnectionString="<%$ ConnectionStrings:dbSD20ConnectionString %>" SelectCommand="SELECT [difficultyName] FROM [tbDifficulty]"></asp:SqlDataSource>
+                </EditItemTemplate>
+                <ItemTemplate>
+                    <asp:Label ID="Label4" runat="server" Text='<%# Bind("DifficultyId") %>'></asp:Label>
+                </ItemTemplate>
+            </asp:TemplateField>
+            <asp:TemplateField HeaderText="TypeOfQuestionsId" SortExpression="TypeOfQuestionsId">
+                <EditItemTemplate>
+                    <asp:DropDownList ID="DropDownList4" runat="server" DataValueField='TypeName'  DataSourceID="SqlDataSource5" DataTextField="TypeName"></asp:DropDownList>
+                    <asp:SqlDataSource ID="SqlDataSource5" runat="server" ConnectionString="<%$ ConnectionStrings:dbSD20ConnectionString %>" SelectCommand="SELECT [TypeName] FROM [tbTypeOfQuestions]"></asp:SqlDataSource>
+
+
+                    <%--     <asp:TextBox ID="TextBox5" runat="server" Text='<%# Bind("TypeOfQuestionsId") %>'></asp:TextBox>--%>
+                </EditItemTemplate>
+                <ItemTemplate>
+                    <asp:Label ID="Label5" runat="server" Text='<%# Bind("TypeOfQuestionsId") %>'></asp:Label>
+                </ItemTemplate>
+            </asp:TemplateField>
+        </Columns>
+    </asp:GridView>
+
+
+
 
 
 
@@ -35,89 +114,89 @@
 
 
 
-      <div style="overflow-x: auto; width: 550px">
-    
-          <asp:GridView ID="GridView1" runat="server" AutoGenerateColumns="False" DataKeyNames="QuestionId" DataSourceID="SqlDataSource1" AllowPaging="True" AllowSorting="True">
-              <Columns>
-                  <asp:CommandField ShowDeleteButton="True" ShowEditButton="True" />
-                  <asp:TemplateField HeaderText="QuestionId" InsertVisible="False" SortExpression="QuestionId">
-                      <EditItemTemplate>
-                          <asp:Label ID="Label1" runat="server" Text='<%# Eval("QuestionId") %>'></asp:Label>
-                      </EditItemTemplate>
-                      <ItemTemplate>
-                          <asp:Label ID="Label3" runat="server" Text='<%# Bind("QuestionId") %>'></asp:Label>
-                      </ItemTemplate>
-                  </asp:TemplateField>
-                  <asp:TemplateField HeaderText="Question" SortExpression="Question">
-                      <EditItemTemplate>
-                          <asp:TextBox ID="TextBox1" runat="server" Text='<%# Bind("Question") %>'></asp:TextBox>
-                      </EditItemTemplate>
-                      <ItemTemplate>
-                          <asp:Label ID="Label1" runat="server" Text='<%# Bind("Question") %>'></asp:Label>
-                      </ItemTemplate>
-                  </asp:TemplateField>
-                  <asp:TemplateField HeaderText="Answer1" SortExpression="Answer1">
-                      <EditItemTemplate>
-                          <asp:TextBox ID="TextBox2" runat="server" Text='<%# Bind("Answer1") %>'></asp:TextBox>
-                      </EditItemTemplate>
-                      <ItemTemplate>
-                          <asp:Label ID="Label2" runat="server" Text='<%# Bind("Answer1") %>'></asp:Label>
-                      </ItemTemplate>
-                  </asp:TemplateField>
-                  <asp:TemplateField HeaderText="Answer2" SortExpression="Answer2">
-                      <EditItemTemplate>
-                          <asp:TextBox ID="TextBox3" runat="server" Text='<%# Bind("Answer2") %>'></asp:TextBox>
-                      </EditItemTemplate>
-                      <ItemTemplate>
-                          <asp:Label ID="Label4" runat="server" Text='<%# Bind("Answer2") %>'></asp:Label>
-                      </ItemTemplate>
-                  </asp:TemplateField>
-                  <asp:TemplateField HeaderText="Answer3" SortExpression="Answer3">
-                      <EditItemTemplate>
-                          <asp:TextBox ID="TextBox4" runat="server" Text='<%# Bind("Answer3") %>'></asp:TextBox>
-                      </EditItemTemplate>
-                      <ItemTemplate>
-                          <asp:Label ID="Label5" runat="server" Text='<%# Bind("Answer3") %>'></asp:Label>
-                      </ItemTemplate>
-                  </asp:TemplateField>
-                  <asp:TemplateField HeaderText="Answer4" SortExpression="Answer4">
-                      <EditItemTemplate>
-                          <asp:TextBox ID="TextBox5" runat="server" Text='<%# Bind("Answer4") %>'></asp:TextBox>
-                      </EditItemTemplate>
-                      <ItemTemplate>
-                          <asp:Label ID="Label6" runat="server" Text='<%# Bind("Answer4") %>'></asp:Label>
-                      </ItemTemplate>
-                  </asp:TemplateField>
-                  <asp:TemplateField HeaderText="CorrectAnswer" SortExpression="CorrectAnswer">
-                      <EditItemTemplate>
-                          <asp:TextBox ID="TextBox6" runat="server" Text='<%# Bind("CorrectAnswer") %>'></asp:TextBox>
-                      </EditItemTemplate>
-                      <ItemTemplate>
-                          <asp:Label ID="Label7" runat="server" Text='<%# Bind("CorrectAnswer") %>'></asp:Label>
-                      </ItemTemplate>
-                  </asp:TemplateField>
-                  <asp:TemplateField HeaderText="Marks" SortExpression="Marks">
-                      <EditItemTemplate>
-                          <asp:TextBox ID="TextBox7" runat="server" Text='<%# Bind("Marks") %>'></asp:TextBox>
-                      </EditItemTemplate>
-                      <ItemTemplate>
-                          <asp:Label ID="Label8" runat="server" Text='<%# Bind("Marks") %>'></asp:Label>
-                      </ItemTemplate>
-                  </asp:TemplateField>
-                  <asp:TemplateField HeaderText="QuizId" SortExpression="QuizId">
-                      <EditItemTemplate>
-                          
-                              
-                          <asp:DropDownList ID="DropDownList1" runat="server" DataValueField='QuizId' DataSourceID="SqlDataSource1" DataTextField="QuizTitle"></asp:DropDownList>
-                          <asp:SqlDataSource ID="SqlDataSource1" runat="server" ConnectionString="<%$ ConnectionStrings:dbSD20ConnectionString %>" SelectCommand="SELECT * FROM [tbQuiz]"></asp:SqlDataSource>
-                          <%--<asp:SqlDataSource ID="SqlDataSource1" runat="server" ConnectionString="<%$ ConnectionStrings:dbSD20ConnectionString %>" SelectCommand="SELECT [QuizTitle] FROM [tbQuiz]"></asp:SqlDataSource>--%>
-                      </EditItemTemplate>
-                      <ItemTemplate>
-                          <asp:Label ID="Label9" runat="server" Text='<%# Bind("QuizId") %>'></asp:Label>
-                      </ItemTemplate>
-                  </asp:TemplateField>
-              </Columns>
-          </asp:GridView>
- </div>           
+    <div style="overflow-x: auto; width: 550px">
+
+        <asp:GridView ID="GridView1" runat="server" AutoGenerateColumns="False" DataKeyNames="QuestionId" DataSourceID="SqlDataSource1" AllowPaging="True" AllowSorting="True">
+            <Columns>
+                <asp:CommandField ShowDeleteButton="True" ShowEditButton="True" />
+                <asp:TemplateField HeaderText="QuestionId" InsertVisible="False" SortExpression="QuestionId">
+                    <EditItemTemplate>
+                        <asp:Label ID="Label1" runat="server" Text='<%# Eval("QuestionId") %>'></asp:Label>
+                    </EditItemTemplate>
+                    <ItemTemplate>
+                        <asp:Label ID="Label3" runat="server" Text='<%# Bind("QuestionId") %>'></asp:Label>
+                    </ItemTemplate>
+                </asp:TemplateField>
+                <asp:TemplateField HeaderText="Question" SortExpression="Question">
+                    <EditItemTemplate>
+                        <asp:TextBox ID="TextBox1" runat="server" Text='<%# Bind("Question") %>'></asp:TextBox>
+                    </EditItemTemplate>
+                    <ItemTemplate>
+                        <asp:Label ID="Label1" runat="server" Text='<%# Bind("Question") %>'></asp:Label>
+                    </ItemTemplate>
+                </asp:TemplateField>
+                <asp:TemplateField HeaderText="Answer1" SortExpression="Answer1">
+                    <EditItemTemplate>
+                        <asp:TextBox ID="TextBox2" runat="server" Text='<%# Bind("Answer1") %>'></asp:TextBox>
+                    </EditItemTemplate>
+                    <ItemTemplate>
+                        <asp:Label ID="Label2" runat="server" Text='<%# Bind("Answer1") %>'></asp:Label>
+                    </ItemTemplate>
+                </asp:TemplateField>
+                <asp:TemplateField HeaderText="Answer2" SortExpression="Answer2">
+                    <EditItemTemplate>
+                        <asp:TextBox ID="TextBox3" runat="server" Text='<%# Bind("Answer2") %>'></asp:TextBox>
+                    </EditItemTemplate>
+                    <ItemTemplate>
+                        <asp:Label ID="Label4" runat="server" Text='<%# Bind("Answer2") %>'></asp:Label>
+                    </ItemTemplate>
+                </asp:TemplateField>
+                <asp:TemplateField HeaderText="Answer3" SortExpression="Answer3">
+                    <EditItemTemplate>
+                        <asp:TextBox ID="TextBox4" runat="server" Text='<%# Bind("Answer3") %>'></asp:TextBox>
+                    </EditItemTemplate>
+                    <ItemTemplate>
+                        <asp:Label ID="Label5" runat="server" Text='<%# Bind("Answer3") %>'></asp:Label>
+                    </ItemTemplate>
+                </asp:TemplateField>
+                <asp:TemplateField HeaderText="Answer4" SortExpression="Answer4">
+                    <EditItemTemplate>
+                        <asp:TextBox ID="TextBox5" runat="server" Text='<%# Bind("Answer4") %>'></asp:TextBox>
+                    </EditItemTemplate>
+                    <ItemTemplate>
+                        <asp:Label ID="Label6" runat="server" Text='<%# Bind("Answer4") %>'></asp:Label>
+                    </ItemTemplate>
+                </asp:TemplateField>
+                <asp:TemplateField HeaderText="CorrectAnswer" SortExpression="CorrectAnswer">
+                    <EditItemTemplate>
+                        <asp:TextBox ID="TextBox6" runat="server" Text='<%# Bind("CorrectAnswer") %>'></asp:TextBox>
+                    </EditItemTemplate>
+                    <ItemTemplate>
+                        <asp:Label ID="Label7" runat="server" Text='<%# Bind("CorrectAnswer") %>'></asp:Label>
+                    </ItemTemplate>
+                </asp:TemplateField>
+                <asp:TemplateField HeaderText="Marks" SortExpression="Marks">
+                    <EditItemTemplate>
+                        <asp:TextBox ID="TextBox7" runat="server" Text='<%# Bind("Marks") %>'></asp:TextBox>
+                    </EditItemTemplate>
+                    <ItemTemplate>
+                        <asp:Label ID="Label8" runat="server" Text='<%# Bind("Marks") %>'></asp:Label>
+                    </ItemTemplate>
+                </asp:TemplateField>
+                <asp:TemplateField HeaderText="QuizId" SortExpression="QuizId">
+                    <EditItemTemplate>
+
+
+                        <asp:DropDownList ID="DropDownList1" runat="server" DataValueField='QuizId' DataSourceID="SqlDataSource1" DataTextField="QuizTitle"></asp:DropDownList>
+                        <asp:SqlDataSource ID="SqlDataSource1" runat="server" ConnectionString="<%$ ConnectionStrings:dbSD20ConnectionString %>" SelectCommand="SELECT * FROM [tbQuiz]"></asp:SqlDataSource>
+                        <%--<asp:SqlDataSource ID="SqlDataSource1" runat="server" ConnectionString="<%$ ConnectionStrings:dbSD20ConnectionString %>" SelectCommand="SELECT [QuizTitle] FROM [tbQuiz]"></asp:SqlDataSource>--%>
+                    </EditItemTemplate>
+                    <ItemTemplate>
+                        <asp:Label ID="Label9" runat="server" Text='<%# Bind("QuizId") %>'></asp:Label>
+                    </ItemTemplate>
+                </asp:TemplateField>
+            </Columns>
+        </asp:GridView>
+    </div>
     <asp:Button ID="btnAddQuiz" runat="server" Text="Add New Quiz" OnClick="btnAddQuiz_Click" />
 </asp:Content>

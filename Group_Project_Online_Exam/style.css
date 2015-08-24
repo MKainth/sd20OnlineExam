@@ -231,7 +231,7 @@ hr { display: none; }
 #content {
 	float: left;
 	width: 496px;
-    height: 140px;
+   // height: 140px;
 }
 
 

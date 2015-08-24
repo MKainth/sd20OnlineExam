@@ -63,6 +63,7 @@
   </ItemGroup>
   <ItemGroup>
     <Content Include="ActiveExam.aspx" />
+    <Content Include="Add_Program_and_Session.aspx" />
     <Content Include="ChangePassword.aspx" />
     <Content Include="ExamPage.aspx" />
     <Content Include="FinishExam.aspx" />
@@ -108,6 +109,13 @@
       <DependentUpon>ActiveExam.aspx</DependentUpon>
     </Compile>
     <Compile Include="ActiveExam.cs" />
+    <Compile Include="Add_Program_and_Session.aspx.cs">
+      <DependentUpon>Add_Program_and_Session.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Add_Program_and_Session.aspx.designer.cs">
+      <DependentUpon>Add_Program_and_Session.aspx</DependentUpon>
+    </Compile>
     <Compile Include="ChangePassword.aspx.cs">
       <DependentUpon>ChangePassword.aspx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>

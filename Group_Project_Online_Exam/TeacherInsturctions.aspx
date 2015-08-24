@@ -3,15 +3,7 @@
 <asp:Content ID="Content1" ContentPlaceHolderID="head" runat="server">
 </asp:Content>
 <asp:Content ID="Content2" ContentPlaceHolderID="ContentPlaceHolder1" runat="server">
-    <style type="text/css">
-        #text{
-            
-            height:750px;
-            overflow:auto;
-
-        }
-    </style>
-    <div id="text">
+   <div id="text">
 
     <h3>Before you start preparing an exam</h3>
 
