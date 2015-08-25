@@ -16,21 +16,29 @@ namespace Group_Project_Online_Exam
         DataTable dt = new DataTable();
         int rowindex = 0;
         static int counter = 10;
-
+        int correct = 0;
+        int wrong = 0;
+           
         protected void Page_Load(object sender, EventArgs e)
         {
 
             // lblDate.Text = DateTime.Today.ToString("dd/MM/yyyy");
             // lblTime.Text = DateTime.Now.ToString("hh:mm tt");
-
+          
             rowindex = ViewState["RowIndex"] == null ? 0 : (int)ViewState["RowIndex"];
             loadQuestions();
 
             if (!IsPostBack)
             {
+                Session["Correct"] = 0;
+                Session["Wrong"] = 0;
                 GetEndTime();
                 LoadQuestion();
             }
+
+            correct = (int)Session["Correct"];
+            wrong = (int)Session["Wrong"];
+
             if (rowindex != -1)
             {
                 lblQuestion.Text = dt.Rows[rowindex]["Question"].ToString();
@@ -63,7 +71,9 @@ namespace Group_Project_Online_Exam
             DAL mydal = new DAL(conn);
             DataSet ds = mydal.ExecuteProcedure("spShowActiveExam");
             DateTime EndTime = Convert.ToDateTime(ds.Tables[0].Rows[0]["EndTime"].ToString());
+            DateTime StartTime = Convert.ToDateTime(ds.Tables[0].Rows[0]["StartTime"].ToString());
             Session["EndTime"] = EndTime;
+            Session["StartTime"] = StartTime;
             time.InnerHtml = Math.Round((EndTime - DateTime.Now).TotalSeconds,0).ToString();
             UpdateTimer();
         }
@@ -73,11 +83,13 @@ namespace Group_Project_Online_Exam
             if (rowindex != -1)
             {
                 DAL mydal = new DAL(conn);
+                //TODO
+                //mydal.AddParam("QuizID", quizId);
                 DataSet ds = mydal.ExecuteProcedure("spQuestion");
                 dt = ds.Tables[0];
                 string CorrectAnswer = dt.Rows[rowindex]["CorrectAnswer"].ToString();
 
-                Session["CorrectAnswer"] = CorrectAnswer;
+                ViewState["CorrectAnswer"] = CorrectAnswer;
                 if (dt.Rows.Count < 1)
                 {
                     lblQuestion.Text = "ERROR, QUIZ RETURNED WITH 0 ROWS!";
@@ -87,23 +99,25 @@ namespace Group_Project_Online_Exam
 
         protected void btnNext_Click(object sender, EventArgs e)
         {
-            int correct = 0;
-            int wrong = 0;
-            string value = Session["CorrectAnswer"].ToString();
+            string value = ViewState["CorrectAnswer"].ToString();
 
-            if (!string.IsNullOrEmpty(RadioButtonList1.SelectedItem.Value))
+            if (!string.IsNullOrEmpty(RadioButtonList1.SelectedItem.Text))
             {
                 if (RadioButtonList1.SelectedItem.Text == value)
                 {
                     correct++;
+                    Session["Correct"] = correct;
                 }
                 else
                 {
                     wrong++;
+                    Session["Wrong"]= wrong;
                 }
+               
             }
             rowindex++;
             ViewState["RowIndex"] = rowindex;
+           
 
             if (rowindex > dt.Rows.Count - 1)
             {
@@ -116,6 +130,7 @@ namespace Group_Project_Online_Exam
             {
                 LoadQuestion();
             }
+
         }
 
         protected void Timer1_Tick(object sender, EventArgs e)
@@ -125,19 +140,21 @@ namespace Group_Project_Online_Exam
 
         private void UpdateTimer()
         {
+            DateTime startTime = (DateTime)Session["StartTime"];
             DateTime endTime = (DateTime)Session["EndTime"];
             DateTime now = DateTime.Now;
-
+            
             if (0 > DateTime.Compare(now, endTime))
-            {
-                string minutes = ((Int32)endTime.Subtract(now).TotalMinutes).ToString();
-                string seconds = ((Int32)endTime.Subtract(now).Seconds).ToString();
-                lblTimer.Text = string.Format("Time Left:00:{0}:{1}", minutes, seconds);
-            }
-            else
-            {
-                Timer1.Enabled = true;
-                Response.Redirect("FinishExam.aspx");
+                {
+                    string minutes = ((Int32)endTime.Subtract(now).TotalMinutes).ToString();
+                    string seconds = ((Int32)endTime.Subtract(now).Seconds).ToString();
+                    lblTimer.Text = string.Format("Time Left:00:{0}:{1}", minutes, seconds);
+                }
+                else
+                {
+                    Timer1.Enabled = true;
+                    Response.Redirect("FinishExam.aspx");
+                }
             }
         }
     }

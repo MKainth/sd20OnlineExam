@@ -28,8 +28,8 @@ namespace Group_Project_Online_Exam
         {
             if (e.Exception != null)
             {
-                //ADMIN CANNOT DELETE  CATEGORY IF THAT CATEGORY HAS MAGAZINES
-                lblError.Text = "YOU CANNOT DELETE A CATEGORY THAT IS ALREADY IN USE!";
+                //ADMIN CANNOT DELETE  
+                lblError.Text = "YOU CANNOT DELETE USER,   ALREADY IN USE!";
                 e.ExceptionHandled = true;
             }
         }

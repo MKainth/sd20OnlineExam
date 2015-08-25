@@ -124,7 +124,6 @@ go
 insert into tbQuiz(QuizTitle,TimeinMinute,ProgramId,DifficultyId,TypeOfQuestionsId)values
 					--('Test1',DATEADD(Minute,60,GETDATE()),1,1,1)
 					('Test1',30,1,1,1)
-
 --SELECT * FROM tbQuiz WHERE TimeinMinute > GETDATE()			
 
 
@@ -191,10 +190,19 @@ go
 
 INSERT INTO tbQuestionResponse(QuizResponseId, QuestionId, Response)VALUES
 
-(2,5,'None'),(3,4,'lable'),(4,6,'None'),(5,7,'false'),(6,8,'Module'),(7,9,'Variant')
-
+(1,1,'Variant'),(1,2,'lable'),(1,3,'None'),(1,4,'false'),(1,5,'Module'),(1,6,'Variant')
 GO
-select * from tbQuestionResponse
+
+SELECT u.email, SUM(Marks) AS TotalMarks
+	FROM tbQuestionResponse qr 
+		JOIN tbQuestion q ON qr.QuestionId = q.QuestionId
+		JOIN tbQuizResponse r ON r.QuizResponseId = qr.QuestionResponseId
+		JOIN tbUser u ON u.UserId = r.UserId
+	WHERE q.CorrectAnswer = qr.Response
+		AND u.UserId = 3 AND r.QuizResponseId = 1
+	GROUP BY u.UserId, r.QuizResponseId,u.Email
+GO
+select distinct  * from tbQuestionResponse,tbQuiz,tbQuizResponse
 ------------------------------------------------
 
 create table tbUserProgram
@@ -221,7 +229,7 @@ go
 --select * from tbActiveExam
 
 insert into tbActiveExam (StartTime,EndTime,QuizId,SessionId)values
-('2015-08-20 14:07:00','2015-08-20 14:15:00',1,3)
+('2015-08-25 16:00:00','2015-08-25 17:00:00',1,3)
 						-- (GETDATE(),DATEADD(minute,30,GETDATE()),1,3)
 ------------------------spInsertUser--------------------------
 go
@@ -544,6 +552,8 @@ select distinct QuizId,QuizTitle,TimeinMinute,tbProgram.ProgramName,
 		where tbProgram.ProgramId=tbQuiz.ProgramId and
 				tbDifficulty.DifficultyId=tbQuiz.DifficultyId and
 				tbTypeOfQuestions.TypeOfQuestionsId=tbQuiz.TypeOfQuestionsId 
+
+
 end
 go
 

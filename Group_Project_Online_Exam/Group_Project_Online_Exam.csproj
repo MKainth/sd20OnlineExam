@@ -63,6 +63,7 @@
   </ItemGroup>
   <ItemGroup>
     <Content Include="ActiveExam.aspx" />
+    <Content Include="Add_Program_and_Session.aspx" />
     <Content Include="ChangePassword.aspx" />
     <Content Include="ExamPage.aspx" />
     <Content Include="FinishExam.aspx" />
@@ -106,7 +107,13 @@
     <Compile Include="ActiveExam.aspx.designer.cs">
       <DependentUpon>ActiveExam.aspx</DependentUpon>
     </Compile>
-    <Compile Include="ActiveExam.cs" />
+    <Compile Include="Add_Program_and_Session.aspx.cs">
+      <DependentUpon>Add_Program_and_Session.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Add_Program_and_Session.aspx.designer.cs">
+      <DependentUpon>Add_Program_and_Session.aspx</DependentUpon>
+    </Compile>
     <Compile Include="ChangePassword.aspx.cs">
       <DependentUpon>ChangePassword.aspx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
@@ -114,7 +121,6 @@
     <Compile Include="ChangePassword.aspx.designer.cs">
       <DependentUpon>ChangePassword.aspx</DependentUpon>
     </Compile>
-    <Compile Include="Diffcultly.cs" />
     <Compile Include="ExamPage.aspx.cs">
       <DependentUpon>ExamPage.aspx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
@@ -185,10 +191,7 @@
     <Compile Include="NestedStudentMasterPage.master.designer.cs">
       <DependentUpon>NestedStudentMasterPage.master</DependentUpon>
     </Compile>
-    <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
-    <Compile Include="Question.cs" />
-    <Compile Include="QuestionResponse.cs" />
     <Compile Include="Quiz.aspx.cs">
       <DependentUpon>Quiz.aspx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
@@ -196,8 +199,6 @@
     <Compile Include="Quiz.aspx.designer.cs">
       <DependentUpon>Quiz.aspx</DependentUpon>
     </Compile>
-    <Compile Include="Quiz.cs" />
-    <Compile Include="QuizResponse.cs" />
     <Compile Include="Registration.aspx.cs">
       <DependentUpon>Registration.aspx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
@@ -206,8 +207,6 @@
       <DependentUpon>Registration.aspx</DependentUpon>
     </Compile>
     <Compile Include="Security.cs" />
-    <Compile Include="session.cs" />
-    <Compile Include="Subject.cs" />
     <Compile Include="TeacherInsturctions.aspx.cs">
       <DependentUpon>TeacherInsturctions.aspx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
@@ -215,7 +214,6 @@
     <Compile Include="TeacherInsturctions.aspx.designer.cs">
       <DependentUpon>TeacherInsturctions.aspx</DependentUpon>
     </Compile>
-    <Compile Include="TeacherProgram.cs" />
     <Compile Include="UserInformation.aspx.cs">
       <DependentUpon>UserInformation.aspx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
