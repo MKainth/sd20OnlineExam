@@ -20,6 +20,26 @@ namespace Group_Project_Online_Exam
             SqlDataSource1.Insert();
         }
 
+        protected void SqlDataSource1_Deleted(object sender, SqlDataSourceStatusEventArgs e)
+        {
+            if (e.Exception != null)
+            {
+                //ADMIN CANNOT DELETE  
+                lblError.Text = "YOU CANNOT DELETE PROGRAM,   ALREADY IN USE!";
+                e.ExceptionHandled = true;
+            }
+        }
+
+        protected void SqlDataSource2_Deleted(object sender, SqlDataSourceStatusEventArgs e)
+        {
+            if (e.Exception != null)
+            {
+                //ADMIN CANNOT DELETE  
+                lblError1.Text = "YOU CANNOT DELETE SESSION,   ALREADY IN USE!";
+                e.ExceptionHandled = true;
+            }
+        }
+
       
     }
 }

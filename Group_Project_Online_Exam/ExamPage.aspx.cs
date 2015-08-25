@@ -71,7 +71,9 @@ namespace Group_Project_Online_Exam
             DAL mydal = new DAL(conn);
             DataSet ds = mydal.ExecuteProcedure("spShowActiveExam");
             DateTime EndTime = Convert.ToDateTime(ds.Tables[0].Rows[0]["EndTime"].ToString());
+            DateTime StartTime = Convert.ToDateTime(ds.Tables[0].Rows[0]["StartTime"].ToString());
             Session["EndTime"] = EndTime;
+            Session["StartTime"] = StartTime;
             time.InnerHtml = Math.Round((EndTime - DateTime.Now).TotalSeconds,0).ToString();
             UpdateTimer();
         }
@@ -138,19 +140,21 @@ namespace Group_Project_Online_Exam
 
         private void UpdateTimer()
         {
+            DateTime startTime = (DateTime)Session["StartTime"];
             DateTime endTime = (DateTime)Session["EndTime"];
             DateTime now = DateTime.Now;
-
+            
             if (0 > DateTime.Compare(now, endTime))
-            {
-                string minutes = ((Int32)endTime.Subtract(now).TotalMinutes).ToString();
-                string seconds = ((Int32)endTime.Subtract(now).Seconds).ToString();
-                lblTimer.Text = string.Format("Time Left:00:{0}:{1}", minutes, seconds);
-            }
-            else
-            {
-                Timer1.Enabled = true;
-                Response.Redirect("FinishExam.aspx");
+                {
+                    string minutes = ((Int32)endTime.Subtract(now).TotalMinutes).ToString();
+                    string seconds = ((Int32)endTime.Subtract(now).Seconds).ToString();
+                    lblTimer.Text = string.Format("Time Left:00:{0}:{1}", minutes, seconds);
+                }
+                else
+                {
+                    Timer1.Enabled = true;
+                    Response.Redirect("FinishExam.aspx");
+                }
             }
         }
     }

@@ -5,7 +5,7 @@
 <asp:Content ID="Content2" ContentPlaceHolderID="ContentPlaceHolder1" runat="server">
     <asp:UpdatePanel ID="UpdatePanel1" runat="server">
     <ContentTemplate>
-    <asp:SqlDataSource ID="SqlDataSource1" runat="server" ConnectionString="<%$ ConnectionStrings:dbSD20ConnectionString %>" DeleteCommand="DELETE FROM [tbProgram] WHERE [ProgramId] = @ProgramId" InsertCommand="INSERT INTO [tbProgram] ([ProgramName]) VALUES (@ProgramName)" SelectCommand="SELECT [ProgramId], [ProgramName] FROM [tbProgram]" UpdateCommand="UPDATE [tbProgram] SET [ProgramName] = @ProgramName WHERE [ProgramId] = @ProgramId">
+    <asp:SqlDataSource ID="SqlDataSource1" runat="server" ConnectionString="<%$ ConnectionStrings:dbSD20ConnectionString %>" DeleteCommand="DELETE FROM [tbProgram] WHERE [ProgramId] = @ProgramId" InsertCommand="INSERT INTO [tbProgram] ([ProgramName]) VALUES (@ProgramName)" SelectCommand="SELECT [ProgramId], [ProgramName] FROM [tbProgram]" UpdateCommand="UPDATE [tbProgram] SET [ProgramName] = @ProgramName WHERE [ProgramId] = @ProgramId" OnDeleted="SqlDataSource1_Deleted">
         <DeleteParameters>
             <asp:Parameter Name="ProgramId" Type="Int32" />
         </DeleteParameters>
@@ -20,6 +20,7 @@
     <h3>Program List</h3>
     <asp:ValidationSummary ID="ValidationSummary1" ValidationGroup="update" runat="server" />
     <asp:ValidationSummary ID="ValidationSummary2" ValidationGroup="insert" runat="server" />
+        <asp:Label ID="lblError" runat="server" Text=""></asp:Label>
     <asp:GridView ID="GridView1" runat="server" AllowPaging="True" AllowSorting="True" AutoGenerateColumns="False" DataKeyNames="ProgramId" DataSourceID="SqlDataSource1" ShowFooter="True">
         <Columns>
             <asp:CommandField ShowDeleteButton="True" ShowEditButton="True" ValidationGroup="update" />
@@ -37,14 +38,14 @@
             <asp:TemplateField HeaderText="ProgramName" SortExpression="ProgramName">
                 <EditItemTemplate>
                     <asp:TextBox ID="TextBox1" runat="server" Text='<%# Bind("ProgramName") %>'></asp:TextBox>
-                    <asp:RequiredFieldValidator ID="val1ProgramName" ControlToValidate="TextBox1" runat="server" ValidationGroup="update" ErrorMessage="Required Program Name"></asp:RequiredFieldValidator>
+                    <asp:RequiredFieldValidator ID="val1ProgramName" ControlToValidate="TextBox1" runat="server" ValidationGroup="update" Text="*" ErrorMessage="Required Program Name"></asp:RequiredFieldValidator>
                 </EditItemTemplate>
                 <ItemTemplate>
                     <asp:Label ID="Label2" runat="server" Text='<%# Bind("ProgramName") %>'></asp:Label>
                 </ItemTemplate>
                 <FooterTemplate>
                     <asp:TextBox ID="txtprogram" ValidationGroup="insert" runat="server"></asp:TextBox>
-                    <asp:RequiredFieldValidator ID="valProgramName" ControlToValidate="txtprogram" runat="server" ValidationGroup="insert" ErrorMessage="Required Program Name"></asp:RequiredFieldValidator>
+                    <asp:RequiredFieldValidator Text="*" ID="valProgramName" ControlToValidate="txtprogram" runat="server" ValidationGroup="insert" ErrorMessage="Required Program Name"></asp:RequiredFieldValidator>
                 </FooterTemplate>
             </asp:TemplateField>
         </Columns>
@@ -56,7 +57,7 @@
     <br />
 
     <h3>Session List</h3>
-    <asp:SqlDataSource ID="SqlDataSource2" runat="server" ConnectionString="<%$ ConnectionStrings:dbSD20ConnectionString %>" SelectCommand="SELECT * FROM [tbSession]" DeleteCommand="DELETE FROM [tbSession] WHERE [SessionId] = @SessionId" InsertCommand="INSERT INTO [tbSession] ([SessionCode], [ProgramId]) VALUES (@SessionCode, @ProgramId)" UpdateCommand="UPDATE [tbSession] SET [SessionCode] = @SessionCode, [ProgramId] = @ProgramId WHERE [SessionId] = @SessionId">
+    <asp:SqlDataSource ID="SqlDataSource2" runat="server" ConnectionString="<%$ ConnectionStrings:dbSD20ConnectionString %>" SelectCommand="SELECT * FROM [tbSession]" DeleteCommand="DELETE FROM [tbSession] WHERE [SessionId] = @SessionId" InsertCommand="INSERT INTO [tbSession] ([SessionCode], [ProgramId]) VALUES (@SessionCode, @ProgramId)" UpdateCommand="UPDATE [tbSession] SET [SessionCode] = @SessionCode, [ProgramId] = @ProgramId WHERE [SessionId] = @SessionId" OnDeleted="SqlDataSource2_Deleted">
         <DeleteParameters>
             <asp:Parameter Name="SessionId" Type="Int32" />
         </DeleteParameters>
@@ -70,9 +71,12 @@
             <asp:Parameter Name="SessionId" Type="Int32" />
         </UpdateParameters>
     </asp:SqlDataSource>
+
+
+        <asp:Label ID="lblError1" runat="server" Text=""></asp:Label>
     <asp:GridView ID="GridView2" runat="server" AllowPaging="True" AllowSorting="True" AutoGenerateColumns="False" DataKeyNames="SessionId" DataSourceID="SqlDataSource2">
         <Columns>
-            <asp:CommandField ShowEditButton="True" />
+            <asp:CommandField ShowEditButton="True" ShowDeleteButton="True" />
             <asp:BoundField DataField="SessionId" HeaderText="SessionId" InsertVisible="False" ReadOnly="True" SortExpression="SessionId" />
             <asp:TemplateField HeaderText="SessionCode" SortExpression="SessionCode">
                 <EditItemTemplate>

@@ -7,7 +7,8 @@
     <asp:UpdatePanel ID="UpdatePanel1" runat="server">
         <ContentTemplate>
     <h3>Quiz List</h3>
-    <asp:SqlDataSource ID="SqlDataSource2" runat="server" ConnectionString="<%$ ConnectionStrings:dbSD20ConnectionString %>" SelectCommand="SELECT * FROM [tbQuiz]" DeleteCommand="DELETE FROM [tbQuiz] WHERE [QuizId] = @QuizId" InsertCommand="INSERT INTO [tbQuiz] ([QuizTitle], [TimeinMinute], [ProgramId], [DifficultyId], [TypeOfQuestionsId]) VALUES (@QuizTitle, @TimeinMinute, @ProgramId, @DifficultyId, @TypeOfQuestionsId)" UpdateCommand="UPDATE [tbQuiz] SET [QuizTitle] = @QuizTitle, [TimeinMinute] = @TimeinMinute, [ProgramId] = @ProgramId, [DifficultyId] = @DifficultyId, [TypeOfQuestionsId] = @TypeOfQuestionsId WHERE [QuizId] = @QuizId">
+            <asp:Label ID="lblError" runat="server" Text=""></asp:Label>
+    <asp:SqlDataSource ID="SqlDataSource2" runat="server" ConnectionString="<%$ ConnectionStrings:dbSD20ConnectionString %>" SelectCommand="SELECT * FROM [tbQuiz]" DeleteCommand="DELETE FROM [tbQuiz] WHERE [QuizId] = @QuizId" InsertCommand="INSERT INTO [tbQuiz] ([QuizTitle], [TimeinMinute], [ProgramId], [DifficultyId], [TypeOfQuestionsId]) VALUES (@QuizTitle, @TimeinMinute, @ProgramId, @DifficultyId, @TypeOfQuestionsId)" UpdateCommand="UPDATE [tbQuiz] SET [QuizTitle] = @QuizTitle, [TimeinMinute] = @TimeinMinute, [ProgramId] = @ProgramId, [DifficultyId] = @DifficultyId, [TypeOfQuestionsId] = @TypeOfQuestionsId WHERE [QuizId] = @QuizId" OnDeleted="SqlDataSource2_Deleted">
         <DeleteParameters>
             <asp:Parameter Name="QuizId" Type="Int32" />
         </DeleteParameters>
@@ -27,9 +28,11 @@
             <asp:Parameter Name="QuizId" Type="Int32" />
         </UpdateParameters>
     </asp:SqlDataSource>
+                <div style="overflow-x: auto; width: 550px">
+
     <asp:GridView ID="GridView2" runat="server" AllowPaging="True" AllowSorting="True" AutoGenerateColumns="False" DataKeyNames="QuizId" DataSourceID="SqlDataSource2">
         <Columns>
-            <asp:CommandField ShowEditButton="True" />
+            <asp:CommandField ShowEditButton="True" ShowDeleteButton="True" />
             <asp:BoundField DataField="QuizId" HeaderText="QuizId" InsertVisible="False" ReadOnly="True" SortExpression="QuizId" />
             <asp:TemplateField HeaderText="QuizTitle" SortExpression="QuizTitle">
                 <EditItemTemplate>
@@ -82,13 +85,13 @@
             </asp:TemplateField>
         </Columns>
     </asp:GridView>
-
+            </div>
    <br /><br />
     <br /><br />
 
-    <h3>Question List</h3>
+    <h3>Questions List</h3>
 
-    <asp:SqlDataSource ID="SqlDataSource1" runat="server" ConnectionString="<%$ ConnectionStrings:dbSD20ConnectionString %>" DeleteCommand="DELETE FROM [tbQuestion] WHERE [QuestionId] = @QuestionId" InsertCommand="INSERT INTO [tbQuestion] ([Question], [Answer1], [Answer2], [Answer3], [Answer4], [CorrectAnswer], [Marks], [QuizId]) VALUES (@Question, @Answer1, @Answer2, @Answer3, @Answer4, @CorrectAnswer, @Marks, @QuizId)" SelectCommand="SELECT [QuestionId], [Question], [Answer1], [Answer2], [Answer3], [Answer4], [CorrectAnswer], [Marks], [QuizId] FROM [tbQuestion]" UpdateCommand="UPDATE [tbQuestion] SET [Question] = @Question, [Answer1] = @Answer1, [Answer2] = @Answer2, [Answer3] = @Answer3, [Answer4] = @Answer4, [CorrectAnswer] = @CorrectAnswer, [Marks] = @Marks, [QuizId] = @QuizId WHERE [QuestionId] = @QuestionId">
+    <asp:SqlDataSource ID="SqlDataSource1" runat="server" ConnectionString="<%$ ConnectionStrings:dbSD20ConnectionString %>" DeleteCommand="DELETE FROM [tbQuestion] WHERE [QuestionId] = @QuestionId" InsertCommand="INSERT INTO [tbQuestion] ([Question], [Answer1], [Answer2], [Answer3], [Answer4], [CorrectAnswer], [Marks], [QuizId]) VALUES (@Question, @Answer1, @Answer2, @Answer3, @Answer4, @CorrectAnswer, @Marks, @QuizId)" SelectCommand="SELECT [QuestionId], [Question], [Answer1], [Answer2], [Answer3], [Answer4], [CorrectAnswer], [Marks], [QuizId] FROM [tbQuestion]" UpdateCommand="UPDATE [tbQuestion] SET [Question] = @Question, [Answer1] = @Answer1, [Answer2] = @Answer2, [Answer3] = @Answer3, [Answer4] = @Answer4, [CorrectAnswer] = @CorrectAnswer, [Marks] = @Marks, [QuizId] = @QuizId WHERE [QuestionId] = @QuestionId" OnDeleted="SqlDataSource1_Deleted">
         <DeleteParameters>
             <asp:Parameter Name="QuestionId" Type="Int32" />
         </DeleteParameters>
@@ -118,7 +121,7 @@
 
 
     <div style="overflow-x: auto; width: 550px">
-
+        <asp:Label ID="lblError1" runat="server" Text=""></asp:Label>
         <asp:GridView ID="GridView1" runat="server" AutoGenerateColumns="False" DataKeyNames="QuestionId" DataSourceID="SqlDataSource1" AllowPaging="True" AllowSorting="True">
             <Columns>
                 <asp:CommandField ShowDeleteButton="True" ShowEditButton="True" />
