@@ -725,7 +725,7 @@ go
 
 Create proc spGetSessionsByProgram
 as begin 
-       select  tbProgram.ProgramName, COUNT (DISTINCT tbSession.SessionId) as NumberOfSession
+       select  tbProgram.ProgramName,tbSession.SessionCode, COUNT (DISTINCT tbSession.SessionId) as NumberOfSession
 	   from tbProgram, tbSession
 	   where tbProgram.ProgramId=tbSession.ProgramId
 	   GROUP BY tbprogram.ProgramName

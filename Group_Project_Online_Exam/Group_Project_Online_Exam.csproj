@@ -73,11 +73,14 @@
     <Content Include="MasterPage.Master" />
     <Content Include="images\Thumbs.db" />
     <Content Include="MasterPageSwitch.aspx" />
+    <Content Include="QutionNumberbyExam.aspx" />
     <Content Include="Reports.aspx" />
+    <Content Include="StudentEachProgram.aspx" />
     <Content Include="StudentNested.aspx" />
     <Content Include="Header_Footer.Master" />
     <Content Include="NestedStudentMasterPage.master" />
     <Content Include="NestedTeacherMasterPage.master" />
+    <Content Include="SessionsByProgram.aspx" />
     <None Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
     </None>
@@ -200,6 +203,13 @@
     <Compile Include="Quiz.aspx.designer.cs">
       <DependentUpon>Quiz.aspx</DependentUpon>
     </Compile>
+    <Compile Include="QutionNumberbyExam.aspx.cs">
+      <DependentUpon>QutionNumberbyExam.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="QutionNumberbyExam.aspx.designer.cs">
+      <DependentUpon>QutionNumberbyExam.aspx</DependentUpon>
+    </Compile>
     <Compile Include="Registration.aspx.cs">
       <DependentUpon>Registration.aspx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
@@ -213,6 +223,13 @@
     </Compile>
     <Compile Include="Reports.aspx.designer.cs">
       <DependentUpon>Reports.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="StudentEachProgram.aspx.cs">
+      <DependentUpon>StudentEachProgram.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="StudentEachProgram.aspx.designer.cs">
+      <DependentUpon>StudentEachProgram.aspx</DependentUpon>
     </Compile>
     <Compile Include="Security.cs" />
     <Compile Include="TeacherInsturctions.aspx.cs">
@@ -242,6 +259,13 @@
     </Compile>
     <Compile Include="StudentNested.aspx.designer.cs">
       <DependentUpon>StudentNested.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="SessionsByProgram.aspx.cs">
+      <DependentUpon>SessionsByProgram.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="SessionsByProgram.aspx.designer.cs">
+      <DependentUpon>SessionsByProgram.aspx</DependentUpon>
     </Compile>
   </ItemGroup>
   <ItemGroup>
