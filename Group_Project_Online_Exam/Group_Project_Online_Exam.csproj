@@ -66,6 +66,8 @@
     <Content Include="Add_Program_and_Session.aspx" />
     <Content Include="ChangePassword.aspx" />
     <Content Include="ExamPage.aspx" />
+    <Content Include="favicon-96x96.png" />
+    <Content Include="favicon.ico" />
     <Content Include="FinishExam.aspx" />
     <Content Include="ForgotPassword.aspx" />
     <Content Include="InsturctionForExam.aspx" />

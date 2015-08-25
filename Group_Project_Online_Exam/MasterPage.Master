@@ -4,6 +4,8 @@
 
 <html xmlns="http://www.w3.org/1999/xhtml">
 <head runat="server">
+    <!--<link rel="apple-touch-icon" sizes="57x57" href="/favicon.ico"/>-->
+    <link rel="icon" type="image/png" sizes="96x96" href="/favicon-96x96.png"/>
     <title></title>
     <meta name="keywords" content="" />
 <meta name="description" content="" />
