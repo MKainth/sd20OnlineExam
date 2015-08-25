@@ -73,6 +73,7 @@
     <Content Include="MasterPage.Master" />
     <Content Include="images\Thumbs.db" />
     <Content Include="MasterPageSwitch.aspx" />
+    <Content Include="Reports.aspx" />
     <Content Include="StudentNested.aspx" />
     <Content Include="Header_Footer.Master" />
     <Content Include="NestedStudentMasterPage.master" />
@@ -205,6 +206,13 @@
     </Compile>
     <Compile Include="Registration.aspx.designer.cs">
       <DependentUpon>Registration.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Reports.aspx.cs">
+      <DependentUpon>Reports.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Reports.aspx.designer.cs">
+      <DependentUpon>Reports.aspx</DependentUpon>
     </Compile>
     <Compile Include="Security.cs" />
     <Compile Include="TeacherInsturctions.aspx.cs">

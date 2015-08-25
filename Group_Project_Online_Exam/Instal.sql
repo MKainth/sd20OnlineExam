@@ -666,11 +666,11 @@ create proc spGetStudentEachProgram
 
 as begin
 
-select FirstName,LastName,ProgramName, SessionCode
-from tbUser, tbProgram, tbSession,tbUserSession
-where tbUser.UserId= tbUserSession.UserId and 
-tbSession.SessionId=tbUserSession.SessionId and
-tbProgram.ProgramId=tbSession.ProgramId 
+	select FirstName,LastName,ProgramName, SessionCode
+	from tbUser, tbProgram, tbSession,tbUserSession
+	where tbUser.UserId= tbUserSession.UserId and 
+	tbSession.SessionId=tbUserSession.SessionId and
+	tbProgram.ProgramId=tbSession.ProgramId 
 
 end
 go
