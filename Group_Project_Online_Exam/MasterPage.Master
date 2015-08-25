@@ -4,9 +4,12 @@
 
 <html xmlns="http://www.w3.org/1999/xhtml">
 <head runat="server">
-    <title></title>
+     <link rel="shortcut icon" type="image/x-icon" href="~/favicon.ico" />
+    <title>OnlineExam</title>
+
     <meta name="keywords" content="" />
 <meta name="description" content="" />
+   
 <link href="style.css" rel="stylesheet" type="text/css" media="screen" />
     <script src="jquery-2.1.4.js"></script>
     <asp:ContentPlaceHolder ID="head" runat="server">

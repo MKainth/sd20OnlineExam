@@ -63,11 +63,13 @@
   </ItemGroup>
   <ItemGroup>
     <Content Include="ActiveExam.aspx" />
+    <Content Include="ActiveExamForStudent.aspx" />
     <Content Include="Add_Program_and_Session.aspx" />
     <Content Include="ChangePassword.aspx" />
     <Content Include="ExamPage.aspx" />
     <Content Include="FinishExam.aspx" />
     <Content Include="ForgotPassword.aspx" />
+    <Content Include="imagesUZHM7ML0.jpg" />
     <Content Include="InstructionForExam.aspx" />
     <Content Include="jquery-2.1.4.js" />
     <Content Include="MasterPage.Master" />
@@ -106,6 +108,13 @@
     </Compile>
     <Compile Include="ActiveExam.aspx.designer.cs">
       <DependentUpon>ActiveExam.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="ActiveExamForStudent.aspx.cs">
+      <DependentUpon>ActiveExamForStudent.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="ActiveExamForStudent.aspx.designer.cs">
+      <DependentUpon>ActiveExamForStudent.aspx</DependentUpon>
     </Compile>
     <Compile Include="Add_Program_and_Session.aspx.cs">
       <DependentUpon>Add_Program_and_Session.aspx</DependentUpon>

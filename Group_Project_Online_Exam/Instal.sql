@@ -84,14 +84,14 @@ Insert into tbUser (FirstName,LastName,Email,Password,SecurityLevel) values
 ('Mohammad','Rahim','mohammad.rahim@robertsoncollege.net','1234',3),
 ('Mandeep','Kainth','mandeep.kainth@robertsoncollege.net','1234',2),
 ('Rimon','Bishay','rimon.bishay@robertsoncollege.net','1234',1),
-('Adam','Jakab','adam@yahoo.com','1234',1),
-('Jackey','Walter','JackeyW@yahoo.com','1234',1),
-('Trish','Khan','trishK@gmail.com','1234',1),
-('Rahul','Metha','RMetha@abc.com','1234',1),
-('Kathy','McDonald','Km@yahoo.com','1234',1),
-('Mathew','Robert','mathewR@gmail.com','1234',1),
-('Paul','Barida','PaulB@yahoo.com','1234',1),
-('Adda','Jackson','AdaJackson@yahoo.com','1234',1)
+('Adam','Jakab','adam@robertsoncollege.net','1234',1),
+('Jackey','Walter','JackeyW@robertsoncollege.net','1234',1),
+('Trish','Khan','trishK@robertsoncollege.net','1234',1),
+('Rahul','Metha','RMetha@robertsoncollege.net','1234',1),
+('Kathy','McDonald','Km@robertsoncollege.net','1234',1),
+('Mathew','Robert','mathewR@robertsoncollege.net','1234',1),
+('Paul','Barida','PaulB@robertsoncollege.net','1234',1),
+('Adda','Jackson','AdaJackson@robertsoncollege.net','1234',1)
 go 
 select * from tbUser
 go
@@ -204,7 +204,19 @@ SELECT u.email, SUM(Marks) AS TotalMarks
 GO
 select distinct  * from tbQuestionResponse,tbQuiz,tbQuizResponse
 ------------------------------------------------
+go
+create proc spCountNumberOfQuestions 
+(
+@sessionId int
+)
+as begin
+ select count(Question) as numberofquestions
+	from tbQuestion,tbSession
+	where SessionId=@sessionId 
+	
+end
 
+go
 create table tbUserProgram
 (
   UserProgramId int primary key identity(1,1),
@@ -229,7 +241,7 @@ go
 --select * from tbActiveExam
 
 insert into tbActiveExam (StartTime,EndTime,QuizId,SessionId)values
-('2015-08-25 16:00:00','2015-08-25 17:00:00',1,3)
+('2015-08-25 11:00:00','2015-08-25 6:00:00',1,3)
 						-- (GETDATE(),DATEADD(minute,30,GETDATE()),1,3)
 ------------------------spInsertUser--------------------------
 go
@@ -350,14 +362,35 @@ as begin
 	where QuestionId=@QuestionId
 end
 go
-create proc spQuestion
 
+create proc spQuestion 
+(
+@QuestionId int
+)
 as begin
 	select * from tbQuestion
+	where QuestionId=isnull(@QuestionId,QuestionId)
 end 
 go
 
+create proc spQuestionsbyQuizId  
+(
+@QuizId int
+)
+as begin
+	select * from tbQuestion
+	where QuizId=isnull(@QuizId,QuizId)
+end 
 
+
+
+
+
+
+
+exec spQuestion @QuestionId=3
+
+go
 ---------------------Create Login Proc For User--------------------------
 
 create procedure UserspLogin(

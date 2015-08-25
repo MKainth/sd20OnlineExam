@@ -14,7 +14,7 @@
     with you.</p> 
 
     <p><b>Please proceed to Exam</b></p>
-    <asp:Button ID="btnStartTest" runat="server" Text="Start Test" />
+    <asp:Button ID="btnnext" runat="server" Text="Next" OnClick="btnnext_Click" />
    
 
 </asp:Content>
