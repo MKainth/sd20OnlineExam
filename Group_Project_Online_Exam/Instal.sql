@@ -229,7 +229,7 @@ go
 --select * from tbActiveExam
 
 insert into tbActiveExam (StartTime,EndTime,QuizId,SessionId)values
-('2015-08-24 16:00:00','2015-08-24 17:00:00',1,3)
+('2015-08-25 16:00:00','2015-08-25 17:00:00',1,3)
 						-- (GETDATE(),DATEADD(minute,30,GETDATE()),1,3)
 ------------------------spInsertUser--------------------------
 go
