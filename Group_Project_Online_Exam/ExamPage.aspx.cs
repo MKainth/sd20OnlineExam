@@ -10,7 +10,7 @@ using System.Data;
 
 namespace Group_Project_Online_Exam
 {
-    public partial class ExamPage : System.Web.UI.Page
+    public partial class ExamPage : MasterPageSwitch
     {
         string conn = ConfigurationManager.ConnectionStrings["Exam"].ConnectionString;
         DataTable dt = new DataTable();
@@ -156,6 +156,13 @@ namespace Group_Project_Online_Exam
                     Response.Redirect("FinishExam.aspx");
                 }
             }
+
+        protected void btnback_Click(object sender, EventArgs e)
+        {
+            DAL mydal = new DAL(conn);
+          DataSet ds=  mydal.ExecuteProcedure("");
+
+        }
         }
     }
-}
+

@@ -10,7 +10,7 @@
 namespace Group_Project_Online_Exam {
     
     
-    public partial class InsturctionForExam {
+    public partial class InstructionForExam {
         
         /// <summary>
         /// btnStartTest control.

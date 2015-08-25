@@ -1,4 +1,4 @@
-﻿<%@ Page Title="" Language="C#" MasterPageFile="~/MasterPage.Master" AutoEventWireup="true" CodeBehind="ExamPage.aspx.cs" Inherits="Group_Project_Online_Exam.ExamPage" %>
+﻿<%@ Page Title="" Language="C#" MasterPageFile="~/Header_Footer.Master" AutoEventWireup="true" CodeBehind="ExamPage.aspx.cs" Inherits="Group_Project_Online_Exam.ExamPage" %>
 
 <asp:Content ID="Content1" ContentPlaceHolderID="head" runat="server">
 </asp:Content>
@@ -29,6 +29,7 @@
             <asp:Label ID="lblQuestion" runat="server" Text=""></asp:Label>
             <asp:RadioButtonList ID="RadioButtonList1" runat="server">
             </asp:RadioButtonList>
+            <asp:Button ID="btnback" runat="server" Text="back" OnClick="btnback_Click"/>
             <asp:Button ID="btnNext" runat="server" Text="Next" OnClick="btnNext_Click" />
         </ContentTemplate>
     </asp:UpdatePanel>

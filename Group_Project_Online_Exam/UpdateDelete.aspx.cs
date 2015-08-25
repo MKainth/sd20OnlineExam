@@ -7,7 +7,7 @@ using System.Web.UI.WebControls;
 
 namespace Group_Project_Online_Exam
 {
-    public partial class UpdateDelete : System.Web.UI.Page
+    public partial class UpdateDelete : MasterPageSwitch
     {
         protected void Page_Load(object sender, EventArgs e)
         {
