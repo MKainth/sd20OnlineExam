@@ -7,7 +7,7 @@ using System.Web.UI.WebControls;
 
 namespace Group_Project_Online_Exam
 {
-    public partial class Reports : System.Web.UI.Page
+    public partial class Reports1 : System.Web.UI.Page
     {
         protected void Page_Load(object sender, EventArgs e)
         {
