@@ -105,7 +105,7 @@ UserId int foreign key references tbUser(UserId),
 )
 go
 
-insert into tbUserSession(SessionId,UserId)values(3,3), (2,5),(4,6),(5,7)
+insert into tbUserSession(UserId, SessionId)values(3,3), (2,5),(4,6),(5,7), (7,8),(9,7), (6,8)
 go
 
 -----------------------------------------------
@@ -699,13 +699,71 @@ create proc spGetStudentEachProgram
 
 as begin
 
-select FirstName,LastName,ProgramName, SessionCode
-from tbUser, tbProgram, tbSession,tbUserSession
-where tbUser.UserId= tbUserSession.UserId and 
-tbSession.SessionId=tbUserSession.SessionId and
-tbProgram.ProgramId=tbSession.ProgramId 
+	select FirstName,LastName,ProgramName, SessionCode
+	from tbUser, tbProgram, tbSession,tbUserSession
+	where tbUser.UserId= tbUserSession.UserId and 
+	tbSession.SessionId=tbUserSession.SessionId and
+	tbProgram.ProgramId=tbSession.ProgramId 
 
 end
 go
-exec spGetStudentEachProgram
+--exec spGetStudentEachProgram
+--------------------------------------------------spGetNumberOfStudentByProgram-----------------------------------------------------------------
 
+--drop proc spGetNumberOfStudentByProgram
+
+create proc spGetNumberOfStudentByProgram
+(
+@Direction Varchar(10)
+)
+as begin
+       if (@Direction = 'asc')
+       begin
+	       select tbProgram.ProgramName,tbSession.SessionCode, count (DISTINCT  tbuser.UserId) as NumberOfStudent
+	       from tbProgram,tbSession,tbUserSession,tbUser
+	       where tbProgram.ProgramId=tbSession.ProgramId AND
+		        tbSession.SessionId=tbUserSession.SessionId and 
+				tbUser.UserId=tbUserSession.UserId
+		  group by tbProgram.ProgramName,tbSession.SessionCode
+	   end 
+	   else 
+		  begin
+		   select tbProgram.ProgramName,tbSession.SessionCode, count (DISTINCT  tbuser.UserId) as NumberOfStudent
+	       from tbProgram,tbSession,tbUserSession,tbUser
+	       where tbProgram.ProgramId=tbSession.ProgramId AND
+		        tbSession.SessionId=tbUserSession.SessionId and 
+				tbUser.UserId=tbUserSession.UserId
+		  group by tbProgram.ProgramName,tbSession.SessionCode
+			Order by tbProgram.ProgramName DESC;
+	   end
+	end
+  go
+
+--------------------------------------spGetQutionNumberbyExam--------------------------------------------------------------------------------
+
+--drop proc spGetQutionNumberbyExam
+create proc spGetQutionNumberbyExam
+  
+as begin
+     select  tbQuiz.QuizTitle, count (DISTINCT tbQuestion.QuestionId) AS NumberOfQuestion 
+      from tbQuiz,tbQuestion
+      where tbQuiz.QuizId=tbQuestion.QuizId
+    GROUP BY tbQuiz.QuizTitle
+  end
+go
+
+--EXEC  spGetQutionNumberbyExam
+
+-----------------------------------spGetSessionsByProgram ----------------------------------------------------------------
+
+Create proc spGetSessionsByProgram
+as begin 
+       select  tbProgram.ProgramName,tbSession.SessionCode, COUNT (DISTINCT tbSession.SessionId) as NumberOfSession
+	   from tbProgram, tbSession
+	   where tbProgram.ProgramId=tbSession.ProgramId
+	   GROUP BY tbprogram.ProgramName
+	end
+go
+-- exec spGetSessionsByProgram
+
+---------------------------------------------------------------------------------------------------------------------------------

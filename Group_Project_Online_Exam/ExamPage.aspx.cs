@@ -17,14 +17,14 @@ namespace Group_Project_Online_Exam
         int rowindex = 0;
         static int counter = 0;
         string[] Responses;
-
+           
         protected void Page_Load(object sender, EventArgs e)
         {
             GetQuizId();
 
             // lblDate.Text = DateTime.Today.ToString("dd/MM/yyyy");
             // lblTime.Text = DateTime.Now.ToString("hh:mm tt");
-
+          
             rowindex = ViewState["RowIndex"] == null ? 0 : (int)ViewState["RowIndex"];
             loadQuestions();
 
@@ -45,7 +45,7 @@ namespace Group_Project_Online_Exam
             counter = (int)Session["NumberofQuestion"];
             counter = (int)Session["QuestionCount"];
             Responses = (string[])Session["Responses"];
-          
+
 
             if (rowindex != -1)
             {
@@ -127,7 +127,7 @@ namespace Group_Project_Online_Exam
             string value = ViewState["CorrectAnswer"].ToString();
 
             if (RadioButtonList1.SelectedItem != null)
-            {
+                {
                 Responses[rowindex] = RadioButtonList1.SelectedItem.Text;
 
                 //    if (RadioButtonList1.SelectedItem.Text == value)
@@ -140,11 +140,11 @@ namespace Group_Project_Online_Exam
                 //        wrong++;
                 //        Session["Wrong"]= wrong;
                 //    }
-
+               
             }
             rowindex++;
             ViewState["RowIndex"] = rowindex;
-
+           
 
             if (rowindex > dt.Rows.Count - 1)
             {
@@ -170,18 +170,18 @@ namespace Group_Project_Online_Exam
             DateTime startTime = (DateTime)Session["StartTime"];
             DateTime endTime = (DateTime)Session["EndTime"];
             DateTime now = DateTime.Now;
-
+            
             if (0 > DateTime.Compare(now, endTime))
-            {
-                string minutes = ((Int32)endTime.Subtract(now).TotalMinutes).ToString();
-                string seconds = ((Int32)endTime.Subtract(now).Seconds).ToString();
-                lblTimer.Text = string.Format("Time Left:00:{0}:{1}", minutes, seconds);
-            }
-            else
-            {
-                Timer1.Enabled = true;
-                Response.Redirect("FinishExam.aspx");
-            }
+                {
+                    string minutes = ((Int32)endTime.Subtract(now).TotalMinutes).ToString();
+                    string seconds = ((Int32)endTime.Subtract(now).Seconds).ToString();
+                    lblTimer.Text = string.Format("Time Left:00:{0}:{1}", minutes, seconds);
+                }
+                else
+                {
+                    Timer1.Enabled = true;
+                    Response.Redirect("FinishExam.aspx");
+                }
         }
 
         protected void btnback_Click(object sender, EventArgs e)
@@ -202,5 +202,4 @@ namespace Group_Project_Online_Exam
             }
         }
     }
-}
 

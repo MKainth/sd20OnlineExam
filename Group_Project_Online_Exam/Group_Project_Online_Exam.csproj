@@ -67,6 +67,8 @@
     <Content Include="Add_Program_and_Session.aspx" />
     <Content Include="ChangePassword.aspx" />
     <Content Include="ExamPage.aspx" />
+    <Content Include="favicon-96x96.png" />
+    <Content Include="favicon.ico" />
     <Content Include="FinishExam.aspx" />
     <Content Include="ForgotPassword.aspx" />
     <Content Include="imagesUZHM7ML0.jpg" />
@@ -75,10 +77,15 @@
     <Content Include="MasterPage.Master" />
     <Content Include="images\Thumbs.db" />
     <Content Include="MasterPageSwitch.aspx" />
+    <Content Include="NumberOfStudentByProgram.aspx" />
+    <Content Include="QutionNumberbyExam.aspx" />
+    <Content Include="Reports.aspx" />
+    <Content Include="StudentEachProgram.aspx" />
     <Content Include="StudentNested.aspx" />
     <Content Include="Header_Footer.Master" />
     <Content Include="NestedStudentMasterPage.master" />
     <Content Include="NestedTeacherMasterPage.master" />
+    <Content Include="SessionsByProgram.aspx" />
     <None Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
     </None>
@@ -200,6 +207,13 @@
     <Compile Include="NestedStudentMasterPage.master.designer.cs">
       <DependentUpon>NestedStudentMasterPage.master</DependentUpon>
     </Compile>
+    <Compile Include="NumberOfStudentByProgram.aspx.cs">
+      <DependentUpon>NumberOfStudentByProgram.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="NumberOfStudentByProgram.aspx.designer.cs">
+      <DependentUpon>NumberOfStudentByProgram.aspx</DependentUpon>
+    </Compile>
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Quiz.aspx.cs">
       <DependentUpon>Quiz.aspx</DependentUpon>
@@ -208,12 +222,33 @@
     <Compile Include="Quiz.aspx.designer.cs">
       <DependentUpon>Quiz.aspx</DependentUpon>
     </Compile>
+    <Compile Include="QutionNumberbyExam.aspx.cs">
+      <DependentUpon>QutionNumberbyExam.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="QutionNumberbyExam.aspx.designer.cs">
+      <DependentUpon>QutionNumberbyExam.aspx</DependentUpon>
+    </Compile>
     <Compile Include="Registration.aspx.cs">
       <DependentUpon>Registration.aspx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
     </Compile>
     <Compile Include="Registration.aspx.designer.cs">
       <DependentUpon>Registration.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Reports.aspx.cs">
+      <DependentUpon>Reports.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Reports.aspx.designer.cs">
+      <DependentUpon>Reports.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="StudentEachProgram.aspx.cs">
+      <DependentUpon>StudentEachProgram.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="StudentEachProgram.aspx.designer.cs">
+      <DependentUpon>StudentEachProgram.aspx</DependentUpon>
     </Compile>
     <Compile Include="Security.cs" />
     <Compile Include="TeacherInstructions.aspx.cs">
@@ -243,6 +278,13 @@
     </Compile>
     <Compile Include="StudentNested.aspx.designer.cs">
       <DependentUpon>StudentNested.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="SessionsByProgram.aspx.cs">
+      <DependentUpon>SessionsByProgram.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="SessionsByProgram.aspx.designer.cs">
+      <DependentUpon>SessionsByProgram.aspx</DependentUpon>
     </Compile>
   </ItemGroup>
   <ItemGroup>
