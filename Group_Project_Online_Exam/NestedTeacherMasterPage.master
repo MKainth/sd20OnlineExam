@@ -23,7 +23,7 @@
 						<li><a  id="linkQuiz" href="Quiz.aspx">Quiz Maker</a></li>
 						<li><a id="exam" href="ExamPage.aspx">Exam </a></li>
 						<li><a href="ActiveExam.aspx">Available Exam </a></li>
-						<li><a href="#">lorem ipsum </a></li>
+						<li><a href="Reports.aspx">Reports </a></li>
 						<li><a href="#">lorem ipsum </a></li>
 						<li><a href="#">lorem ipsum </a></li>
 					</ul>
