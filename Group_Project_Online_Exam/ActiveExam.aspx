@@ -37,7 +37,7 @@
                     <td>
                         <asp:TextBox ID="txtEndDate" runat="server" type="date"></asp:TextBox>
                     </td>
-                    <td>/
+                    <td>
                         <asp:DropDownList ID="dd2EndH" runat="server">
                         </asp:DropDownList>
                         <asp:DropDownList ID="dd2EndM" runat="server">
