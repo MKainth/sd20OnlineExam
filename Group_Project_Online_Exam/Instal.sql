@@ -543,6 +543,8 @@ select distinct QuizId,QuizTitle,TimeinMinute,tbProgram.ProgramName,
 		where tbProgram.ProgramId=tbQuiz.ProgramId and
 				tbDifficulty.DifficultyId=tbQuiz.DifficultyId and
 				tbTypeOfQuestions.TypeOfQuestionsId=tbQuiz.TypeOfQuestionsId 
+
+
 end
 go
 

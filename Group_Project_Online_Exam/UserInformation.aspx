@@ -3,7 +3,8 @@
 <asp:Content ID="Content1" ContentPlaceHolderID="head" runat="server">
 </asp:Content>
 <asp:Content ID="Content2" ContentPlaceHolderID="ContentPlaceHolder1" runat="server">
-
+    <asp:UpdatePanel ID="UpdatePanel1" runat="server">
+        <ContentTemplate>
     <asp:SqlDataSource ID="SqlDataSource1" runat="server" ConnectionString="<%$ ConnectionStrings:dbSD20ConnectionString %>" SelectCommand="SELECT [UserId], [FirstName], [LastName], [Email], [Password], [SecurityLevel] FROM [tbUser]" DeleteCommand="DELETE FROM [tbUser] WHERE [UserId] = @UserId" InsertCommand="INSERT INTO [tbUser] ([FirstName], [LastName], [Email], [Password], [SecurityLevel]) VALUES (@FirstName, @LastName, @Email, @Password, @SecurityLevel)" UpdateCommand="UPDATE [tbUser] SET [FirstName] = @FirstName, [LastName] = @LastName, [Email] = @Email, [Password] = @Password, [SecurityLevel] = @SecurityLevel WHERE [UserId] = @UserId" OnDeleted="SqlDataSource1_Deleted">
         <DeleteParameters>
             <asp:Parameter Name="UserId" Type="Int32" />
@@ -116,4 +117,6 @@
             </Columns>
         </asp:GridView>
     </div>
+            </ContentTemplate>
+    </asp:UpdatePanel>
 </asp:Content>

@@ -3,7 +3,8 @@
 <asp:Content ID="Content1" ContentPlaceHolderID="head" runat="server">
 </asp:Content>
 <asp:Content ID="Content2" ContentPlaceHolderID="ContentPlaceHolder1" runat="server">
-    
+    <asp:UpdatePanel ID="UpdatePanel1" runat="server">
+    <ContentTemplate>
     <asp:SqlDataSource ID="SqlDataSource1" runat="server" ConnectionString="<%$ ConnectionStrings:dbSD20ConnectionString %>" DeleteCommand="DELETE FROM [tbProgram] WHERE [ProgramId] = @ProgramId" InsertCommand="INSERT INTO [tbProgram] ([ProgramName]) VALUES (@ProgramName)" SelectCommand="SELECT [ProgramId], [ProgramName] FROM [tbProgram]" UpdateCommand="UPDATE [tbProgram] SET [ProgramName] = @ProgramName WHERE [ProgramId] = @ProgramId">
         <DeleteParameters>
             <asp:Parameter Name="ProgramId" Type="Int32" />
@@ -94,4 +95,6 @@
             </asp:TemplateField>
         </Columns>
     </asp:GridView>
+        </ContentTemplate>
+        </asp:UpdatePanel>
 </asp:Content>

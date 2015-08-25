@@ -4,7 +4,8 @@
 <asp:Content ID="Content1" ContentPlaceHolderID="head" runat="server">
 </asp:Content>
 <asp:Content ID="Content2" ContentPlaceHolderID="ContentPlaceHolder1" runat="server">
-
+    <asp:UpdatePanel ID="UpdatePanel1" runat="server">
+        <ContentTemplate>
     <h3>Quiz List</h3>
     <asp:SqlDataSource ID="SqlDataSource2" runat="server" ConnectionString="<%$ ConnectionStrings:dbSD20ConnectionString %>" SelectCommand="SELECT * FROM [tbQuiz]" DeleteCommand="DELETE FROM [tbQuiz] WHERE [QuizId] = @QuizId" InsertCommand="INSERT INTO [tbQuiz] ([QuizTitle], [TimeinMinute], [ProgramId], [DifficultyId], [TypeOfQuestionsId]) VALUES (@QuizTitle, @TimeinMinute, @ProgramId, @DifficultyId, @TypeOfQuestionsId)" UpdateCommand="UPDATE [tbQuiz] SET [QuizTitle] = @QuizTitle, [TimeinMinute] = @TimeinMinute, [ProgramId] = @ProgramId, [DifficultyId] = @DifficultyId, [TypeOfQuestionsId] = @TypeOfQuestionsId WHERE [QuizId] = @QuizId">
         <DeleteParameters>
@@ -201,4 +202,7 @@
         </asp:GridView>
     </div>
     <asp:Button ID="btnAddQuiz" runat="server" Text="Add New Quiz" OnClick="btnAddQuiz_Click" />
+
+            </ContentTemplate>
+    </asp:UpdatePanel>
 </asp:Content>
