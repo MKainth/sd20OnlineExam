@@ -78,6 +78,7 @@
     <Content Include="images\Thumbs.db" />
     <Content Include="MasterPageSwitch.aspx" />
     <Content Include="NumberOfStudentByProgram.aspx" />
+    <Content Include="QuizResponseByUser.aspx" />
     <Content Include="QutionNumberbyExam.aspx" />
     <Content Include="Reports.aspx" />
     <Content Include="StudentEachProgram.aspx" />
@@ -221,6 +222,13 @@
     </Compile>
     <Compile Include="Quiz.aspx.designer.cs">
       <DependentUpon>Quiz.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="QuizResponseByUser.aspx.cs">
+      <DependentUpon>QuizResponseByUser.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="QuizResponseByUser.aspx.designer.cs">
+      <DependentUpon>QuizResponseByUser.aspx</DependentUpon>
     </Compile>
     <Compile Include="QutionNumberbyExam.aspx.cs">
       <DependentUpon>QutionNumberbyExam.aspx</DependentUpon>
