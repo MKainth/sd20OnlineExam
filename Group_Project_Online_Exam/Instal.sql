@@ -107,7 +107,7 @@ go
 
 insert into tbUserSession(UserId, SessionId)values(3,3), (2,5),(4,6),(5,7), (7,8),(9,7), (6,8)
 go
-
+select * from tbUserSession
 -----------------------------------------------
 create table tbQuiz
 (
@@ -123,7 +123,9 @@ create table tbQuiz
 go
 insert into tbQuiz(QuizTitle,TimeinMinute,ProgramId,DifficultyId,TypeOfQuestionsId)values
 					--('Test1',DATEADD(Minute,60,GETDATE()),1,1,1)
-					('Test1',30,1,1,1)
+					('Test1',30,1,1,1),
+					('Test2',30,2,1,1),
+					('test3',30,3,1,1)
 --SELECT * FROM tbQuiz WHERE TimeinMinute > GETDATE()			
 
 
@@ -169,7 +171,7 @@ create table tbQuizResponse
 )
 go
 
-INSERT INTO tbQuizResponse(ExamDate, UserId)VALUES
+INSERT INTO tbQuizResponse(ExamDate, UserId, QuizId)VALUES
 ('2015-02-07',3), ('2015-05-09',10),('2015-07-10',9), ('2014-03-30',4),
 ('2015-05-15',6), ('2015-07-07',7),('2014-08-14',8), ('2015-08-07',11),
 ('2014-01-10',5), ('2015-04-03',2),('2015-04-09',1)
@@ -788,6 +790,5 @@ SELECT * FROM tbProgram p JOIN tbSession s ON p.ProgramId = s.ProgramId
 		
 --end
 
-select * from tbSession
-select * from tbProgram
-
+--select * from tbSession
+--select * from tbProgram
