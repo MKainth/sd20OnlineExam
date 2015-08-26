@@ -718,19 +718,42 @@ as begin
     GROUP BY tbQuiz.QuizTitle
   end
 go
-
 --EXEC  spGetQutionNumberbyExam
 
 -----------------------------------spGetSessionsByProgram ----------------------------------------------------------------
 
-Create proc spGetSessionsByProgram
+create proc spGetSessionsByProgram
 as begin 
-       select  tbProgram.ProgramName,tbSession.SessionCode, COUNT (DISTINCT tbSession.SessionId) as NumberOfSession
+       select  tbProgram.ProgramName, tbProgram.ProgramId, COUNT (DISTINCT tbSession.SessionId) as NumberOfSession
 	   from tbProgram, tbSession
 	   where tbProgram.ProgramId=tbSession.ProgramId
-	   GROUP BY tbprogram.ProgramName
+	   GROUP BY tbprogram.ProgramName, tbProgram.ProgramId
 	end
 go
 -- exec spGetSessionsByProgram
 
+SELECT * FROM tbProgram p JOIN tbSession s ON p.ProgramId = s.ProgramId
 ---------------------------------------------------------------------------------------------------------------------------------
+--create proc spGetSessionByProgram
+--(
+--@ProgramId int
+--)
+--as begin
+--select  distinct * from tbSession,tbProgram
+--where tbProgram.ProgramId=tbSession.ProgramId  and
+		
+		
+--end
+
+create proc spGetSessionByProgram
+as begin
+select  distinct tbProgram.ProgramId, SessionCode from tbSession
+inner join tbProgram on tbSession.ProgramId  = tbProgram.ProgramId
+where tbProgram.ProgramId
+
+		
+		
+end
+
+select * from tbSession
+select * from tbProgram
