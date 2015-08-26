@@ -782,11 +782,10 @@ create proc spGetSessionByProgram
 as begin
 select  distinct tbProgram.ProgramId, SessionCode from tbSession
 inner join tbProgram on tbSession.ProgramId  = tbProgram.ProgramId
-where tbProgram.ProgramId
-
-		
+where tbProgram.ProgramId		
 		
 end
 
 select * from tbSession
 select * from tbProgram
+
