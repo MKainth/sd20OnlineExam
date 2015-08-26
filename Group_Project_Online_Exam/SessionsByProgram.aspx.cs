@@ -7,6 +7,8 @@ using System.Web.UI.WebControls;
 using DAL_Project;
 using System.Configuration;
 
+
+
 namespace Group_Project_Online_Exam
 {
     public partial class WebForm2 : System.Web.UI.Page
@@ -20,14 +22,19 @@ namespace Group_Project_Online_Exam
             {
 
                 LoadSessionsByProgram();
+              
             }
         }
+
+      
+    
         private void LoadSessionsByProgram()
         {
             Security mySecurity = new Security();
             DAL myDal = new DAL(conn);
             gvSessionsByProgram.DataSource = myDal.ExecuteProcedure("spGetSessionsByProgram");
             gvSessionsByProgram.DataBind();
+
         }
     }
 }

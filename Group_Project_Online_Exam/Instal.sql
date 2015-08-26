@@ -125,7 +125,20 @@ insert into tbQuiz(QuizTitle,TimeinMinute,ProgramId,DifficultyId,TypeOfQuestions
 					--('Test1',DATEADD(Minute,60,GETDATE()),1,1,1)
 					('Test1',30,1,1,1)
 --SELECT * FROM tbQuiz WHERE TimeinMinute > GETDATE()			
+go
+---------------------------------spGetQuiz----------------------------------------------------------------
+create proc spGetQuiz
+(
+@QuizId int=NULL
+)
 
+as begin 
+select * from tbQuiz
+ where QuizId=ISNULL(@QuizId,QuizId)
+ end
+ go
+
+------------------------------------------------------------------------------------
 
 
 go
@@ -165,14 +178,17 @@ create table tbQuizResponse
 (
   QuizResponseId int primary key identity(1,1),
   ExamDate Date,
-  UserId int foreign key references tbUser(UserId)	    
+  UserId int foreign key references tbUser(UserId),
+  QuizId INT FOREIGN KEY REFERENCES tbQuiz(QuizId)
 )
 go
 
-INSERT INTO tbQuizResponse(ExamDate, UserId)VALUES
-('2015-02-07',3), ('2015-05-09',10),('2015-07-10',9), ('2014-03-30',4),
-('2015-05-15',6), ('2015-07-07',7),('2014-08-14',8), ('2015-08-07',11),
-('2014-01-10',5), ('2015-04-03',2),('2015-04-09',1)
+INSERT INTO tbQuizResponse(ExamDate, UserId, QuizId)VALUES
+('2015-02-07',3,1), ('2015-05-09',10,1)
+
+--,('2015-07-10',9,1), ('2014-03-30',4,1),
+--('2015-05-15',6,1), ('2015-07-07',7,1),('2014-08-14',8,1), ('2015-08-07',11,1),
+--('2014-01-10',5,1), ('2015-04-03',2,1),('2015-04-09',1,1)
 go
 
 --select * from tbUser
@@ -190,19 +206,93 @@ go
 
 INSERT INTO tbQuestionResponse(QuizResponseId, QuestionId, Response)VALUES
 
-(1,1,'Variant'),(1,2,'lable'),(1,3,'None'),(1,4,'false'),(1,5,'Module'),(1,6,'Variant')
+(1,1,'Variant'),(1,2,'lable'),(1,3,'None'),(1,4,'false'),(1,5,'Module'),(1,6,'Variant'),
+(2,1,'False'),(2,2,'123123'),(2,3,'Hellow WOrlds!'),(2,4,'I dont know'),(2,5,'Okay'),(2,6,'No')
 GO
+--------------------------------------------spGetQuizResponseByUserId--------------------------------------------------------------
 
-SELECT u.email, SUM(Marks) AS TotalMarks
-	FROM tbQuestionResponse qr 
-		JOIN tbQuestion q ON qr.QuestionId = q.QuestionId
-		JOIN tbQuizResponse r ON r.QuizResponseId = qr.QuestionResponseId
-		JOIN tbUser u ON u.UserId = r.UserId
-	WHERE q.CorrectAnswer = qr.Response
-		AND u.UserId = 3 AND r.QuizResponseId = 1
-	GROUP BY u.UserId, r.QuizResponseId,u.Email
+
+CREATE PROC spGetAllQuizReponsesByQuizId
+(@QuizId AS INT)
+AS
+BEGIN
+
+
+	DECLARE @TotalMarks DECIMAL
+	SELECT @TotalMarks = CONVERT(DECIMAL,SUM(Marks)) FROM tbQuestion WHERE QuizId = @QuizID
+
+
+SELECT	[first].UserId,
+		[first].Email,
+		[first].QuizTitle,
+		[first].ExamDate,
+		(CASE WHEN [second].[Correct Reponses] IS NULL THEN 0 ELSE [second].[Correct Reponses] END) AS [Correct Responses], 
+		@TotalMarks AS [Number Of Questions],
+		(CASE WHEN [second].Grade IS NULL THEN 0 ELSE [second].Grade END) AS [Grade],
+		CASE WHEN [second].Grade IS NOT NULL AND [second].Grade >= 70 THEN 'Pass'
+				 ELSE 'Fail' END AS [Pass/Fail]
+	FROM 
+		(SELECT qr.UserId, u.Email, q.QuizTitle, qr.ExamDate
+			FROM tbQuiz q
+				JOIN tbQuizResponse qr ON qr.QuizId = q.QuizId
+				JOIN tbUser u ON u.UserId = qr.UserId
+				WHERE q.QuizId = @QuizId) AS [first]
+	LEFT OUTER JOIN
+		(SELECT qr.UserId, u.Email, q.QuizTitle, qr.ExamDate, 
+					SUM(qu.Marks) AS [Correct Reponses], 
+					@TotalMarks AS [Number Of Questions],
+					CONVERT(DECIMAL(3,2),(CONVERT(DECIMAL(3,2),SUM(qu.Marks)) / @TotalMarks)) AS [Grade]
+				FROM tbQuiz q
+					JOIN tbQuizResponse qr ON qr.QuizId = q.QuizId
+					JOIN tbQuestionResponse qur ON qur.QuizResponseId = qr.QuizResponseId
+					JOIN tbQuestion qu ON qu.QuestionId = qur.QuestionId
+					JOIN tbUser u ON u.UserId = qr.UserId
+					WHERE qu.CorrectAnswer = qur.Response AND q.QuizId = @QuizId
+				GROUP BY qr.UserId, u.Email, q.QuizTitle, qr.ExamDate) AS [second] ON [first].Email = [second].Email
+
+END
+
 GO
-select distinct  * from tbQuestionResponse,tbQuiz,tbQuizResponse
+-------------------------------------------------------------------------------------------------------------------------------------------
+CREATE PROC spGetQuizResponseByUserId --@UserId=3, @QuizResponseId = 1
+(
+	@QuizResponseId INT, 
+	@UserId INT
+)
+AS
+BEGIN
+	DECLARE @TotalQuestions INT
+	DECLARE @Marks INT
+	DECLARE @Grade DECIMAL
+
+	SELECT @TotalQuestions = COUNT(*) 
+		FROM tbQuiz q 
+		JOIN tbQuestion qu ON q.QuizId = qu.QuizId
+		JOIN tbQuizResponse r ON r.QuizId = q.QuizId
+		WHERE r.QuizResponseId = @QuizResponseId
+
+	SELECT @Marks = SUM(q.Marks)
+		FROM tbQuestionResponse qr 
+			JOIN tbQuestion q ON qr.QuestionId = q.QuestionId
+			JOIN tbQuizResponse r ON r.QuizResponseId = qr.QuestionResponseId
+			JOIN tbUser u ON u.UserId = r.UserId
+		WHERE q.CorrectAnswer = qr.Response
+			AND u.UserId = @UserId AND r.QuizResponseId = @QuizResponseId
+		GROUP BY u.UserId, r.QuizResponseId,u.Email
+
+	SET @Grade = CONVERT(DECIMAL(3,2),(CONVERT(DECIMAL,@Marks)/CONVERT(DECIMAL,@TotalQuestions))) * 100.0
+
+	SELECT	FirstName, LastName, Email,	
+			@Marks AS [Correct], 
+			@TotalQuestions AS [Quiz Questions],
+			(CONVERT(VARCHAR(5),@Grade) + '%') AS [Grade],
+			CASE WHEN @Grade >= 70 THEN 'Pass'
+				 ELSE 'Fail' END AS [Pass/Fail]
+		FROM tbUser u
+		WHERE u.UserId = @UserID
+END
+
+--select distinct  * from tbQuestionResponse,tbQuiz,tbQuizResponse
 ------------------------------------------------
 go
 create proc spCountNumberOfQuestions 
