@@ -44,6 +44,10 @@ namespace Group_Project_Online_Exam
             Security mySecurity = new Security(FullEmail, txtPassword.Text);
             if (mySecurity.IsLoggedIn())
             {
+                if (mySecurity.IsTeacher())
+                {
+                    Response.Redirect("TeacherInstructions.aspx");
+                }
                 Response.Redirect("Home.aspx");
             }
             else

@@ -19,7 +19,6 @@ namespace Group_Project_Online_Exam
             else if(s.IsTeacher() || s.IsAdmin())
             {
                 this.MasterPageFile = "NestedTeacherMasterPage.Master";
-                Response.Redirect("TeacherInsturctions.aspx");
             }
             // default is neither.
         } 

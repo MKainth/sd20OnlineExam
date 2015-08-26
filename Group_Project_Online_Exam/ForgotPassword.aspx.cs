@@ -12,7 +12,7 @@ using System.Net.Mail;
 using System.Data;
 namespace Group_Project_Online_Exam
 {
-    public partial class ForgotPassword : System.Web.UI.Page
+    public partial class ForgotPassword : MasterPageSwitch
     {
         string conn = ConfigurationManager.ConnectionStrings["Exam"].ConnectionString;
         string emailDomain = ConfigurationManager.AppSettings["EmailDomainName"];

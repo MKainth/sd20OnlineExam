@@ -7,7 +7,7 @@ using System.Web.UI.WebControls;
 
 namespace Group_Project_Online_Exam
 {
-    public partial class WebForm1 : System.Web.UI.Page
+    public partial class WebForm1 : MasterPageSwitch
     {
         protected void Page_Load(object sender, EventArgs e)
         {

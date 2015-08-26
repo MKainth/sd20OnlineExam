@@ -12,6 +12,6 @@
 <asp:Content ID="Content3" ContentPlaceHolderID="SideBarContentPlaceHolder" runat="server">
 		<h2>Student Options</h2>
 		<ul>
-			<li><a id="exam" href="ExamPage.aspx">Exam </a></li>
+			<li><a id="exam" href="InstructionForExam.aspx">Exam </a></li>
 		</ul>
 </asp:Content>

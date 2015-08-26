@@ -12,7 +12,7 @@ using System.Data.SqlClient;
 using DAL_Project;
 namespace Group_Project_Online_Exam
 {
-    public partial class ChangePassword : System.Web.UI.Page
+    public partial class ChangePassword : MasterPageSwitch
     {
         string conn = ConfigurationManager.ConnectionStrings["Exam"].ToString();
         protected void Page_Load(object sender, EventArgs e)
