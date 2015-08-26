@@ -30,7 +30,7 @@ namespace Group_Project_Online_Exam
 
             if (!IsPostBack)
             {
-
+                Session["NumberofQuestion"] = 0;
 
                 Session["QuestionCount"] = counter;
                 Responses = new string[counter];
@@ -196,11 +196,29 @@ namespace Group_Project_Online_Exam
 
             if (Responses[rowindex] != "")
             {
+
+                 RadioButtonList1.SelectedValue=Responses[rowindex].ToString() ;
+            }
                 // this question already has an answer from previous, so that must mean the user had clicked BACK and we're looking at a already answered question
                 // now you have to populate the right radiobutton automatically for the user.
+                 rowindex++;
+                 ViewState["RowIndex"] = rowindex;
+
+
+                 if (rowindex > dt.Rows.Count - 1)
+                 {
+                     Response.Redirect("FinishExam.aspx");
+                     rowindex = -1;
+                     ViewState["RowIndex"] = rowindex;
+                     // TEST IS OVER.
+                 }
+                 else
+                 {
+                     LoadQuestion();
+                 }
 
             }
         }
     }
-}
+
 
