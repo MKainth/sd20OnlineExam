@@ -26,7 +26,7 @@ namespace Group_Project_Online_Exam
         {
             Security s = new Security();
             DAL mydal = new DAL(conn);
-            mydal.AddParam("@UserId", s.Userid);
+            mydal.AddParam("@UserId",s.Userid);
             DataSet ds = mydal.ExecuteProcedure("spGetActiveQuizByUser");
             string QuizName = ds.Tables[0].Rows[0]["QuizTitle"].ToString();
             lblShowQuiz.Text = QuizName;
