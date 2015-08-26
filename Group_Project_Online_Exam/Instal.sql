@@ -125,7 +125,7 @@ insert into tbQuiz(QuizTitle,TimeinMinute,ProgramId,DifficultyId,TypeOfQuestions
 					--('Test1',DATEADD(Minute,60,GETDATE()),1,1,1)
 					('Test1',30,1,1,1),
 					('Test2',30,2,1,1),
-					('test3',30,3,1,1)
+					('Test3',30,3,1,1)
 --SELECT * FROM tbQuiz WHERE TimeinMinute > GETDATE()			
 
 
@@ -160,21 +160,21 @@ INSERT INTO tbQuestion  (Question,Answer1,Answer2,Answer3,Answer4,CorrectAnswer,
 
 go
 select * from tbQuestion
-
 ---------------------------------------------
 go
 create table tbQuizResponse
 (
   QuizResponseId int primary key identity(1,1),
   ExamDate Date,
-  UserId int foreign key references tbUser(UserId)	    
+  UserId int foreign key references tbUser(UserId),
+  QuizId int foreign key references tbQuiz(QuizId)    
 )
 go
 
 INSERT INTO tbQuizResponse(ExamDate, UserId, QuizId)VALUES
-('2015-02-07',3), ('2015-05-09',10),('2015-07-10',9), ('2014-03-30',4),
-('2015-05-15',6), ('2015-07-07',7),('2014-08-14',8), ('2015-08-07',11),
-('2014-01-10',5), ('2015-04-03',2),('2015-04-09',1)
+('2015-02-07',3,1), ('2015-05-09',10,1),('2015-07-10',9,1), ('2014-03-30',4,1),
+('2015-05-15',6,1), ('2015-07-07',7,1),('2014-08-14',8,1), ('2015-08-07',11,1),
+('2014-01-10',5,1), ('2015-04-03',2,1),('2015-04-09',1,1), ('2015-09-09',2,2)
 go
 
 --select * from tbUser
@@ -383,13 +383,6 @@ as begin
 	select * from tbQuestion
 	where QuizId=isnull(@QuizId,QuizId)
 end 
-
-
-
-
-
-
-
 exec spQuestion @QuestionId=3
 
 go
