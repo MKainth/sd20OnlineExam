@@ -213,7 +213,7 @@ as begin
  select count(Question) as numberofquestions
 	from tbQuestion,tbSession
 	where SessionId=@sessionId 
-	
+
 end
 
 go
@@ -363,7 +363,7 @@ as begin
 end
 go
 
-create proc spQuestion 
+create proc spQuestion
 (
 @QuestionId int
 )
@@ -778,15 +778,15 @@ SELECT * FROM tbProgram p JOIN tbSession s ON p.ProgramId = s.ProgramId
 		
 --end
 
-create proc spGetSessionByProgram
-as begin
-select  distinct tbProgram.ProgramId, SessionCode from tbSession
-inner join tbProgram on tbSession.ProgramId  = tbProgram.ProgramId
-where tbProgram.ProgramId
+--create proc spGetSessionByProgram
+--as begin
+--select  distinct tbProgram.ProgramId, SessionCode from tbSession
+--inner join tbProgram on tbSession.ProgramId  = tbProgram.ProgramId
+--where tbProgram.ProgramId
 
 		
 		
-end
+--end
 
-select * from tbSession
-select * from tbProgram
+--select * from tbSession
+--select * from tbProgram
