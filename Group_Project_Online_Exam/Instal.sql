@@ -107,7 +107,7 @@ go
 
 insert into tbUserSession(UserId, SessionId)values(3,3), (2,5),(4,6),(5,7), (7,8),(9,7), (6,8)
 go
-
+select * from tbUserSession
 -----------------------------------------------
 create table tbQuiz
 (
@@ -123,7 +123,9 @@ create table tbQuiz
 go
 insert into tbQuiz(QuizTitle,TimeinMinute,ProgramId,DifficultyId,TypeOfQuestionsId)values
 					--('Test1',DATEADD(Minute,60,GETDATE()),1,1,1)
-					('Test1',30,1,1,1)
+					('Test1',30,1,1,1),
+					('Test2',30,2,1,1),
+					('Test3',30,3,1,1)
 --SELECT * FROM tbQuiz WHERE TimeinMinute > GETDATE()			
 go
 ---------------------------------spGetQuiz----------------------------------------------------------------
@@ -171,7 +173,6 @@ INSERT INTO tbQuestion  (Question,Answer1,Answer2,Answer3,Answer4,CorrectAnswer,
 
 go
 select * from tbQuestion
-
 ---------------------------------------------
 go
 create table tbQuizResponse
@@ -272,13 +273,13 @@ BEGIN
 		WHERE r.QuizResponseId = @QuizResponseId
 
 	SELECT @Marks = SUM(q.Marks)
-		FROM tbQuestionResponse qr 
-			JOIN tbQuestion q ON qr.QuestionId = q.QuestionId
-			JOIN tbQuizResponse r ON r.QuizResponseId = qr.QuestionResponseId
-			JOIN tbUser u ON u.UserId = r.UserId
-		WHERE q.CorrectAnswer = qr.Response
+	FROM tbQuestionResponse qr 
+		JOIN tbQuestion q ON qr.QuestionId = q.QuestionId
+		JOIN tbQuizResponse r ON r.QuizResponseId = qr.QuestionResponseId
+		JOIN tbUser u ON u.UserId = r.UserId
+	WHERE q.CorrectAnswer = qr.Response
 			AND u.UserId = @UserId AND r.QuizResponseId = @QuizResponseId
-		GROUP BY u.UserId, r.QuizResponseId,u.Email
+	GROUP BY u.UserId, r.QuizResponseId,u.Email
 
 	SET @Grade = CONVERT(DECIMAL(3,2),(CONVERT(DECIMAL,@Marks)/CONVERT(DECIMAL,@TotalQuestions))) * 100.0
 
@@ -471,13 +472,6 @@ as begin
 	select * from tbQuestion
 	where QuizId=isnull(@QuizId,QuizId)
 end 
-
-
-
-
-
-
-
 exec spQuestion @QuestionId=3
 
 go
@@ -878,6 +872,5 @@ SELECT * FROM tbProgram p JOIN tbSession s ON p.ProgramId = s.ProgramId
 		
 --end
 
-select * from tbSession
-select * from tbProgram
-
+--select * from tbSession
+--select * from tbProgram
