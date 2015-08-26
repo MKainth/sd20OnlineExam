@@ -207,12 +207,12 @@ select distinct  * from tbQuestionResponse,tbQuiz,tbQuizResponse
 go
 create proc spCountNumberOfQuestions 
 (
-@sessionId int
+@QuizId int
 )
 as begin
- select count(Question) as numberofquestions
-	from tbQuestion,tbSession
-	where SessionId=@sessionId 
+ select count(*) as numberofquestions
+	from tbQuestion
+	where QuizId = @QuizId
 
 end
 
@@ -241,7 +241,7 @@ go
 --select * from tbActiveExam
 
 insert into tbActiveExam (StartTime,EndTime,QuizId,SessionId)values
-('2015-08-25 11:00:00','2015-08-25 6:00:00',1,3)
+('2015-08-25 11:00:00','2015-08-30 18:00:00',1,3)
 						-- (GETDATE(),DATEADD(minute,30,GETDATE()),1,3)
 ------------------------spInsertUser--------------------------
 go
