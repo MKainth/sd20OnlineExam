@@ -1,4 +1,4 @@
-﻿<%@ Page Title="" Language="C#" MasterPageFile="~/MasterPage.Master" AutoEventWireup="true" CodeBehind="InsturctionForExam.aspx.cs" Inherits="Group_Project_Online_Exam.InsturctionForExam" %>
+﻿<%@ Page Title="" Language="C#" MasterPageFile="~/Header_Footer.Master" AutoEventWireup="true" CodeBehind="InstructionForExam.aspx.cs" Inherits="Group_Project_Online_Exam.InstructionForExam" %>
 <asp:Content ID="Content1" ContentPlaceHolderID="head" runat="server">
 </asp:Content>
 <asp:Content ID="Content2" ContentPlaceHolderID="ContentPlaceHolder1" runat="server">
@@ -14,7 +14,7 @@
     with you.</p> 
 
     <p><b>Please proceed to Exam</b></p>
-    <asp:Button ID="btnStartTest" runat="server" Text="Start Test" />
+    <asp:Button ID="btnnext" runat="server" Text="Next" OnClick="btnnext_Click" />
    
 
 </asp:Content>

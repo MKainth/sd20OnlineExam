@@ -1,4 +1,4 @@
-﻿<%@ Page Title="" Language="C#" MasterPageFile="~/MasterPage.Master" AutoEventWireup="true" CodeBehind="ActiveExam.aspx.cs" Inherits="Group_Project_Online_Exam.ActiveExam1" %>
+﻿<%@ Page Title="" Language="C#" MasterPageFile="~/Header_Footer.Master" AutoEventWireup="true" CodeBehind="ActiveExam.aspx.cs" Inherits="Group_Project_Online_Exam.ActiveExam1" %>
 
 <asp:Content ID="Content1" ContentPlaceHolderID="head" runat="server">
 </asp:Content>

@@ -7,12 +7,11 @@ using System.Web.UI.WebControls;
 
 namespace Group_Project_Online_Exam
 {
-    public partial class Registration : System.Web.UI.Page
+    public partial class Registration : MasterPageSwitch
     {
         protected void Page_Load(object sender, EventArgs e)
         {
-
-            Panel pnlLogin = (Panel)Master.FindControl("pnlLogin");
+            UpdatePanel pnlLogin = (UpdatePanel)Master.Master.FindControl("UpdatePanelLogin");
             pnlLogin.Visible = false;
 
         }

@@ -10,7 +10,7 @@ using System.Data;
 
 namespace Group_Project_Online_Exam
 {
-    public partial class Quiz1 : System.Web.UI.Page
+    public partial class Quiz1 : MasterPageSwitch
     {
         string conn = ConfigurationManager.ConnectionStrings["Exam"].ConnectionString;
         protected void Page_Load(object sender, EventArgs e)

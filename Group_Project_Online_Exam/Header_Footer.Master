@@ -53,14 +53,10 @@
 		
 		<div id="search">
              <asp:Label ID="lblFirstname" Font-Size="Medium" ForeColor="White" runat="server" Text=""></asp:Label>
-             <div id="buttonLogout">
-            
-        </div><asp:Panel ID="pnlLogout" runat="server">
-            <asp:Button ID="btnLogout" runat="server" Text="Logout" OnClick="btnLogout_Click"  />    
-               
-                <br />
-            
-            </asp:Panel>
+             
+            <asp:Panel ID="pnlLogout" runat="server" style="float:right;">
+                <asp:Button ID="btnLogout" runat="server" Text="Logout" OnClick="btnLogout_Click" /> <br />
+             </asp:Panel>
 			
 		</div>
 		

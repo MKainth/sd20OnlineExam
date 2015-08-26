@@ -63,6 +63,7 @@
   </ItemGroup>
   <ItemGroup>
     <Content Include="ActiveExam.aspx" />
+    <Content Include="ActiveExamForStudent.aspx" />
     <Content Include="Add_Program_and_Session.aspx" />
     <Content Include="ChangePassword.aspx" />
     <Content Include="ExamPage.aspx" />
@@ -70,7 +71,8 @@
     <Content Include="favicon.ico" />
     <Content Include="FinishExam.aspx" />
     <Content Include="ForgotPassword.aspx" />
-    <Content Include="InsturctionForExam.aspx" />
+    <Content Include="imagesUZHM7ML0.jpg" />
+    <Content Include="InstructionForExam.aspx" />
     <Content Include="jquery-2.1.4.js" />
     <Content Include="MasterPage.Master" />
     <Content Include="images\Thumbs.db" />
@@ -101,7 +103,7 @@
     <Content Include="Registration.aspx" />
     <Content Include="style.css" />
     <Content Include="Instal.sql" />
-    <Content Include="TeacherInsturctions.aspx" />
+    <Content Include="TeacherInstructions.aspx" />
     <Content Include="UpdateDelete.aspx" />
     <Content Include="UserInformation.aspx" />
     <Content Include="Web.config" />
@@ -113,6 +115,13 @@
     </Compile>
     <Compile Include="ActiveExam.aspx.designer.cs">
       <DependentUpon>ActiveExam.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="ActiveExamForStudent.aspx.cs">
+      <DependentUpon>ActiveExamForStudent.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="ActiveExamForStudent.aspx.designer.cs">
+      <DependentUpon>ActiveExamForStudent.aspx</DependentUpon>
     </Compile>
     <Compile Include="Add_Program_and_Session.aspx.cs">
       <DependentUpon>Add_Program_and_Session.aspx</DependentUpon>
@@ -156,12 +165,12 @@
     <Compile Include="Home.aspx.designer.cs">
       <DependentUpon>Home.aspx</DependentUpon>
     </Compile>
-    <Compile Include="InsturctionForExam.aspx.cs">
-      <DependentUpon>InsturctionForExam.aspx</DependentUpon>
+    <Compile Include="InstructionForExam.aspx.cs">
+      <DependentUpon>InstructionForExam.aspx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
     </Compile>
-    <Compile Include="InsturctionForExam.aspx.designer.cs">
-      <DependentUpon>InsturctionForExam.aspx</DependentUpon>
+    <Compile Include="InstructionForExam.aspx.designer.cs">
+      <DependentUpon>InstructionForExam.aspx</DependentUpon>
     </Compile>
     <Compile Include="Header_Footer.Master.cs">
       <DependentUpon>Header_Footer.Master</DependentUpon>
@@ -242,12 +251,12 @@
       <DependentUpon>StudentEachProgram.aspx</DependentUpon>
     </Compile>
     <Compile Include="Security.cs" />
-    <Compile Include="TeacherInsturctions.aspx.cs">
-      <DependentUpon>TeacherInsturctions.aspx</DependentUpon>
+    <Compile Include="TeacherInstructions.aspx.cs">
+      <DependentUpon>TeacherInstructions.aspx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
     </Compile>
-    <Compile Include="TeacherInsturctions.aspx.designer.cs">
-      <DependentUpon>TeacherInsturctions.aspx</DependentUpon>
+    <Compile Include="TeacherInstructions.aspx.designer.cs">
+      <DependentUpon>TeacherInstructions.aspx</DependentUpon>
     </Compile>
     <Compile Include="UserInformation.aspx.cs">
       <DependentUpon>UserInformation.aspx</DependentUpon>

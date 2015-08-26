@@ -11,7 +11,7 @@ namespace Group_Project_Online_Exam
         public class Security
         {
             int SecurityLevel;
-            int Userid;
+            public int Userid;
             public string Firstname;
 
             public Security()
