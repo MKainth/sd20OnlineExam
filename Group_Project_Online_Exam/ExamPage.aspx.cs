@@ -18,9 +18,7 @@ namespace Group_Project_Online_Exam
          int counter = 0;
         string[] Responses;
 
-        protected void Page_Load(object sender, EventArgs e)        
-        
-        
+        protected void Page_Load(object sender, EventArgs e)
         {
 
             GetQuizId();
@@ -53,11 +51,7 @@ namespace Group_Project_Online_Exam
         {
            // btnback.Enabled = true;
             string value = ViewState["CorrectAnswer"].ToString();
-            if (!string.IsNullOrEmpty(Responses[rowindex]))
-            {
-                int IndexValue = int.Parse(Responses[rowindex].ToString());
-                RadioButtonList1.Items[IndexValue].Selected = true;//.SelectedItem.Value = Responses[rowindex].ToString();
-            }else
+            
             if (RadioButtonList1.SelectedItem != null)
             {
                 Responses[rowindex] = RadioButtonList1.SelectedIndex.ToString();
@@ -78,9 +72,6 @@ namespace Group_Project_Online_Exam
             }
             else
             {
-              
-             
-          
                 LoadQuestion();
             }
            
@@ -100,12 +91,6 @@ namespace Group_Project_Online_Exam
                 // use the same logic you have on page load, so you may need methods that do this
                 // instead of the logic just being on page load itself.
 
-                if (!string.IsNullOrEmpty(Responses[rowindex]))
-                {
-                    int IndexValue = int.Parse(Responses[rowindex].ToString());
-                    ViewState["IndexValue"] = IndexValue;
-                    RadioButtonList1.Items[IndexValue].Selected = true;//.SelectedItem.Value = Responses[rowindex].ToString();
-                }
                 // this question already has an answer from previous, so that must mean 
                 //the user had clicked BACK and we're looking at a already answered question
                 // now you have to populate the right radiobutton automatically for the user.
@@ -170,6 +155,12 @@ namespace Group_Project_Online_Exam
                 {
                     RadioButtonList1.Items.Add(new ListItem(answerText, i.ToString()));
                 }
+            }
+
+            if (!string.IsNullOrEmpty(Responses[rowindex]))
+            {
+                int IndexValue = int.Parse(Responses[rowindex].ToString());
+                RadioButtonList1.Items[IndexValue].Selected = true;//.SelectedItem.Value = Responses[rowindex].ToString();
             }
         }
 
