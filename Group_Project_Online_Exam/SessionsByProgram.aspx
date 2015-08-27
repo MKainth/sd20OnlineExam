@@ -6,6 +6,7 @@
 
     <asp:SqlDataSource ID="SqlDataSource1" runat="server" ConnectionString="<%$ ConnectionStrings:dbSD20ConnectionString %>" SelectCommand="spGetSessionsByProgram" SelectCommandType="StoredProcedure"></asp:SqlDataSource>
     <asp:GridView ID="GridView1" runat="server"  AutoGenerateColumns="False" DataSourceID="SqlDataSource1" DataKeyNames="ProgramId">
+        <AlternatingRowStyle BackColor="#99CCFF" />
         <Columns>
             <asp:BoundField DataField="ProgramName" HeaderText="ProgramName" SortExpression="ProgramName" />
             <asp:TemplateField HeaderText="NumberOfSession" SortExpression="NumberOfSession">
@@ -31,6 +32,7 @@
     </asp:GridView>
 
        <asp:GridView ID="gvSessionsByProgram" runat="server"  AllowSorting="True" Width="628px" >
+           <AlternatingRowStyle BackColor="#99CCFF" />
 
            </asp:GridView>
 </asp:Content>

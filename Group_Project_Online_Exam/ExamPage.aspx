@@ -26,7 +26,7 @@
                 <table>
                     <tr>
                         <td>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; &nbsp;</td>
-                        <td> <asp:Button ID="btnback" runat="server" Text="back" OnClick="btnback_Click" Width="110px"/></td>
+                        <td> <asp:Button ID="btnback" runat="server" Text="Back" OnClick="btnback_Click" Width="110px"/></td>
                         <td>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; &nbsp;</td>
                         <td>    <asp:Button ID="btnNext" runat="server" Text="Next" OnClick="btnNext_Click" Width="110px" /></td>
                         <td>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; &nbsp;</td>
