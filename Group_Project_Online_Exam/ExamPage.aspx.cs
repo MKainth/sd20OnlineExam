@@ -22,7 +22,7 @@ namespace Group_Project_Online_Exam
         {
 
             GetQuizId();
-
+      
             rowindex = ViewState["RowIndex"] == null ? 0 : (int)ViewState["RowIndex"];
             if (ViewState["RowIndex"] == null) ViewState["RowIndex"] = 0;
             loadQuestions();
@@ -32,7 +32,6 @@ namespace Group_Project_Online_Exam
                 CountNumberOfQuestions();
                 Responses = new string[counter];
                 Session["Responses"] = Responses;
-                
                 GetEndTime();
                 LoadQuestion();
             }
@@ -176,6 +175,7 @@ namespace Group_Project_Online_Exam
             DAL mydal = new DAL(conn);
             DataSet ds = mydal.ExecuteProcedure("spShowQuiz");
             Session["QuizId"] = int.Parse(ds.Tables[0].Rows[0]["QuizId"].ToString());
+            
         }
 
         public void loadQuestions()
@@ -194,6 +194,12 @@ namespace Group_Project_Online_Exam
                     lblQuestion.Text = "ERROR, QUIZ RETURNED WITH 0 ROWS!";
                 }
             }
+        }
+
+        protected void btnfinish_Click(object sender, EventArgs e)
+        {
+            DAL mydal = new DAL(conn);
+            
         }
 
        
