@@ -640,7 +640,7 @@ as begin
 							   JOIN tbProgram ON tbProgram.ProgramId=tbSession.ProgramId
 							   JOIN tbActiveExam ON tbActiveExam.SessionId = tbSession.SessionId
 							   JOIN tbQuiz ON tbQuiz.QuizId = tbActiveExam.QuizId
-			where tbUser.UserId = @UserId AND tbActiveExam.EndTime < GETDATE()
+			where tbUser.UserId = @UserId AND tbActiveExam.EndTime > GETDATE()
 end
 go
 

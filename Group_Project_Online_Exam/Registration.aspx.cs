@@ -11,7 +11,7 @@ namespace Group_Project_Online_Exam
     {
         protected void Page_Load(object sender, EventArgs e)
         {
-            UpdatePanel pnlLogin = (UpdatePanel)Master.Master.FindControl("UpdatePanelLogin");
+            UpdatePanel pnlLogin = (UpdatePanel)Master.FindControl("UpdatePanelLogin");
             pnlLogin.Visible = false;
 
         }
