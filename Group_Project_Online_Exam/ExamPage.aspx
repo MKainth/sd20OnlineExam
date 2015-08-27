@@ -3,59 +3,68 @@
 <asp:Content ID="Content1" ContentPlaceHolderID="head" runat="server">
 </asp:Content>
 <asp:Content ID="Content2" ContentPlaceHolderID="ContentPlaceHolder1" runat="server">
-
-    <span id="time" runat="server"></span>
-
+    <link href="compiled/flipclock.css" rel="stylesheet" />
+    <script src="compiled/flipclock.js"></script>
+    <asp:HiddenField ID="hiddenSeconds" Value="" runat="server" />
+	<div class="clock" style="margin:2em;"></div>
    
-   <%-- <asp:Timer ID="Timer1" runat="server" Interval="3600" OnTick="Timer1_Tick"></asp:Timer>--%>
-
-
-    <asp:UpdatePanel ID="UpdatePanel2" runat="server" >
- 
+    <asp:UpdatePanel ID="UpdatePanel1"   runat="server">
         <ContentTemplate>
-            <asp:Label ID="lblTimer" runat="server" Text="Label"></asp:Label>
-        </ContentTemplate>
-        <Triggers>
-         <%--   <asp:AsyncPostBackTrigger ControlID="Timer1" EventName="Tick" />--%>
-        </Triggers>
+            <table>
+                <tr>
+                    <td>
+                        <asp:Label ID="lblProgramNAme" runat="server" Text=""></asp:Label></td>
+                    
+                    <td>
+                        <asp:Label ID="LblQuizName" runat="server" Text=""></asp:Label>
+                </tr>
+            </table>
+            <div style="font-size:x-large; width: 694px;">
+            <asp:Label  ID="lblComplted" Font-Size="Medium" ForeColor="Red" runat="server" Text=""></asp:Label>
 
-        
-    </asp:UpdatePanel>
-    <asp:UpdatePanel ID="UpdatePanel1" runat="server">
-        <ContentTemplate>
-            <asp:Label ID="lblComplted" runat="server" Text=""></asp:Label>
+                <br />
             <asp:Label ID="lblmsg" runat="server" Text=""></asp:Label>
             
             <asp:Label ID="lblQuestion" runat="server" Text=""></asp:Label>
+                <br />
             <asp:RadioButtonList ID="RadioButtonList1" runat="server">
-            </asp:RadioButtonList>
-            <asp:Button ID="btnback" runat="server" Text="back" OnClick="btnback_Click"/>
-            <asp:Button ID="btnNext" runat="server" Text="Next" OnClick="btnNext_Click" />
+            </asp:RadioButtonList><br />
+                <table>
+                    <tr>
+                        <td>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; &nbsp;</td>
+                        <td> <asp:Button ID="btnback" runat="server" Text="back" OnClick="btnback_Click" Width="110px"/></td>
+                        <td>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; &nbsp;</td>
+                        <td>    <asp:Button ID="btnNext" runat="server" Text="Next" OnClick="btnNext_Click" Width="110px" /></td>
+                        <td>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; &nbsp;</td>
+                       
+                    </tr>
+                </table>
+           
+        
+                </div>
         </ContentTemplate>
     </asp:UpdatePanel>
-     
+    
 
-       <%-- <script>
-            function startTimer(duration, display) {
-                var timer = duration, minutes, seconds;
-                setInterval(function () {
-                    minutes = parseInt(timer / 60, 10)
-                    seconds = parseInt(timer % 60, 10);
+  
+<script>
 
-                    minutes = minutes < 10 ? "0" + minutes : minutes;
-                    seconds = seconds < 10 ? "0" + seconds : seconds;
+    var clock;
 
-                    display.text(minutes + ":" + seconds);
+    $(document).ready(function () {
 
-                    if (--timer < 0) {
-                        timer = duration;
-                    }
-                }, 1000);
-            }
+        seconds = $("#ContentPlaceHolder1_ContentPlaceHolder1_hiddenSeconds").val();
 
-            $(function ($) {
-                var seconds = parseInt($("#ContentPlaceHolder1_time").html());
-                startTimer(seconds, $("#ContentPlaceHolder1_time"));
-            });
-    </script>--%>
+        clock = new FlipClock($('.clock'), seconds, {
+            clockFace: 'MinuteCounter',
+            countdown: true,
+            autostart: true
+        });
+    });
+
+    
+</script>
+    
+   
+
 </asp:Content>

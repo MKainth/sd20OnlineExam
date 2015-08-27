@@ -19,8 +19,8 @@ namespace Group_Project_Online_Exam
 
         protected void Page_Load(object sender, EventArgs e)
         {
-            Panel pnlLogin = (Panel)Master.FindControl("pnlLogin");
-            pnlLogin.Visible = false;
+            Panel pnlForgot = (Panel)Master.FindControl("pnlForgot");
+            pnlForgot.Visible = false;
 
         }
 

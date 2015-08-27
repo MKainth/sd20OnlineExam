@@ -332,7 +332,7 @@ go
 --select * from tbActiveExam
 
 insert into tbActiveExam (StartTime,EndTime,QuizId,SessionId)values
-('2015-08-25 11:00:00','2015-08-30 18:00:00',1,3)
+('2015-08-27 11:00:00','2015-08-30 14:12:00',1,3)
 						-- (GETDATE(),DATEADD(minute,30,GETDATE()),1,3)
 ------------------------spInsertUser--------------------------
 go
@@ -640,7 +640,7 @@ as begin
 							   JOIN tbProgram ON tbProgram.ProgramId=tbSession.ProgramId
 							   JOIN tbActiveExam ON tbActiveExam.SessionId = tbSession.SessionId
 							   JOIN tbQuiz ON tbQuiz.QuizId = tbActiveExam.QuizId
-			where tbUser.UserId = @UserId AND tbActiveExam.EndTime < GETDATE()
+			where tbUser.UserId = @UserId AND tbActiveExam.EndTime > GETDATE()
 end
 go
 

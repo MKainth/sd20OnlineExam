@@ -25,14 +25,15 @@ namespace Group_Project_Online_Exam
             lblFirstname.Text = mySecurity.Firstname;
             if (!mySecurity.IsLoggedIn())
             {
-                btnLogout.Visible = false;     
+                btnLogout.Visible = false;
+             
             }
             else
             { //Adjust links visible according to Security Level(Admin or Regular)
 
                 UpdatePanelLogin.Visible = false;
                 pnlLogout.Visible = true;
-
+                hlRegistration.Visible = false;
             }
 
            
@@ -44,11 +45,13 @@ namespace Group_Project_Online_Exam
             Security mySecurity = new Security(FullEmail, txtPassword.Text);
             if (mySecurity.IsLoggedIn())
             {
-                if (mySecurity.IsTeacher())
+              
+                if (mySecurity.IsTeacher()||mySecurity.IsAdmin())
                 {
                     Response.Redirect("TeacherInstructions.aspx");
                 }
                 Response.Redirect("Home.aspx");
+             
             }
             else
             {

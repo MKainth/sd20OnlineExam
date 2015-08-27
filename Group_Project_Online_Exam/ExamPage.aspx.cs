@@ -33,7 +33,7 @@ namespace Group_Project_Online_Exam
                 Responses = new string[counter];
                 Session["Responses"] = Responses;
                 
-            //    GetEndTime();
+                GetEndTime();
                 LoadQuestion();
             }
 
@@ -84,23 +84,14 @@ namespace Group_Project_Online_Exam
             {
                 rowindex--;
                 ViewState["RowIndex"] = rowindex;
-                // check that you dont go back too far
+        
                 loadQuestions();
                 LoadQuestion();
-                // change the question on the screen based on the new row index
-                // use the same logic you have on page load, so you may need methods that do this
-                // instead of the logic just being on page load itself.
-
-                // this question already has an answer from previous, so that must mean 
-                //the user had clicked BACK and we're looking at a already answered question
-                // now you have to populate the right radiobutton automatically for the user.
-                //LoadQuestion();
+              
             }
             else
             {
                 
-               // btnback.Enabled = false;
-                //btnNext.Enabled = true;
                 // you're at the first question, cant go back!
             }
             
@@ -109,7 +100,7 @@ namespace Group_Project_Online_Exam
         }
         protected void Timer1_Tick(object sender, EventArgs e)
         {
-          //  UpdateTimer();
+            //UpdateTimer();
         }
 
         private void UpdateTimer()
@@ -166,14 +157,18 @@ namespace Group_Project_Online_Exam
 
         public void GetEndTime()
         {
-            //DAL mydal = new DAL(conn);
-            //DataSet ds = mydal.ExecuteProcedure("spShowActiveExam");
-            //DateTime EndTime = Convert.ToDateTime(ds.Tables[0].Rows[0]["EndTime"].ToString());
-            //DateTime StartTime = Convert.ToDateTime(ds.Tables[0].Rows[0]["StartTime"].ToString());
-            //Session["EndTime"] = EndTime;
-            //Session["StartTime"] = StartTime;
-            //time.InnerHtml = Math.Round((EndTime - DateTime.Now).TotalSeconds, 0).ToString();
-            //UpdateTimer();
+            DAL mydal = new DAL(conn);
+            DataSet ds = mydal.ExecuteProcedure("spShowActiveExam");
+            DateTime EndTime = Convert.ToDateTime(ds.Tables[0].Rows[0]["EndTime"].ToString());
+            DateTime StartTime = Convert.ToDateTime(ds.Tables[0].Rows[0]["StartTime"].ToString());
+            Session["EndTime"] = EndTime;
+            Session["StartTime"] = StartTime;
+            hiddenSeconds.Value = Math.Round((EndTime - DateTime.Now).TotalSeconds, 0).ToString();
+           // UpdateTimer();
+            if(int.Parse(hiddenSeconds.Value)<0)
+            {
+                UpdatePanel1.Visible = false;
+            }
         }
 
         public void GetQuizId()
@@ -201,6 +196,7 @@ namespace Group_Project_Online_Exam
             }
         }
 
+       
       
       
         }

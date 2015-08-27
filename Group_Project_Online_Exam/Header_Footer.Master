@@ -47,7 +47,7 @@
 			<ul>
 				<li><a href="Home.aspx" class="first">Home</a></li>
 				<li class="current_page_item">
-                    <asp:HyperLink ID="hlRegistration" runat="server" NavigateUrl="~/Registration.aspx">Registration</asp:HyperLink></li>
+                    <asp:HyperLink ID="hlRegistration" runat="server" Visible="true" NavigateUrl="~/Registration.aspx">Registration</asp:HyperLink></li>
 			</ul>
 		</div>
 		
