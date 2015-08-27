@@ -85,7 +85,12 @@ hr { display: none; }
 	background: url(images/img02.jpg)  no-repeat left top;
 }
 
-
+#buttonLogout{
+    font-family: "Trebuchet MS", Arial, Helvetica, sans-serif;
+	font-size: 12px;
+	font-weight: normal;
+	/*color: #cdeaff;*/
+}
 
 #menu {
 	float: left;
@@ -150,10 +155,6 @@ hr { display: none; }
 	border: none;
 }
 
-#search input {
-	float: left;
-	font: 12px Georgia, "Times New Roman", Times, serif;
-}
 
 #search-text {
 	width: 150px;
