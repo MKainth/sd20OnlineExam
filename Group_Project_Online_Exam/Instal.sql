@@ -428,26 +428,30 @@ end
 go
 ------------------------------------
 
-
--------------------------------------------
 create proc spSelectQuiz
 as begin
-select QuizId,QuizTitle,  CONVERT(VARCHAR(8),GETDATE(),108) AS TimeinMinute,ProgramId,DifficultyId,TypeOfQuestionsId
- from tbQuiz
+	select QuizId,QuizTitle,  CONVERT(VARCHAR(8),GETDATE(),108) AS TimeinMinute,ProgramId,DifficultyId,TypeOfQuestionsId
+	from tbQuiz
 end
 go
+
+------------------------------------
 create proc spShowQuiz
 as begin
 select * from tbQuiz
 end
 go
+
+------------------------------------
+
 create proc spUpdateQuiz
-(@QuizId int,
-@QuizTitle varchar(max),
-@Time datetime,
-@pro_Id int,
-@DifficultyId int,
-@typeofQuestionId int
+(
+	@QuizId int,
+	@QuizTitle varchar(max),
+	@Time datetime,
+	@pro_Id int,
+	@DifficultyId int,
+	@typeofQuestionId int
 )
 as begin
 	update tbQuiz
@@ -459,6 +463,9 @@ as begin
 	where QuizId=@QuizId
 end
 go	
+
+------------------------------------
+
 create proc spDeleteQuiz
 (
 @QuizId int
@@ -472,16 +479,14 @@ if exists
 	else
 	begin
 	
-delete from tbQuiz
-where QuizId=@QuizId
-select 'Success' as Result
-end
+	delete from tbQuiz
+	where QuizId=@QuizId
+	select 'Success' as Result
+	end
 end
 go
 
---------------------------------------
-
-----------------------------------------------------------------------------
+---------------------------------------------------------------------
 create procedure spTeacher
 as begin
   select FirstName, LastName, Password, Email, SecurityLevel from tbUser
@@ -773,21 +778,17 @@ SELECT * FROM tbProgram p JOIN tbSession s ON p.ProgramId = s.ProgramId
 --)
 --as begin
 --select  distinct * from tbSession,tbProgram
---where tbProgram.ProgramId=tbSession.ProgramId  and
-		
-		
+--where tbProgram.ProgramId=tbSession.ProgramId  and		
 --end
 
 --create proc spGetSessionByProgram
 --as begin
 --select  distinct tbProgram.ProgramId, SessionCode from tbSession
 --inner join tbProgram on tbSession.ProgramId  = tbProgram.ProgramId
---where tbProgram.ProgramId
-
-		
-		
+--where tbProgram.ProgramId		
 --end
 
 select * from tbSession
 select * from tbProgram
 
+------------------------
