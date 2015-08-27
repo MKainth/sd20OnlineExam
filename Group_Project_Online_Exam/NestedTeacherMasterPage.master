@@ -26,28 +26,6 @@
 						<li><a href="Reports.aspx">Reports </a>
                             
 						</li> 
-						<li><a href="#">lorem ipsum </a></li>
-						<li><a href="#">lorem ipsum </a></li>
 					</ul>
-				</li>
-               
-				<li>
-					<h2>Lorem Ipsum </h2>
-					<ul>
-						<li><a href="#">lorem ipsum </a></li>
-						<li><a href="#">lorem ipsum </a></li>
-						<li><a href="#">lorem ipsum </a></li>
-						<li><a href="#">lorem ipsum </a></li>
-						<li><a href="#">lorem ipsum </a></li>
-						<li><a href="#">lorem ipsum </a></li>
-						<li><a href="#">lorem ipsum </a></li>
-						<li><a href="#">lorem ipsum </a></li>
-						<li><a href="#">lorem ipsum </a></li>
-						<li><a href="#">lorem ipsum </a>
-						  
-		</li>
-					</ul>
-				</li>
-			</ul>
-
+				</li>               
 </asp:Content>
