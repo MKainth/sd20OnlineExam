@@ -7,7 +7,8 @@
     <script src="compiled/flipclock.js"></script>
     <asp:HiddenField ID="hiddenSeconds" Value="" runat="server" />
 	<div class="clock" style="margin:2em;"></div>
-   
+
+    
     <asp:UpdatePanel ID="UpdatePanel1"   runat="server">
         <ContentTemplate>
             <table>
