@@ -7,18 +7,12 @@
     <script src="compiled/flipclock.js"></script>
     <asp:HiddenField ID="hiddenSeconds" Value="" runat="server" />
 	<div class="clock" style="margin:2em;"></div>
-   
-    <asp:UpdatePanel ID="UpdatePanel1"   runat="server">
+    
+    <table>
+        <tr>
+            <td>
+                <asp:UpdatePanel ID="UpdatePanel1"   runat="server">
         <ContentTemplate>
-            <table>
-                <tr>
-                    <td>
-                        <asp:Label ID="lblProgramNAme" runat="server" Text=""></asp:Label></td>
-                    
-                    <td>
-                        <asp:Label ID="LblQuizName" runat="server" Text=""></asp:Label>
-                </tr>
-            </table>
             <div style="font-size:x-large; width: 694px;">
             <asp:Label  ID="lblComplted" Font-Size="Medium" ForeColor="Red" runat="server" Text=""></asp:Label>
 
@@ -46,6 +40,20 @@
     </asp:UpdatePanel>
     
 
+            </td>
+            <td>
+
+
+                <br />
+                
+                
+
+                <asp:Button ID="btnfinish" runat="server" Text="Finish" Height="28px" style="margin-top: 96px; margin-left: 3px;" Width="110px" OnClick="btnfinish_Click" />
+            </td>
+        </tr>
+    </table>
+   
+    
   
 <script>
 

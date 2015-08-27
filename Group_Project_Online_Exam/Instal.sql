@@ -213,7 +213,7 @@ GO
 --------------------------------------------spGetQuizResponseByUserId--------------------------------------------------------------
 
 
-CREATE PROC spGetAllQuizReponsesByQuizId
+CREATE PROC spGetAllQuizReponsesByQuizId 
 (@QuizId AS INT)
 AS
 BEGIN
@@ -303,7 +303,10 @@ create proc spCountNumberOfQuestions
 as begin
  select count(*) as numberofquestions
 	from tbQuestion
-	where QuizId = @QuizId
+	
+	where QuizId = @quizId
+	
+
 
 end
 
