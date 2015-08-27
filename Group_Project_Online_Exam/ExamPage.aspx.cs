@@ -15,37 +15,30 @@ namespace Group_Project_Online_Exam
         string conn = ConfigurationManager.ConnectionStrings["Exam"].ConnectionString;
         DataTable dt = new DataTable();
         int rowindex = 0;
-        static int counter = 0;
+         int counter = 0;
         string[] Responses;
 
         protected void Page_Load(object sender, EventArgs e)
         {
+
             GetQuizId();
 
-            // lblDate.Text = DateTime.Today.ToString("dd/MM/yyyy");
-            // lblTime.Text = DateTime.Now.ToString("hh:mm tt");
-
             rowindex = ViewState["RowIndex"] == null ? 0 : (int)ViewState["RowIndex"];
+            if (ViewState["RowIndex"] == null) ViewState["RowIndex"] = 0;
             loadQuestions();
 
             if (!IsPostBack)
             {
-                Session["NumberofQuestion"] = 0;
-
-                Session["QuestionCount"] = counter;
+                CountNumberOfQuestions();
                 Responses = new string[counter];
-                //Session["Responses"] = Responses;
-
-                Session["Correct"] = 0;
-                Session["Wrong"] = 0;
-                GetEndTime();
+                Session["Responses"] = Responses;
+                
+            //    GetEndTime();
                 LoadQuestion();
-
             }
-            counter = (int)Session["NumberofQuestion"];
-            counter = (int)Session["QuestionCount"];
-            Responses = (string[])Session["Responses"];
 
+            counter = (int)Session["NumberofQuestion"];
+            Responses = (string[])Session["Responses"];
 
             if (rowindex != -1)
             {
@@ -54,25 +47,106 @@ namespace Group_Project_Online_Exam
 
         }
 
+        protected void btnNext_Click(object sender, EventArgs e)
+        {
+           // btnback.Enabled = true;
+            string value = ViewState["CorrectAnswer"].ToString();
+            
+            if (RadioButtonList1.SelectedItem != null)
+            {
+                Responses[rowindex] = RadioButtonList1.SelectedIndex.ToString();
+            }
+                     
+            rowindex++;
+            ViewState["RowIndex"] = rowindex;
+                
+
+            if (rowindex > dt.Rows.Count - 1)
+            {
+                //Response.Redirect("FinishExam.aspx");
+                btnNext.Enabled = false;
+              //  btnback.Enabled = true;
+                rowindex = -1;
+                ViewState["RowIndex"] = rowindex;
+                // TEST IS OVER.
+            }
+            else
+            {
+                LoadQuestion();
+            }
+           
+        }
+
+        protected void btnback_Click(object sender, EventArgs e)
+        {
+           // btnNext.Enabled = true;
+            if (rowindex - 1 >= 0)
+            {
+                rowindex--;
+                ViewState["RowIndex"] = rowindex;
+                // check that you dont go back too far
+                loadQuestions();
+                LoadQuestion();
+                // change the question on the screen based on the new row index
+                // use the same logic you have on page load, so you may need methods that do this
+                // instead of the logic just being on page load itself.
+
+                // this question already has an answer from previous, so that must mean 
+                //the user had clicked BACK and we're looking at a already answered question
+                // now you have to populate the right radiobutton automatically for the user.
+                //LoadQuestion();
+            }
+            else
+            {
+                
+               // btnback.Enabled = false;
+                //btnNext.Enabled = true;
+                // you're at the first question, cant go back!
+            }
+            
+
+
+        }
+        protected void Timer1_Tick(object sender, EventArgs e)
+        {
+          //  UpdateTimer();
+        }
+
+        private void UpdateTimer()
+        {
+            //DateTime startTime = (DateTime)Session["StartTime"];
+            //DateTime endTime = (DateTime)Session["EndTime"];
+            //DateTime now = DateTime.Now;
+
+            //if (0 > DateTime.Compare(now, endTime))
+            //{
+            //    string minutes = ((Int32)endTime.Subtract(now).TotalMinutes).ToString();
+            //    string seconds = ((Int32)endTime.Subtract(now).Seconds).ToString();
+            //    lblTimer.Text = string.Format("Time Left:00:{0}:{1}", minutes, seconds);
+            //}
+            //else
+            //{
+            //    Timer1.Enabled = true;
+            //    Response.Redirect("FinishExam.aspx");
+            //}
+        }
+
         private void CountNumberOfQuestions()
         {
-            //spCountNumberOfQuestions
             DAL mydal = new DAL(conn);
+            mydal.AddParam("QuizId", (int)Session["QuizId"]);
             DataSet ds = mydal.ExecuteProcedure("spCountNumberOfQuestions");
-            Session["NumberofQuestion"] = ds.Tables[0].Rows[0]["numberofquestions"].ToString();
-
+            counter = int.Parse(ds.Tables[0].Rows[0]["numberofquestions"].ToString());
+            Session["NumberofQuestion"] = counter;
         }
 
         private void LoadQuestion()
         {
             string QuestionNumber = dt.Rows[rowindex]["QuestionId"].ToString();
-            //   Session["QuestionId"] = QuestionNumber;
             lblComplted.Text = "Questions &nbsp" + QuestionNumber + "&nbsp of &nbsp" + dt.Rows.Count + "<br/>";
             lblmsg.Text = "Question #" + QuestionNumber + ":&nbsp";
             lblQuestion.Text = dt.Rows[rowindex]["Question"].ToString();
-
             RadioButtonList1.Items.Clear();
-
             for (int i = 1; i <= 4; i++)
             {
                 string answerText = dt.Rows[rowindex]["Answer" + i].ToString();
@@ -82,18 +156,24 @@ namespace Group_Project_Online_Exam
                     RadioButtonList1.Items.Add(new ListItem(answerText, i.ToString()));
                 }
             }
+
+            if (!string.IsNullOrEmpty(Responses[rowindex]))
+            {
+                int IndexValue = int.Parse(Responses[rowindex].ToString());
+                RadioButtonList1.Items[IndexValue].Selected = true;//.SelectedItem.Value = Responses[rowindex].ToString();
+            }
         }
 
         public void GetEndTime()
         {
-            DAL mydal = new DAL(conn);
-            DataSet ds = mydal.ExecuteProcedure("spShowActiveExam");
-            DateTime EndTime = Convert.ToDateTime(ds.Tables[0].Rows[0]["EndTime"].ToString());
-            DateTime StartTime = Convert.ToDateTime(ds.Tables[0].Rows[0]["StartTime"].ToString());
-            Session["EndTime"] = EndTime;
-            Session["StartTime"] = StartTime;
-            time.InnerHtml = Math.Round((EndTime - DateTime.Now).TotalSeconds, 0).ToString();
-            UpdateTimer();
+            //DAL mydal = new DAL(conn);
+            //DataSet ds = mydal.ExecuteProcedure("spShowActiveExam");
+            //DateTime EndTime = Convert.ToDateTime(ds.Tables[0].Rows[0]["EndTime"].ToString());
+            //DateTime StartTime = Convert.ToDateTime(ds.Tables[0].Rows[0]["StartTime"].ToString());
+            //Session["EndTime"] = EndTime;
+            //Session["StartTime"] = StartTime;
+            //time.InnerHtml = Math.Round((EndTime - DateTime.Now).TotalSeconds, 0).ToString();
+            //UpdateTimer();
         }
 
         public void GetQuizId()
@@ -101,7 +181,6 @@ namespace Group_Project_Online_Exam
             DAL mydal = new DAL(conn);
             DataSet ds = mydal.ExecuteProcedure("spShowQuiz");
             Session["QuizId"] = int.Parse(ds.Tables[0].Rows[0]["QuizId"].ToString());
-
         }
 
         public void loadQuestions()
@@ -122,102 +201,8 @@ namespace Group_Project_Online_Exam
             }
         }
 
-        protected void btnNext_Click(object sender, EventArgs e)
-        {
-            string value = ViewState["CorrectAnswer"].ToString();
-
-            if (RadioButtonList1.SelectedItem != null)
-            {
-                Responses[rowindex] = RadioButtonList1.SelectedItem.Text;
-
-                //    if (RadioButtonList1.SelectedItem.Text == value)
-                //    {
-                //        correct++;
-                //        Session["Correct"] = correct;
-                //    }
-                //    else
-                //    {
-                //        wrong++;
-                //        Session["Wrong"]= wrong;
-                //    }
-
-            }
-            rowindex++;
-            ViewState["RowIndex"] = rowindex;
-
-
-            if (rowindex > dt.Rows.Count - 1)
-            {
-                Response.Redirect("FinishExam.aspx");
-                rowindex = -1;
-                ViewState["RowIndex"] = rowindex;
-                // TEST IS OVER.
-            }
-            else
-            {
-                LoadQuestion();
-            }
-
-        }
-
-        protected void Timer1_Tick(object sender, EventArgs e)
-        {
-            UpdateTimer();
-        }
-
-        private void UpdateTimer()
-        {
-            DateTime startTime = (DateTime)Session["StartTime"];
-            DateTime endTime = (DateTime)Session["EndTime"];
-            DateTime now = DateTime.Now;
-
-            if (0 > DateTime.Compare(now, endTime))
-            {
-                string minutes = ((Int32)endTime.Subtract(now).TotalMinutes).ToString();
-                string seconds = ((Int32)endTime.Subtract(now).Seconds).ToString();
-                lblTimer.Text = string.Format("Time Left:00:{0}:{1}", minutes, seconds);
-            }
-            else
-            {
-                Timer1.Enabled = true;
-                Response.Redirect("FinishExam.aspx");
-            }
-        }
-
-        protected void btnback_Click(object sender, EventArgs e)
-        {
-            rowindex--;
-            ViewState["RowIndex"] = rowindex;
-            // check that you dont go back too far
-            loadQuestions();
-            // change the question on the screen based on the new row index
-            // use the same logic you have on page load, so you may need methods that do this
-            // instead of the logic just being on page load itself.
-
-            if (Responses[rowindex] != "")
-            {
-
-                 RadioButtonList1.SelectedValue=Responses[rowindex].ToString() ;
-            }
-                // this question already has an answer from previous, so that must mean the user had clicked BACK and we're looking at a already answered question
-                // now you have to populate the right radiobutton automatically for the user.
-                 rowindex++;
-                 ViewState["RowIndex"] = rowindex;
-
-
-                 if (rowindex > dt.Rows.Count - 1)
-                 {
-                     Response.Redirect("FinishExam.aspx");
-                     rowindex = -1;
-                     ViewState["RowIndex"] = rowindex;
-                     // TEST IS OVER.
-                 }
-                 else
-                 {
-                     LoadQuestion();
-                 }
-
-            }
+      
+      
         }
     }
 

@@ -12,4 +12,6 @@
 
     <asp:HyperLink ID="HyperLink4" runat="server" NavigateUrl="~/NumberOfStudentByProgram.aspx? link=3" ><b>4-Number Of student Ny Program</b> </asp:HyperLink>
   <br /><br />
+    <asp:HyperLink ID="HyperLink5" runat="server" NavigateUrl="~/QuizResponseByUser.aspx? link=4" ><b>5-Quiz Response By User</b> </asp:HyperLink>
+      <br /><br />
 </asp:Content>

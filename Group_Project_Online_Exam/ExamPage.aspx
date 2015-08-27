@@ -7,7 +7,7 @@
     <span id="time" runat="server"></span>
 
    
-    <asp:Timer ID="Timer1" runat="server" Interval="3600" OnTick="Timer1_Tick"></asp:Timer>
+   <%-- <asp:Timer ID="Timer1" runat="server" Interval="3600" OnTick="Timer1_Tick"></asp:Timer>--%>
 
 
     <asp:UpdatePanel ID="UpdatePanel2" runat="server" >
@@ -16,7 +16,7 @@
             <asp:Label ID="lblTimer" runat="server" Text="Label"></asp:Label>
         </ContentTemplate>
         <Triggers>
-            <asp:AsyncPostBackTrigger ControlID="Timer1" EventName="Tick" />
+         <%--   <asp:AsyncPostBackTrigger ControlID="Timer1" EventName="Tick" />--%>
         </Triggers>
 
         
@@ -35,7 +35,7 @@
     </asp:UpdatePanel>
      
 
-        <script>
+       <%-- <script>
             function startTimer(duration, display) {
                 var timer = duration, minutes, seconds;
                 setInterval(function () {
@@ -57,5 +57,5 @@
                 var seconds = parseInt($("#ContentPlaceHolder1_time").html());
                 startTimer(seconds, $("#ContentPlaceHolder1_time"));
             });
-    </script>
+    </script>--%>
 </asp:Content>
