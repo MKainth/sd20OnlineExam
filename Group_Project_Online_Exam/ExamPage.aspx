@@ -8,17 +8,8 @@
     <asp:HiddenField ID="hiddenSeconds" Value="" runat="server" />
 	<div class="clock" style="margin:2em;"></div>
    
-    <asp:UpdatePanel ID="UpdatePanel1"   runat="server">
+                <asp:UpdatePanel ID="UpdatePanel1"   runat="server">
         <ContentTemplate>
-            <table>
-                <tr>
-                    <td>
-                        <asp:Label ID="lblProgramNAme" runat="server" Text=""></asp:Label></td>
-                    
-                    <td>
-                        <asp:Label ID="LblQuizName" runat="server" Text=""></asp:Label>
-                </tr>
-            </table>
             <div style="font-size:x-large; width: 694px;">
             <asp:Label  ID="lblComplted" Font-Size="Medium" ForeColor="Red" runat="server" Text=""></asp:Label>
 
@@ -36,7 +27,9 @@
                         <td>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; &nbsp;</td>
                         <td>    <asp:Button ID="btnNext" runat="server" Text="Next" OnClick="btnNext_Click" Width="110px" /></td>
                         <td>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; &nbsp;</td>
-                       
+                        <td> <asp:Button ID="btnfinish" runat="server" Text="Finish" OnClick="btnfinish_Click1" Width="110px" /></td>
+                            
+            </td>
                     </tr>
                 </table>
            
@@ -46,6 +39,9 @@
     </asp:UpdatePanel>
     
 
+           
+   
+    
   
 <script>
 

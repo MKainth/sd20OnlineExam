@@ -31,24 +31,6 @@ namespace Group_Project_Online_Exam {
         protected global::System.Web.UI.UpdatePanel UpdatePanel1;
         
         /// <summary>
-        /// lblProgramNAme control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.Label lblProgramNAme;
-        
-        /// <summary>
-        /// LblQuizName control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.Label LblQuizName;
-        
-        /// <summary>
         /// lblComplted control.
         /// </summary>
         /// <remarks>
@@ -101,5 +83,14 @@ namespace Group_Project_Online_Exam {
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::System.Web.UI.WebControls.Button btnNext;
+        
+        /// <summary>
+        /// btnfinish control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Button btnfinish;
     }
 }

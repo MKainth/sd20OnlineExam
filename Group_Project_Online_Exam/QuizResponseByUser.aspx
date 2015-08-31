@@ -4,6 +4,7 @@
 <asp:Content ID="Content2" ContentPlaceHolderID="ContentPlaceHolder1" runat="server">
     <asp:DropDownList ID="ddtest" runat="server" AutoPostBack="True" OnSelectedIndexChanged="ddtest_SelectedIndexChanged"></asp:DropDownList>
      <asp:GridView ID="GVQuizResponseByUser" runat="server" AllowPaging="True" AllowSorting="True" Width="628px" AutoGenerateColumns="False">
+         <AlternatingRowStyle BackColor="#99CCFF" />
          <Columns>
              <asp:BoundField DataField="UserId" HeaderText="UserId" />
              <asp:BoundField DataField="Email" HeaderText="Email" />
