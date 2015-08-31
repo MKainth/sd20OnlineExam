@@ -196,10 +196,11 @@ namespace Group_Project_Online_Exam
             }
         }
 
-        protected void btnfinish_Click(object sender, EventArgs e)
+       
+        protected void btnfinish_Click1(object sender, EventArgs e)
         {
             DAL mydal = new DAL(conn);
-            
+            //mydal.AddParam();
         }
 
        

@@ -7,62 +7,60 @@
     <script src="compiled/flipclock.js"></script>
     <asp:HiddenField ID="hiddenSeconds" Value="" runat="server" />
     <div class="clock" style="margin: 2em;"></div>
-
-    <table>
-        <tr>
-            <td>
-                <asp:UpdatePanel ID="UpdatePanel1" runat="server">
-                    <ContentTemplate>
+   
+                <asp:UpdatePanel ID="UpdatePanel1"   runat="server">
+        <ContentTemplate>
                         <div style="font-size: x-large; width: 694px;">
                             <asp:Label ID="lblComplted" Font-Size="Medium" ForeColor="Red" runat="server" Text=""></asp:Label>
 
-                            <br />
-                            <asp:Label ID="lblmsg" runat="server" Text=""></asp:Label>
-
-                            <asp:Label ID="lblQuestion" runat="server" Text=""></asp:Label>
-                            <br />
-                            <asp:RadioButtonList ID="RadioButtonList1" runat="server">
-                            </asp:RadioButtonList><br />
-                            <table>
-                                <tr>
-                                    <td>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; &nbsp;</td>
+                <br />
+            <asp:Label ID="lblmsg" runat="server" Text=""></asp:Label>
+            
+            <asp:Label ID="lblQuestion" runat="server" Text=""></asp:Label>
+                <br />
+            <asp:RadioButtonList ID="RadioButtonList1" runat="server">
+            </asp:RadioButtonList><br />
+                <table>
+                    <tr>
+                        <td>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; &nbsp;</td>
                                     <td>
                                         <asp:Button ID="btnback" runat="server" Text="Back" OnClick="btnback_Click" Width="110px" /></td>
-                                    <td>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; &nbsp;</td>
+                        <td>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; &nbsp;</td>
                                     <td>
                                         <asp:Button ID="btnNext" runat="server" Text="Next" OnClick="btnNext_Click" Width="110px" /></td>
-                                    <td>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; &nbsp;</td>
-
-                                </tr>
-                            </table>
-                        </div>
-                    </ContentTemplate>
-                </asp:UpdatePanel>
+                        <td>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; &nbsp;</td>
+                        <td> <asp:Button ID="btnfinish" runat="server" Text="Finish" OnClick="btnfinish_Click1" Width="110px" /></td>
+                       
             </td>
-            <td>
-                <br />
-                <asp:Button ID="btnfinish" runat="server" Text="Finish" Height="28px" Style="margin-top: 96px; margin-left: 3px;" Width="110px" OnClick="btnfinish_Click" />
-            </td>
-        </tr>
-    </table>
-    <script>
+                    </tr>
+                </table>
+                </div>
+        </ContentTemplate>
+    </asp:UpdatePanel>
+    
 
-        var clock;
+           
+   
+    
+  
+<script>
 
-        $(document).ready(function () {
+    var clock;
 
-            seconds = $("#ContentPlaceHolder1_ContentPlaceHolder1_hiddenSeconds").val();
+    $(document).ready(function () {
 
-            clock = new FlipClock($('.clock'), seconds, {
-                clockFace: 'MinuteCounter',
-                countdown: true,
-                autostart: true
-            });
+        seconds = $("#ContentPlaceHolder1_ContentPlaceHolder1_hiddenSeconds").val();
+
+        clock = new FlipClock($('.clock'), seconds, {
+            clockFace: 'MinuteCounter',
+            countdown: true,
+            autostart: true
         });
+    });
 
-
-    </script>
-
-
+    
+</script>
+    
+   
 
 </asp:Content>
