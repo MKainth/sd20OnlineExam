@@ -108,7 +108,6 @@ namespace Group_Project_Online_Exam
             }
             else if (Result == "Failed")
             {
-                //IF SOMEBODY SUBSCRIBE  MAGAZINE THEN ADMIN CANNOT DELETE 
                 lblError.Text = "YOU CANNOT DELETE IT IS ALREADY IN USE!";
             }
             loadAvailableExam();

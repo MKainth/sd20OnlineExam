@@ -177,7 +177,7 @@ namespace Group_Project_Online_Exam
             Session["QuizId"] = int.Parse(ds.Tables[0].Rows[0]["QuizId"].ToString());
             
         }
-        
+
 
         public void loadQuestions()
         {
@@ -201,7 +201,7 @@ namespace Group_Project_Online_Exam
         protected void btnfinish_Click1(object sender, EventArgs e)
         {
               Security s=new Security();
-              DAL mydal = new DAL(conn);
+            DAL mydal = new DAL(conn);
              //  mydal.AddParam("@QuizResponseId",);
             for (int i=0;i<(int)Session["NumberofQuestion"];i++)
             {
@@ -214,7 +214,7 @@ namespace Group_Project_Online_Exam
               mydal.AddParam("@Response",Responses[i]);
               mydal.ExecuteProcedure("spInsertQuestionResponse");
         }}
-       
+
        
       
       

@@ -2,8 +2,7 @@
 <asp:Content ID="Content1" ContentPlaceHolderID="head" runat="server">
 </asp:Content>
 <asp:Content ID="Content2" ContentPlaceHolderID="ContentPlaceHolder1" runat="server">
-    <asp:GridView ID="GVStudentEachProgram" runat="server" AllowPaging="True" AllowSorting="True" Width="628px" >
-        <AlternatingRowStyle BackColor="#99CCFF" />
+    <asp:GridView ID="GVStudentEachProgram" runat="server" AllowPaging="True" AllowSorting="True"  Width="628px" >
 
       </asp:GridView>
 </asp:Content>
