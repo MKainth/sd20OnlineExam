@@ -205,6 +205,7 @@ create table tbQuestionResponse
 )
 go
 
+
 INSERT INTO tbQuestionResponse(QuizResponseId, QuestionId, Response)VALUES
 
 (1,1,'Variant'),(1,2,'lable'),(1,3,'None'),(1,4,'false'),(1,5,'Module'),(1,6,'Variant'),
@@ -335,7 +336,7 @@ go
 --select * from tbActiveExam
 
 insert into tbActiveExam (StartTime,EndTime,QuizId,SessionId)values
-('2015-08-27 11:00:00','2015-08-30 14:12:00',1,3)
+('2015-08-30 11:00:00','2015-09-05 14:12:00',1,3)
 						-- (GETDATE(),DATEADD(minute,30,GETDATE()),1,3)
 ------------------------spInsertUser--------------------------
 go
@@ -877,3 +878,4 @@ SELECT * FROM tbProgram p JOIN tbSession s ON p.ProgramId = s.ProgramId
 
 --select * from tbSession
 --select * from tbProgram
+create proc sp
